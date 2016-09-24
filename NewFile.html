@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+<script type="text/javascript" src="node_modules/jquery/dist/jquery.min.js"></script>
+<script type="text/javascript" src="assets/js/Folder.js"></script>
+<link rel="stylesheet" href="node_modules/font-awesome/css/font-awesome.css" />
+<script type="text/javascript">
+	$.ajax ( {
+		method: "POST",
+		dataType: "JSON",
+		ulr: 'server/load.php',
+		success: function (reply) {
+			
+		}
+	
+	});
+</script>
+</head>
+<body>
+	<div id="folders">
+		<form id= "createfolder" action="">
+			<div>
+				<label for="">Folder Name</label>
+				<input type="text" id="name"/>
+			</div>
+			<button type="submit">Submit</button>
+			
+		</form>
+	
+	<div id='big'>
+		
+	
+	</div>
+	
+	</div>
+</body>
+<script type="text/javascript">
+	$('#createfolder').submit(function(e) {
+		e.preventDefault();
+		var foldername = $('#name').val();
+		var info = {'foldername': foldername};
+		$.ajax ({
+			url: "server/createfolder.php",
+			dataType: 'JSON',
+			method: 'POST',
+			data: info,
+			success: function (reply) {
+				console.log(reply);
+				window.location.href = 'http://localhost/ITtalents/FileSystemV2/NewFile.html';
+			}
+		});
+	});
+
+</script>
+</html>
