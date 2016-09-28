@@ -1,8 +1,17 @@
 /**
  * 
  */
-var mysql = require('mysql');
 
+/*var express = require('express');
+var multer  = require('multer')
+var upload = multer({ dest: 'uploads/' })
+var app = express();
+
+app.post('../NewFile.html',function(request, responce){
+	var file = request.upload;
+	console.log(file);
+});*/
+var mysql = require('mysql');
 var connection = mysql.createConnection ({
 	host: 'localhost',
 	user: 'root',
@@ -12,7 +21,7 @@ var connection = mysql.createConnection ({
 connection.connect();
 
 var user =  {
-		username: 'Hello',
+		username: 'Qnko',
 		password: 'test123'
 };
 

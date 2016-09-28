@@ -2,7 +2,8 @@
  * http://usejsdoc.org/
  */
 var mysql = require('mysql');
-var http = require('http');
+var express = require('express');
+var app = express();
 
 
 var connection = mysql.createConnection ({
@@ -13,7 +14,12 @@ var connection = mysql.createConnection ({
 });
 connection.connect();
 
-var query = connection.query( 'SELECT * FROM users', function (error, result) {
+var user =  {
+		username: 'Qnko',
+		password: 'test123'
+};
+
+var query = connection.query( 'INSERT INTO users SET ?', user, function (error, result) {
 	if (error) {
 		console.error(error);
 		return;

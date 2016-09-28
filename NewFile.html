@@ -39,24 +39,27 @@
 	<form action="" id="fileupload" enctype="multipart/form-data">
 		<div>
 			<label for="File">File to upload:</label>
-			<input type="file" />
+			<input type="file" id="uploadingfile" />
 		</div>
+		<button type="submit">Upload</button>
 	</form>
 	
 </body>
 <script type="text/javascript">
-	$('#createfolder').submit(function(e) {
+	$('#fileupload').submit(function(e) {
 		e.preventDefault();
-		var foldername = $('#name').val();
-		var info = {'foldername': foldername};
+		var file = $('#uploadingfile')[0].files[0];
+		console.log(file);
+		var nfo = new FormData();
+		nfo.append('userfile', file);
 		$.ajax ({
-			url: "server/createfolder.php",
-			dataType: 'JSON',
+			url: "server/insert.js",
 			method: 'POST',
-			data: info,
+			data: nfo,
+			contentType : false,
+			processData : false,
 			success: function (reply) {
 				console.log(reply);
-				window.location.href = 'http://localhost/ITtalents/FileSystemV2/NewFile.html';
 			}
 		});
 	});

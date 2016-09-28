@@ -7,14 +7,15 @@
 <script type = "text/javascript" src = "node_modules/angular/angular.min.js" ></script>
 <script type = "text/javascript" src = "node_modules/jquery/dist/jquery.min.js"></script>
 <script type = "text/javascript" src = "node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
-<script type = "text/javascript" src = "assets/js/login.js"></script>
+<script type="text/javascript" src = "assets/js/register.js"></script>
 <script type = "text/javascript" src = "assets/js/Folder.js"></script>
 <script type = "text/javascript" src = "assets/js/File.js"></script>
 <script type = "text/javascript" src = "assets/js/demo.js"></script>
+
 </head>
 <body>
 	<div >
-		<form action=""id="login">
+		<form action="" id="register">
 			<div>
 				<label for="username" >Username:</label>
 				<input type="text" id= "username" />
@@ -23,9 +24,13 @@
 				<label for="password">Password:</label>
 				<input type="password" id="password"/>
 			</div>
-			<button id="">Login</button>
+			<div>
+				<label for="email">Email:</label>
+				<input type="text" id="email"/>
+			</div>
+			<input type="submit" />
 		</form>
-		<a href="register.html">Register</a>
+		<a href="index.html">back</a>
 	</div>
 </body>
 </html>
