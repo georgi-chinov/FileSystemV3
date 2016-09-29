@@ -1,0 +1,72 @@
+@CHARSET "UTF-8";
+ .horizontal-collapse {
+        height: 60px;
+    }
+  .navbar-collapse.in {
+        overflow-y: hidden;
+  }
+  .elegant-aero {
+	 margin-left:auto;
+	 margin-right:auto;
+	 margin-top:5px;
+	 width:40%;
+	 background: #13232f;
+	 padding: 15px 20px 20px 20px;
+	 font: 12px Arial, Helvetica, sans-serif;
+
+}
+
+.elegant-aero #username , .elegant-aero #password , .elegant-aero #passRepeated ,  .elegant-aero #userEmail{
+	width:95%;
+	margin:15px auto;
+	color: white;
+	display:block;
+}
+
+.elegant-aero label {
+  display: block;
+  font-size:1.2em;
+}
+
+.elegant-aero input[type="text"], .elegant-aero input[type="password"] , .elegant-aero input[type="email"]{
+  display:block;
+  color: #888;
+  width: 99%;
+  padding: 0px 0px 0px 5px;
+  border: 1px solid #C5E2FF;
+  background: #FBFBFB;
+  outline: 0;
+  -webkit-box-shadow:inset 0px 1px 6px #ECF3F5;
+  box-shadow: inset 0px 1px 6px #ECF3F5;
+  font: 200 12px/25px Arial, Helvetica, sans-serif;
+  height: 30px;
+  line-height:15px;
+  margin-bottom:5px;
+  margin-top:5px;  
+}
+.elegant-aero input:focus{
+	border:3px solid #337AB7;
+}
+div{
+  display:inline-block;
+  vertical-align:top;
+  color: red;
+  margin:6px auto;
+  width:95%;
+}
+.caption{
+	display:block;
+	
+	font:1.9em Arial, Helvetica, sans-serif;
+	width:45%;
+	color:blue;
+	margin:10px auto;
+}
+
+.navbar-collapse .active {
+	background-color:#337AB7;
+	opacity:1;	
+}
+button {
+	margin-bottom:5px;
+}
