@@ -90,6 +90,7 @@ var mainApp = angular.module('mainModule', ['ngRoute', 'ngAnimate', 'ui.bootstra
 		 $scope.login = function(){
 			 //send data
 		 }
+		 //Checks if the data is valid
 			$scope.isValid= function(){
 				if(($scope.log.username.$valid) && ($scope.log.userpass.$valid)){
 						return false;
