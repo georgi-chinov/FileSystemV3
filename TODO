@@ -1,9 +1,0 @@
-Requirements:
-
-
-
--Front end with file uploads ( Angular , Boostrap)
--Users and file share between them
--Node js server with MYSQL DB
--Support different files (txt, png, jpg )
--App to install the files onto the conmputer
