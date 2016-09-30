@@ -2,13 +2,14 @@
  * 
  */
 var mainApp = angular.module('mainModule', ['ngRoute', 'ngAnimate', 'ui.bootstrap' , 'ngMessages'])
-	
+	//routing
 		.config(function ($routeProvider, $locationProvider) {
             $routeProvider
                 .when('/', {
                     templateUrl: './home/home.html',
                     controller: 'homeController'
                 })
+                //redirect to forgotten password page with routing
                 .when('/email', {
                     templateUrl: './email/email.html',
                     controller: 'emailController'
@@ -20,7 +21,7 @@ var mainApp = angular.module('mainModule', ['ngRoute', 'ngAnimate', 'ui.bootstra
                     }
                 })
 			})
-
+			//this is the main controller with nested scopes in it 
 			.controller('MainController', function ($scope, $location) {
 
 				$scope.navigateToSimple = function () {
@@ -40,6 +41,7 @@ var mainApp = angular.module('mainModule', ['ngRoute', 'ngAnimate', 'ui.bootstra
 					$scope.isAct = false;
 				}
 			}
+            //these are functions to show and hide the login and the sign up form
             $scope.showIt = function(){
             	if($scope.show){
             		$scope.show = false;
@@ -65,7 +67,7 @@ var mainApp = angular.module('mainModule', ['ngRoute', 'ngAnimate', 'ui.bootstra
 			
             
        })
-        
+        //this is the controller for the sign up form
 		.controller ('myCtrl',function($scope){
 	
 			$scope.user = {name:'',password:'' , passRepeated:'' , email:''};
@@ -73,6 +75,7 @@ var mainApp = angular.module('mainModule', ['ngRoute', 'ngAnimate', 'ui.bootstra
 			$scope.login = function(){
 				//send data
 			 }
+			//this function checks whether the data to send  is valid
 			$scope.isValid= function(){
 				
 				if(($scope.sign.username.$valid) && ($scope.sign.userpass.$valid) && ($scope.sign.passRepeated.$valid) && ($scope.sign.userEmail.$valid)){
