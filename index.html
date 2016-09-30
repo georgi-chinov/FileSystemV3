@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<head>
+    <meta charset="UTF-8">
+  	<title>Title</title>
+    
+    <script src="node_modules/angular/angular.min.js"></script>
+    <script src="node_modules/angular-route/angular-route.min.js"></script>
+    <script src="node_modules/angular-messages/angular-messages.min.js"></script>
+
+
+
+    <script src="node_modules/angular-animate/angular-animate.min.js"></script>
+
+    <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.css">
+    <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap-theme.css">
+    <link rel="stylesheet" href="node_modules/angular-ui-bootstrap/dist/ui-bootstrap-csp.css"/>
+    <script src="node_modules/angular-ui-bootstrap/dist/ui-bootstrap.js"></script>
+    <script src="node_modules/angular-ui-bootstrap/dist/ui-bootstrap-tpls.js"></script>
+
+
+
+    <script src="app.js"></script>
+    <script src="email/emailController.js"></script>
+    <script src="home/homeController.js"></script>
+    
+    <link rel = "stylesheet" type="text/css" href = "assets/css/style.css">
+  	<meta name = "viewport " content = "width=device-width , initial-scale =1">
+  	
+    </head>
+<body data-ng-app="mainModule" data-ng-controller="MainController" style="text-align: center" >
+
+<div data-ng-controller="CollapseDemoCtrl">
+    <nav class="navbar navbar-default" role="navigation">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-ng-click="isNavCollapsed = !isNavCollapsed">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+        </div>
+        <div class="collapse navbar-collapse " data-uib-collapse="isNavCollapsed">
+                <a class="navbar-brand" href="#/">LOGO</a>
+                <button data-ng-class= "{ 'btn': true, 'btn-primary': true , 'btn-lg':true ,'active':isAct}"  data-ng-click="showIt()" data-ng-show = visible=true>Login</button>
+             	 <button data-ng-class="{ 'btn': true, 'btn-primary': true , 'btn-lg':true , 'active':!isAct}"  data-ng-click="showIt2()" data-ng-show = visible=true>Sign Up</button>
+            
+        </div>
+    </nav>
+
+
+<!-- LOG IN -->
+
+<form name="log" data-ng-controller = "logInCtrl" data-ng-class="{'elegant-aero':true}" data-data-ng-submit="submitLoginForm()" novalidate data-ng-show=show>
+  	<div data-ng-class ="{'caption':true}" style = "color:white">Log in</div>
+  	<div id = "username">
+	    <label >Username:
+	    	<input type="text" name="username" data-ng-model="user.name" data-ng-pattern="/^[a-zA-Z0-9.\-_$@*!]{5,20}$/" data-ng-minlength="5" data-ng-maxlength="20" required />
+	    </label>	    
+	<div data-ng-messages="log.username.$error">
+	      <div data-ng-message="required">This field is required</div>
+	      <div data-ng-message="minlength">Minimal number of symbols is 5.</div>
+	      <div data-ng-message="maxlength">Maximal number of symbols is 20.</div>
+		  <div data-ng-message="pattern">Your username is invalid</div>
+	 </div>
+   </div> 
+
+	<div id="password">
+		<label>Password:
+		   	<input type="password" name="userpass" data-ng-model="user.password" data-ng-pattern="/^[a-zA-Z0-9.\-_$@*!]{8,20}$/" required />
+		 </label>
+		 <div data-ng-messages="log.userpass.$error">
+		 	<div data-ng-message="required">This field is required</div>
+		    <div data-ng-message="pattern">Your password is invalid</div>
+		 </div>
+    </div>
+    <button type = "submit" data-ng-class = "{ 'btn': true, 'btn-primary': true , 'btn-lg':true , 'disabled':isValid()}" data-ng-attr-id="sumbit" data-ng-disabled=" !(log.userpass.$valid) || !(log.username.$valid) ">Submit</button>
+  	<div > <a href="#/email" data-ng-click = "hideLogin()">Forgotten Password:</a></div>
+  </form>
+<div data-ng-view></div>
+
+
+
+<!-- SIGN UP -->
+
+  <form name="sign" data-ng-controller = "myCtrl" data-ng-class="{'elegant-aero':true}" data-ng-class="{'navbar-form':true }" data-ng-submit="submitSignUpForm()" novalidate data-ng-show = show2>
+  	<div data-ng-class ="{'caption':true}" style = "color:white">Register</div>
+  	<div id = "username">
+	    <label>Username:
+	    	<input type="text" name="username" data-ng-model="user.name" data-ng-pattern="/^[a-zA-Z0-9.\-_$@*!]{5,20}$/" data-ng-minlength="5" data-ng-maxlength="20" required />
+	    </label>	    
+	<div data-ng-messages="sign.username.$error">
+	      <div data-ng-message="required">This field is required</div>
+	      <div data-ng-message="minlength">Minimal number of symbols is 5.</div>
+	      <div data-ng-message="maxlength">Maximal number of symbols is 20.</div>
+		  <div data-ng-message="pattern">Your username is invalid</div>
+	 </div>
+   </div> 
+
+	<div id = "password">
+		<label>Password:
+		   	<input type="password" name="userpass" data-ng-model="user.password" data-ng-pattern="/^[a-zA-Z0-9.\-_$@*!]{8,20}$/" required />
+		 </label>
+		 <div data-ng-messages="sign.userpass.$error">
+		 	<div data-ng-message="required">This field is required</div>
+		    <div data-ng-message="pattern">Your password is invalid</div>
+		 </div>
+    </div>
+    
+	<div id = "passRepeated">
+		<label>Repeat password:
+		   	<input type="password" name="passRepeated" data-ng-model="user.passRepeated" data-ng-pattern="{{user.password}}" required data-ng-compare-to="log.passRepeat" />
+		 </label>
+		 <div data-ng-messages="sign.passRepeated.$error">
+		 	<div data-ng-message="required">This field is required</div>
+		    <div data-ng-message="pattern">Your passwords do not match</div>
+		 </div>
+    </div>
+	<div id = "userEmail">
+		<label>Email:
+		   	<input type="email" name="userEmail" data-ng-model="user.email" data-ng-pattern="/^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/" required />
+		 </label>
+		 <div data-ng-messages="sign.userEmail.$error">
+		 	<div data-ng-message="required">This field is required</div>
+		    <div data-ng-message="pattern">Your email is invalid</div>
+		 </div>
+    </div>	 
+	<button data-ng-class = "{ 'btn': true, 'btn-primary': true , 'btn-lg':true , 'disabled':isValid()}" >Submit</button>
+ 
+  </form>
+</div>
+</body>
+</html>

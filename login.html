@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+<link type="text/css" rel="styelsheet" href="node_modules/angular-material/angular-material.min.css">
+<script type="text/javascript" src="node_modules/angular/angular.min.js"></script>
+<script type="text/javascript" src="node_modules/angular-animate/angular-animate.min.js"></script>
+<script type="text/javascript" src="node_modules/angular-aria/angular-aria.min.js"></script>
+<script type="text/javascript" src="node_modules/angular-touch/angular-touch.min.js"></script>
+<script type="text/javascript" src="node_modules/angular-ui-bootstrap/dist/ui-bootstrap.js"></script>
+<script type="text/javascript" src="node_modules/angular-ui-bootstrap/dist/ui-bootstrap-tpls.js"></script>
+<link rel="stylesheet" type= "text/css" href  = "node_modules/angular-ui-bootstrap/dist/ui-bootstrap-csp.css">
+<script type="text/javascript" src="node_modules/angular-material/angular-material.min.js"></script>
+<script type="text/javascript" src="node_modules/angular-messages/angular-messages.min.js"></script>
+<link rel = "stylesheet" type="text/css" href = "node_modules/bootstrap/dist/css/bootstrap.min.css">
+<link rel="stylesheet" href = "assets/css/style.css">
+<meta name = "viewport " content = "width=device-width , initial-scale =1">
+</head>
+
+<body data-ng-app="app" data-ng-controller = "myCtrl" style = "text-align:center">
+  <form name="log" data-ng-class="{'elegant-aero':true}" data-data-ng-submit="submitForm()" novalidate>
+  	<div data-ng-class ="{'caption':true}" style = "color:white"><button data-ng-class= "{ 'btn': true, 'btn-primary': true , 'btn-lg':true ,'active':isAct}" data-ng-click="isActive()">Login</button><button data-ng-class="{ 'btn': true, 'btn-primary': true , 'btn-lg':true , 'active':!isAct}" data-ng-click="isActive()">Sign Up</button></div>
+  	<div id = "username">
+	    <label >Username:
+	    	<input type="text" name="username" data-ng-model="user.name" data-ng-pattern="/^[a-zA-Z0-9.\-_$@*!]{5,20}$/" data-ng-minlength="5" data-ng-maxlength="20" required />
+	    </label>	    
+	<div data-ng-messages="log.username.$error">
+	      <div data-ng-message="required">This field is required</div>
+	      <div data-ng-message="minlength">Minimal number of symbols is 5.</div>
+	      <div data-ng-message="maxlength">Maximal number of symbols is 20.</div>
+		  <div data-ng-message="pattern">Your username is invalid</div>
+	 </div>
+   </div> 
+
+	<div id="password">
+		<label>Password:
+		   	<input type="password" name="userpass" data-ng-model="user.password" data-ng-pattern="/^[a-zA-Z0-9.\-_$@*!]{8,20}$/" required />
+		 </label>
+		 <div data-ng-messages="log.userpass.$error">
+		 	<div data-ng-message="required">This field is required</div>
+		    <div data-ng-message="pattern">Your password is invalid</div>
+		 </div>
+    </div>
+    <button type = "submit" data-ng-class = "{ 'btn': true, 'btn-primary': true , 'btn-lg':true , 'disabled':isValid()}" data-ng-attr-id="sumbit" data-ng-disabled=" !(log.userpass.$valid) || !(log.username.$valid) ">Submit</button>
+  </form>
+</body>
+<script>
+var app = angular.module('app', ['ngMessages']);
+app.controller ('myCtrl',function($scope){
+	 $scope.user = {name:'',password:''};
+	 $scope.login = function(){
+		 //send data
+	 }
+		$scope.isValid= function(){
+			if(($scope.log.username.$valid) && ($scope.log.userpass.$valid)){
+					return false;
+				}else{
+					return true;
+				}
+			}
+		
+		$scope.isActive = function(){
+			if(!$scope.isAct){
+				$scope.isAct = true;
+			}else{
+				$scope.isAct = false;
+				}
+			}
+			
+	})
+</script>
+</html>
