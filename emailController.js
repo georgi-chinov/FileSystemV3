@@ -2,8 +2,9 @@
  * 
  */
 var emailApp = angular.module('emailApp', ['ngRoute', 'ngAnimate' , 'ui.bootstrap', 'ngMessages']);
-emailApp.controller('emailController' , function($scope){
-
+emailApp.controller('emailController' , function($scope , $http){
+	$scope.email =  '';
+	
 	$scope.isValidEmail = function(){
     	if(($scope.forgottenPassword.userEmail.$valid)){
 			return  false;
@@ -11,22 +12,14 @@ emailApp.controller('emailController' , function($scope){
 			return  true;
 		}
 	}
-	var from,to,subject,text;
-    $scope.sendEmail = function(){     
-    	from = "projectorganiseit@gmail.com";
-        to = 'tyhomiraparichkova@gmail.com';
-        subject='Forgotten password';
-        text='You have forgotten your password';
-        //$("#message").text("Sending E-mail...Please wait");
-        $.get("http://localhost:3000/send",{to:to,subject:subject,text:text},function(data){
-	        if(data=="sent"){
 	
-	        	console.log('data sent!');
-	        	
-	        }
-        })
-      
-    }
-    
+	$scope.submitForm = function(){
+		console.log($scope.email);
+		
+		$http.post('localhost:3000', {email:$scope.email})
+        .success(function (response) {
+            callback(response);
+});
+	}
 
 })
