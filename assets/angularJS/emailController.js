@@ -16,7 +16,7 @@ emailApp.controller('emailController' , function($scope , $http){
 	$scope.submitForm = function(){
 		console.log($scope.email);
 		
-		$http.post('localhost:3000', {email:$scope.email})
+		$http.post('/', {email:$scope.email})
         .success(function (response) {
             callback(response);
 });

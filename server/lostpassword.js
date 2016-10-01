@@ -18,10 +18,11 @@ var smtpTransport = nodemailer.createTransport("SMTP",{
 /*------------------Routing Started ------------------------*/
 
 app.get('/',function(req,res){
-    res.sendfile('index.html');
+    res.sendfile('email.html');
 });
-app.get('/send',function(req,res){
-	res.setHeader('Access-Control-Allow-Origin', '*');
+
+app.post('/',function(req,res){
+	//res.setHeader('Access-Control-Allow-Origin', '*');
 	var newpass = randomstring.generate({
 		  length: 12,
 		  charset: 'alphabetic'
