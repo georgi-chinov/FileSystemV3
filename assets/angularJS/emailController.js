@@ -14,12 +14,16 @@ emailApp.controller('emailController' , function($scope , $http){
 	}
 	
 	$scope.submitForm = function(){
-		console.log($scope.email);
-		
-		$http.post('/', {email:$scope.email})
-        .success(function (response) {
-            
-});
+		if($scope.email !== undefined){
+			
+			console.log($scope.email);
+			
+			$http.post('/', {email:$scope.email})
+	        .success(function (response) {
+	            
+	});
+
+		}
 	}
 
 })
