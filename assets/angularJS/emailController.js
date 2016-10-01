@@ -16,9 +16,10 @@ emailApp.controller('emailController' , function($scope , $http){
 	$scope.submitForm = function(){
 		if($scope.email !== undefined){
 			
-			console.log($scope.email);
 			
-			$http.post('/', {email:$scope.email})
+			var data = {mail: $scope.email}
+			console.log(data);
+			$http.post('/', data)
 	        .success(function (response) {
 	            
 	});
