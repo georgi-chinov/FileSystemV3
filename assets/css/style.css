@@ -37,6 +37,7 @@ body{
 .elegant-aero label {
   display: block;
   font-size:1.2em;
+  
 }
 
 .elegant-aero input[type="text"], .elegant-aero input[type="password"] , .elegant-aero input[type="email"]{
@@ -54,6 +55,7 @@ body{
   line-height:15px;
   margin-bottom:5px;
   margin-top:5px;  
+  
 }
 .elegant-aero input:focus{
 	border:3px solid #337AB7;
@@ -69,7 +71,7 @@ div{
 	display:block;
 	
 	font:1.9em Arial, Helvetica, sans-serif;
-	width:45%;
+	width:40%;
 	color:blue;
 	margin:10px auto;
 }
@@ -80,4 +82,16 @@ div{
 }
 button {
 	margin-bottom:5px;
+}
+.elegant-aero .btn-arrow-left {
+
+	position: relative;
+    padding-left: 18px;
+    padding-right: 18px;
+   	padding-right: 36px;
+}
+.elegant-aero #emailBtn{
+	position:relative;
+	width:100px;
+	margin:10px 200px;
 }

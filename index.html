@@ -24,7 +24,7 @@
 
 
     <script src="app.js"></script>
-    <script src="email/emailController.js"></script>
+    <script src="emailController.js"></script>
     <script src="home/homeController.js"></script>
     
     <link rel = "stylesheet" type="text/css" href = "assets/css/style.css">
@@ -77,7 +77,7 @@
 		 </div>
     </div>
     <button type = "submit" data-ng-class = "{ 'btn': true, 'btn-primary': true , 'btn-lg':true , 'disabled':isValid()}" data-ng-attr-id="sumbit" data-ng-disabled=" !(log.userpass.$valid) || !(log.username.$valid) ">Submit</button>
-  	<div > <a href="#/email" data-ng-click = "hideLogin()">Forgotten Password:</a></div>
+  	<div > <a href="email.html" >Forgotten Password:</a></div>
   </form>
 <div data-ng-view></div>
 

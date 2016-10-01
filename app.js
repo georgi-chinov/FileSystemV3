@@ -10,10 +10,7 @@ var mainApp = angular.module('mainModule', ['ngRoute', 'ngAnimate', 'ui.bootstra
                     controller: 'homeController'
                 })
                 //redirect to forgotten password page with routing
-                .when('/email', {
-                    templateUrl: './email/email.html',
-                    controller: 'emailController'
-                })
+                
                 .otherwise({
                     template: '<h1>Not found</h1><h2>{{message}}</h2>',
                     controller: function ($scope) {
@@ -47,10 +44,14 @@ var mainApp = angular.module('mainModule', ['ngRoute', 'ngAnimate', 'ui.bootstra
             		$scope.show = false;
             		$scope.show2=false;
             		$scope.isAct = false;
+            		
             	} else {
             		$scope.show = true;
             		$scope.show2 = false;
             		$scope.isAct = true;
+            		if($scope.showEmail == true){
+            			$scope.showEmail = false;
+            		}
             	}
             }
             $scope.showIt2 = function(){
@@ -101,14 +102,7 @@ var mainApp = angular.module('mainModule', ['ngRoute', 'ngAnimate', 'ui.bootstra
 						return true;
 					}
 			}
-			/**$scope.hideLogin = function(){
-				$scope.show = false;
-				if($scope.visible){
-					$scope.visible = true;
-				} else {
-					$scope.visible = true;
-				} 
-			}**/
+
 					
 	})
     
