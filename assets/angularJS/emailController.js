@@ -18,7 +18,7 @@ emailApp.controller('emailController' , function($scope , $http){
 		
 		$http.post('/', {email:$scope.email})
         .success(function (response) {
-            callback(response);
+            
 });
 	}
 
