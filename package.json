@@ -14,7 +14,8 @@
     "angular-ui-bootstrap": "^2.1.4",
     "bootstrap": "^3.3.7",
     "express": "^4.14.0",
-    "nodemailer": "^2.6.4"
+    "jquery": "^3.1.1",
+    "nodemailer": "^0.7.1"
   },
   "devDependencies": {},
   "scripts": {
