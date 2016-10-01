@@ -15,6 +15,7 @@
     "angular-route": "^1.5.8",
     "angular-touch": "^1.5.8",
     "angular-ui-bootstrap": "^2.1.4",
+<<<<<<< HEAD
     "bootstrap": "^3.3.7"
   },
   "repository": {
@@ -26,5 +27,10 @@
   },
   "homepage": "https://github.com/Ruinlol/FileSystemV3#readme",
   "description": ""
+=======
+    "bootstrap": "^3.3.7",
+    "express": "^4.14.0"
+  }
+>>>>>>> branch 'master' of https://github.com/Ruinlol/FileSystemV3.git
 }
 
