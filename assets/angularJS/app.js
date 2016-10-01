@@ -6,7 +6,7 @@ var mainApp = angular.module('mainModule', ['ngRoute', 'ngAnimate', 'ui.bootstra
 		.config(function ($routeProvider, $locationProvider) {
             $routeProvider
                 .when('/', {
-                    templateUrl: './home.html',
+                    templateUrl: '.	/home.html',
                     controller: 'homeController'
                 })
                 //redirect to forgotten password page with routing
