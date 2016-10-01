@@ -1,6 +1,6 @@
 var nodemailer = require("nodemailer");
 var express = require("express");
-
+var randomstring = require("randomstring");
 var app=express();
 /*
     Here we are configuring our SMTP Server details.
@@ -22,10 +22,14 @@ app.get('/',function(req,res){
 });
 app.get('/send',function(req,res){
 	res.setHeader('Access-Control-Allow-Origin', '*');
+	var newpass = randomstring.generate({
+		  length: 12,
+		  charset: 'alphabetic'
+		});
     var mailOptions={
         to : req.query.to,
         subject : req.query.subject,
-        text : req.query.text
+        text : 'Your new password is:' + newpass+'/n.'
     }
     console.log(mailOptions);
     smtpTransport.sendMail(mailOptions, function(error, response){
