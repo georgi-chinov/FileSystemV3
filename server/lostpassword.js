@@ -21,20 +21,17 @@ app.get('/',function(req,res){
     res.sendfile('email.html');
 });
 
-app.get('/',function(req,res){
-	/*res.setHeader('Access-Control-Allow-Origin', '*');*/
-	console.log('asd');
-	console.log(req.email);
-
+app.post('/',function(req,res){
+	
+	res.setHeader('Access-Control-Allow-Origin', '*');
+	console.log(req);
 	var newpass = randomstring.generate({
 		  length: 12,
 		  charset: 'alphabetic'
 		});
-	
-	
     var mailOptions={
         to : req.query.to,
-        subject : req.query.subject,
+        subject : 'TEstmail',
         text : 'Your new password is:' + newpass+'/n.'
     }
     console.log(mailOptions);
