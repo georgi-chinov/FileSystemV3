@@ -2,29 +2,46 @@
  * 
  */
 var emailApp = angular.module('emailApp', ['ngRoute', 'ngAnimate' , 'ui.bootstrap', 'ngMessages']);
-emailApp.controller('emailController' , function($scope , $http){
+
+emailApp.controller('emailController' , function($scope , $http,$httpParamSerializerJQLike){
+	
 	$scope.email =  '';
 	
 	$scope.isValidEmail = function(){
     	if(($scope.forgottenPassword.userEmail.$valid)){
 			return  false;
-		}else{
-			return  true;
 		}
+    	return  true;
+
 	}
 	
 	$scope.submitForm = function(){
-		if($scope.email !== undefined){
-			
-			
-			var data = {mail: $scope.email}
+		if($scope.email !== undefined){	
+			var data = {to: $scope.email};
 			console.log(data);
-			$http.post('/', data)
+			
+			$http({
+			    method: "post",
+			    url: 'http://localhost:3000/',
+			    headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+			    data: $httpParamSerializerJQLike(data)
+			})
+			
+			/*$http.post('http://localhost:3333/',
+					
+					,data )
 	        .success(function (response) {
-	            
-	});
+	          console.log(response);
+	});*/
 
 		}
 	}
 
 })
+emailApp.config(['$httpProvider', function ($httpProvider) {
+
+	  $httpProvider.defaults.headers.common = {};
+	  $httpProvider.defaults.headers.post = {};
+	  $httpProvider.defaults.headers.put = {};
+	  $httpProvider.defaults.headers.patch = {};
+	}]);
