@@ -23,9 +23,9 @@
 
 
 
-    <script src="assets/AngularJS/app.js"></script>
-    <script src="assets/AngularJS/emailController.js"></script>
-    <script src="assets/AngularJS/homeController.js"></script>
+    <script src="app/routes/app.js"></script>
+    <script src="app/routes/email/emailController.js"></script>
+    <script src="app/routes/home/homeController.js"></script>
     
     <link rel = "stylesheet" type="text/css" href = "assets/css/style.css">
   	<meta name = "viewport " content = "width=device-width , initial-scale =1">
@@ -77,7 +77,7 @@
 		 </div>
     </div>
     <button type = "submit" data-ng-class = "{ 'btn': true, 'btn-primary': true , 'btn-lg':true , 'disabled':isValid()}" data-ng-attr-id="sumbit" data-ng-disabled=" !(log.userpass.$valid) || !(log.username.$valid) ">Submit</button>
-  	<div > <a href="email.html" >Forgotten Password:</a></div>
+  	<div > <a href="app/routes/email/email.html" >Forgotten Password:</a></div>
   </form>
 <div data-ng-view></div>
 
