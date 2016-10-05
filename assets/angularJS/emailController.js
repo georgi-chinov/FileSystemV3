@@ -26,14 +26,6 @@ emailApp.controller('emailController' , function($scope , $http,$httpParamSerial
 			    headers: {'Content-Type': 'application/x-www-form-urlencoded'},
 			    data: $httpParamSerializerJQLike(data)
 			})
-			
-			/*$http.post('http://localhost:3333/',
-					
-					,data )
-	        .success(function (response) {
-	          console.log(response);
-	});*/
-
 		}
 	}
 
