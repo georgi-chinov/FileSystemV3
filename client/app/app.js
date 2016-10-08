@@ -9,6 +9,18 @@ var mainApp = angular.module('mainModule', ['ngRoute', 'ngAnimate', 'ui.bootstra
                     templateUrl: './app/routes/home/home.html',
                     controller: 'homeController'
                 })
+                .when('/login', {
+                    templateUrl: './app/routes/login/login.html',
+                    controller: 'loginController'
+                })
+                .when('/register', {
+                    templateUrl: './app/routes/register/register.html',
+                    controller: 'registerController'
+                })
+                .when('/email', {
+                    templateUrl: './app/routes/email/email.html',
+                    controller: 'emailController'
+                })
                 //redirect to forgotten password page with routing
                 
                 .otherwise({
@@ -62,41 +74,5 @@ var mainApp = angular.module('mainModule', ['ngRoute', 'ngAnimate', 'ui.bootstra
 			
             
        })
-        //this is the controller for the sign up form
-		.controller ('myCtrl',function($scope){
-	
-			$scope.user = {name:'',password:'' , passRepeated:'' , email:''};
-	 
-			$scope.login = function(){
-				//send data
-			 }
-			//this function checks whether the data to send  is valid
-			$scope.isValid= function(){
-				
-				if(($scope.sign.username.$valid) && ($scope.sign.userpass.$valid) && ($scope.sign.passRepeated.$valid) && ($scope.sign.userEmail.$valid)){
-					return false;
-				} else {
-					return true;
-				}
-			}
-			
-		})
 
-		.controller('logInCtrl',function($scope){
-
-		$scope.user = {name:'',password:''};
-		 $scope.login = function(){
-			 //send data
-		 }
-		 //Checks if the data is valid
-			$scope.isValid= function(){
-				if(($scope.log.username.$valid) && ($scope.log.userpass.$valid)){
-						return false;
-					} else {
-						return true;
-					}
-			}
-
-					
-	})
     

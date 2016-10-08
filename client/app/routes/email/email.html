@@ -4,50 +4,29 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 
-
- <script src="../../../node_modules/angular/angular.min.js"></script>
-    <script src="../../../node_modules/angular-route/angular-route.min.js"></script>
-    <script src="../../../node_modules/angular-messages/angular-messages.min.js"></script>
-
+	<script src="././node_modules/angular/angular.min.js"></script>
+    <script src="././node_modules/angular-route/angular-route.min.js"></script>
+    <script src="././node_modules/angular-messages/angular-messages.min.js"></script>
 
 
-    <script src="../../../node_modules/angular-animate/angular-animate.min.js"></script>
 
-    <link rel="stylesheet" href="../../../node_modules/bootstrap/dist/css/bootstrap.css">
-    <link rel="stylesheet" href="../../../node_modules/bootstrap/dist/css/bootstrap-theme.css">
-    <link rel="stylesheet" href="../../../node_modules/angular-ui-bootstrap/dist/ui-bootstrap-csp.css"/>
-    <script src="../../../node_modules/angular-ui-bootstrap/dist/ui-bootstrap.js"></script>
-    <script src="../../../node_modules/angular-ui-bootstrap/dist/ui-bootstrap-tpls.js"></script>
+    <script src="././node_modules/angular-animate/angular-animate.min.js"></script>
+
+    <link rel="stylesheet" href="././node_modules/bootstrap/dist/css/bootstrap.css">
+    <link rel="stylesheet" href="././node_modules/bootstrap/dist/css/bootstrap-theme.css">
+    <link rel="stylesheet" href="././node_modules/angular-ui-bootstrap/dist/ui-bootstrap-csp.css"/>
+    <script src="././node_modules/angular-ui-bootstrap/dist/ui-bootstrap.js"></script>
+    <script src="././node_modules/angular-ui-bootstrap/dist/ui-bootstrap-tpls.js"></script>
 
 
 
     <script src="../app.js"></script>
-    <script src="emailController.js"></script>
-    <script src="../home/homeController.js"></script>
     
-    <link rel = "stylesheet" type="text/css" href = "../../../assets/css/style.css">
+    <link rel = "stylesheet" type="text/css" href = "././assets/css/style.css">
   	<meta name = "viewport " content = "width=device-width , initial-scale =1">
   	
 </head>
 <body  style="text-align: center">
-
-<div data-ng-controller="CollapseDemoCtrl">
-    <nav class="navbar navbar-default" role="navigation">
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle" data-ng-click="isNavCollapsed = !isNavCollapsed">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-        </div>
-        <div class="collapse navbar-collapse " data-uib-collapse="isNavCollapsed">
-                <a class="navbar-brand" href="#/">LOGO</a>
-                <button class = 'btn btn-primary btn-lg '>Go back</button>
-        </div>
-    </nav>
-</div>
-<div data-ng-app = "emailApp"  data-ng-controller="emailController">
-
 <!-- FORGOTTEN PASSWORD -->
 	<form name="forgottenPassword"  data-ng-class="{'elegant-aero':true , 'visible':isVisisble}" data-ng-submit="submitForm()" novalidate data-ng-show = showEmail=true>
   		<div data-ng-class ="{'caption':true}" style = "color:white">Forgotten password</div>
@@ -63,6 +42,6 @@
    		<button type = "submit" data-ng-class = "{ 'btn': true, 'btn-primary': true , 'btn-lg':true , 'disabled':isValidEmail()} "  >Submit</button>
   	</form>
   </div>
-  	
+ 
 </body>
 </html>

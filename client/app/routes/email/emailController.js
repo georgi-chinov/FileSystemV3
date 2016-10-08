@@ -1,9 +1,8 @@
 /**
  * 
  */
-var emailApp = angular.module('emailApp', ['ngRoute', 'ngAnimate' , 'ui.bootstrap', 'ngMessages']);
 
-emailApp.controller('emailController' , function($scope , $http,$httpParamSerializerJQLike){
+mainApp.controller('emailController' , function($scope , $http,$httpParamSerializerJQLike){
 	
 	$scope.email =  '';
 	
@@ -30,10 +29,11 @@ emailApp.controller('emailController' , function($scope , $http,$httpParamSerial
 	}
 
 })
+/**
 emailApp.config(['$httpProvider', function ($httpProvider) {
 
 	  $httpProvider.defaults.headers.common = {};
 	  $httpProvider.defaults.headers.post = {};
 	  $httpProvider.defaults.headers.put = {};
 	  $httpProvider.defaults.headers.patch = {};
-	}]);
+	}]);**/

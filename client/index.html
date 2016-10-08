@@ -42,14 +42,14 @@
         </div>
         <div class="collapse navbar-collapse " data-uib-collapse="isNavCollapsed">
                 <a class="navbar-brand" href="#">LOGO</a>
-                <button data-ng-class= "{ 'btn': true, 'btn-primary': true , 'btn-lg':true ,'active':isAct}"  data-ng-click="showIt()" data-ng-show = visible=true>Login</button>
-             	 <button data-ng-class="{ 'btn': true, 'btn-primary': true , 'btn-lg':true , 'active':!isAct}"  data-ng-click="showIt2()" data-ng-show = visible=true>Sign Up</button>
-            
+            	<a class="navbar-brand" href="#login">Login</a>
+                <a class="navbar-brand" href="#register">SignUp</a>
+              
         </div>
     </nav>
 	
 
-<!-- LOG IN -->
+<!-- LOG IN 
 
 <form name="log" data-ng-controller = "logInCtrl" class="form-group" data-ng-class="{'elegant-aero':true}" data-ng-submit="submitLoginForm()" novalidate data-ng-show=show >
   	<div data-ng-class ="{'caption':true}" style = "color:white">Log in</div>
@@ -72,10 +72,10 @@
 		    <div data-ng-message="pattern">Your password is invalid</div>
 	</div>
     <button type = "submit" data-ng-class = "{ 'btn': true, 'btn-primary': true , 'btn-lg':true , 'disabled':isValid()}" data-ng-attr-id="sumbit" data-ng-disabled=" !(log.userpass.$valid) || !(log.username.$valid) ">Submit</button>
-  	<div > <a href="app/routes/email/email.html" >Forgotten Password:</a></div>
+  	<div > <a href="#/email" >Forgotten Password:</a></div>
   </form>
-
-<!-- SIGN UP -->
+-->
+<!-- SIGN UP 
 
   <form name="sign" data-ng-controller = "myCtrl" class="form-group" data-ng-class="{'elegant-aero':true}" data-ng-class="{'navbar-form':true }" data-ng-submit="submitSignUpForm()" novalidate data-ng-show = show2>
   	<div data-ng-class ="{'caption':true}" style = "color:white">Register</div>
@@ -122,6 +122,7 @@
 	<button data-ng-class = "{ 'btn': true, 'btn-primary': true , 'btn-lg':true , 'disabled':isValid()}" >Submit</button>
  
   </form>
+  -->
 </div>
 <div data-ng-view></div>
 </body>

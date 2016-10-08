@@ -7,7 +7,7 @@ var gulp = require('gulp'),
 //var watch = require('gulp-watch');
 
 
-var jsPath = ['./app/**/*.js', './node_modules/angular/angular.min.js'];
+var jsPath = ['./app/**/*.js'];
 /*[
   '/path/to/app.js',
   '/path/to/mymodule/mymodule.js',
