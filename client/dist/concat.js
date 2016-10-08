@@ -5,7 +5,7 @@ var mainApp = angular.module('mainModule', ['ngRoute', 'ngAnimate', 'ui.bootstra
 	//routing
 		.config(function ($routeProvider, $locationProvider) {
             $routeProvider
-                .when('/', {
+                .when('/home', {
                     templateUrl: './app/routes/home/home.html',
                     controller: 'homeController'
                 })
@@ -23,10 +23,7 @@ var mainApp = angular.module('mainModule', ['ngRoute', 'ngAnimate', 'ui.bootstra
                 })
                 //redirect to forgotten password page with routing
                 
-                .otherwise({
-                    templateUrl: './index.html',
-                    controller:'MainController'
-                })
+                
 			})
 			//this is the main controller with nested scopes in it 
 			.controller('MainController', function ($scope, $location) {
@@ -90,6 +87,32 @@ mainApp.factory('userSrv', function ($http) {
         }
     };
 });
+/**
+ * 
+ */
+
+mainApp.factory('userSvc', function($http) {
+	var baseUrl="http://localhost:3000";
+	
+	
+	return {
+		sendLoginData: function() {
+			return $http.post(baseUrl).then(function(response) {
+				return response;
+			});
+		},
+		getUserById: function(id) {
+			return users[id];
+		},
+		addNewUser: function(newUser) {
+			return $http.post(baseUrl, {newUser:newUser});
+		},
+		updateById:function(id, updatedData) {
+			users[id] = updatedData;
+		}
+	}
+});
+
 /**
  * 
  */
