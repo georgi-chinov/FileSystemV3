@@ -1,7 +1,7 @@
 var express = require("express");
 var router = express.Router();
 
-router.use('/', require('./lostPassword'));
+router.use('/lostpassword', require('./forgottenpw'));
 
 
 module.exports = router;

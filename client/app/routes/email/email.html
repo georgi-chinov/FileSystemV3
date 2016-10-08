@@ -32,7 +32,7 @@
   		<div data-ng-class ="{'caption':true}" style = "color:white">Forgotten password</div>
   		<div id = "username">
 	    	<label >Your e-mail:
-		   	<input type="email" name="userEmail" data-ng-model="email" data-ng-pattern="/^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/" required />
+		   	<input type="email" name="userEmail" data-ng-model="lostmail.to" data-ng-pattern="/^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/" required />
 	    	</label>	    
 			<div data-ng-messages="forgottenPassword.userEmail.$error">
 				<div data-ng-message="required">This field is required</div>
@@ -41,7 +41,7 @@
 	 	</div>
    		<button type = "submit" data-ng-class = "{ 'btn': true, 'btn-primary': true , 'btn-lg':true , 'disabled':isValidEmail()} "  >Submit</button>
   	</form>
-  </div>
+  
  
 </body>
 </html>

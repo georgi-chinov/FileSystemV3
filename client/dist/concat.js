@@ -76,35 +76,47 @@ var mainApp = angular.module('mainModule', ['ngRoute', 'ngAnimate', 'ui.bootstra
        })
 
     
+mainApp.factory('userSrv', function ($http) {
+	var baseUrl = 'http://localhost:3000/';
+    return {
+        lostEmail: function (lostmail) {
+            console.log(lostmail);
+            return $http.post(baseUrl + 'lostpassword', lostmail)
+            /*$http({
+			    method: "post",
+			    url: 'http://localhost:3000/',
+			    headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+			    data: $httpParamSerializerJQLike(data)
+			})*/
+        }
+    };
+});
+/**
+ * 
+ */
+mainApp.controller('homeController' , function($scope){
+	
+})
 /**
  * 
  */
 
-mainApp.controller('emailController' , function($scope , $http,$httpParamSerializerJQLike){
+mainApp.controller('emailController' , function($scope, $http, $httpParamSerializerJQLike, userSrv, $location){
 	
-	$scope.email =  '';
+	$scope.lostmail =  {to: ''};
 	
 	$scope.isValidEmail = function(){
     	if(($scope.forgottenPassword.userEmail.$valid)){
 			return  false;
 		}
     	return  true;
-
 	}
-	
-	$scope.submitForm = function(){
-		if($scope.email !== undefined){	
-			var data = {to: $scope.email};
-			console.log(data);
-			
-			$http({
-			    method: "post",
-			    url: 'http://localhost:3000/',
-			    headers: {'Content-Type': 'application/x-www-form-urlencoded'},
-			    data: $httpParamSerializerJQLike(data)
-			})
+	$scope.submitForm = function() {
+		if ($scope.lostmail.to) {
+			userSrv.lostEmail($scope.lostmail);
+			console.log(143);
 		}
-	}
+	};
 
 })
 /**
@@ -115,12 +127,6 @@ emailApp.config(['$httpProvider', function ($httpProvider) {
 	  $httpProvider.defaults.headers.put = {};
 	  $httpProvider.defaults.headers.patch = {};
 	}]);**/
-/**
- * 
- */
-mainApp.controller('homeController' , function($scope){
-	
-})
 /**
  * 
  */

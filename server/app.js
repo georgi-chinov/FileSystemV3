@@ -19,9 +19,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
 app.use('/', routes);
 
-app.post('/',function(req,res){
-	
-});
+
 
 app.listen(3000,function(){
     console.log("Express Started on Port 3000");
