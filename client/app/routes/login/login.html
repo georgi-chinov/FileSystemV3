@@ -30,23 +30,26 @@
 <body>
 <form name="log" data-ng-controller = "loginController" class="form-group" data-ng-class="{'elegant-aero':true}" data-ng-submit="login()" novalidate >
   	<div data-ng-class ="{'caption':true}" style = "color:white">Log in</div>
+  	
   	<div id = "username">
-		 <label for="username">Username</label>
-	  	 <input type="text" name="username" class="form-control" placeholder="Enter username" data-ng-model="user.name" data-ng-minlength=5 data-ng-maxlength=20 data-ng-pattern="/^[a-zA-Z0-9.\-_$@*!]{5,20}$/" required>    
+		 <div class="input-group">
+		  	<div class="input-group-addon"><span class="glyphicon glyphicon-user"></span></div>
+	  	 		<input type="text" name="username" class="form-control" placeholder="Enter username" data-ng-model="user.name" data-ng-minlength=5 data-ng-maxlength=20 data-ng-pattern="/^[a-zA-Z0-9.\-_$@*!]{5,20}$/" required>    
+		 </div>
 	</div>
 	<div data-ng-messages="log.username.$error">
-	      <div data-ng-message="required">This field is required</div>
 	      <div data-ng-message="minlength">Minimal number of symbols is 5.</div>
 	      <div data-ng-message="maxlength">Maximal number of symbols is 20.</div>
 		  <div data-ng-message="pattern">Your username is invalid</div>
 	 </div>
 	 <div id = "password">
-	 	<label for="userpass">Password:</label>
-    	<input name = "userpass" type="password" class="form-control"  placeholder="Enter password" data-ng-model="user.password" data-ng-pattern="/^[a-zA-Z0-9.\-_$@*!]{8,20}$/" required>
+    	<div class="input-group">
+		  	<div class="input-group-addon"><span class= "glyphicon glyphicon-lock"></span></div>
+  			  	<input name = "userpass" type="password" class="form-control"  placeholder="Enter password" data-ng-model="user.password" data-ng-pattern="/^[a-zA-Z0-9.\-_$@*!]{8,20}$/" required>
+    	</div>	
     </div>
 	 <div data-ng-messages="log.userpass.$error">
-		 	<div data-ng-message="required">This field is required</div>
-		    <div data-ng-message="pattern">Your password is invalid</div>
+		 	<div data-ng-message="pattern">Your password is invalid</div>
 	</div>
     <button type = "submit" data-ng-class = "{ 'btn': true, 'btn-primary': true , 'btn-lg':true , 'disabled':isValid()}" data-ng-attr-id="sumbit" data-ng-disabled=" !(log.userpass.$valid) || !(log.username.$valid) ">Submit</button>
   	<div > <a href="#/email" >Forgotten Password:</a></div>

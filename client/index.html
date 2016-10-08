@@ -34,21 +34,21 @@
 <div data-ng-controller="CollapseDemoCtrl">
     <nav class=" navbar navbar-default" role="navigation">
         <div class="navbar-header">
-            <button type="button" class="navbar-toggle" data-ng-click="isNavCollapsed = !isNavCollapsed">
-                <span class="sr-only">Toggle navigation</span>
+            <button type="button" class="navbar-toggle" data-ng-click="isNavCollapsed = !isNavCollapsed" >
+                <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
         </div>
-        <div class="collapse navbar-collapse " data-uib-collapse="isNavCollapsed">
-                <a class="navbar-brand" href="#">LOGO</a>
-            	<a class="navbar-brand" href="#login">Login</a>
-                <a class="navbar-brand" href="#register">SignUp</a>
-              
+        <div class="collapse navbar-collapse" data-uib-collapse="isNavCollapsed" >
+            	<a class="navbar-brand" href="#login">Log in</a>
+                <a class="navbar-brand" href="#register">Sign up</a>
+                <a class="navbar-brand" href="#">Home</a>     
         </div>
-    </nav>
-	
-
+	</nav>
+	   <div class="collapse navbar-collapse"  > 
+        		<a class="navbar-brand" href="#">LOGO</a>
+       </div>
 <!-- LOG IN 
 
 <form name="log" data-ng-controller = "logInCtrl" class="form-group" data-ng-class="{'elegant-aero':true}" data-ng-submit="submitLoginForm()" novalidate data-ng-show=show >

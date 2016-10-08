@@ -3,11 +3,14 @@ body{
 	background-image: url("../images/background.jpg");
 }
 .navbar-default{
+	float:right;
 	background:transparent;	
 	border:none;
 }
+
  .horizontal-collapse {
- 	height: 60px;
+ 	
+ 	display:inline;
  
  }
 .navbar-collapse.in {
@@ -42,23 +45,21 @@ body{
 
 .elegant-aero input[type="text"], .elegant-aero input[type="password"] , .elegant-aero input[type="email"]{
   display:block;
-  color: #888;
+  color: black;
   width: 99%;
   padding: 0px 0px 0px 5px;
-  border: 1px solid #C5E2FF;
-  background: #FBFBFB;
+  border:none;
+  background: transparent;
   outline: 0;
-  -webkit-box-shadow:inset 0px 1px 6px #ECF3F5;
-  box-shadow: inset 0px 1px 6px #ECF3F5;
+  border-bottom:1px solid white;
   font: 200 12px/25px Arial, Helvetica, sans-serif;
-  height: 30px;
-  line-height:15px;
   margin-bottom:5px;
   margin-top:5px;  
+  text-align:center;
   
 }
 .elegant-aero input:focus{
-	border:3px solid #337AB7;
+	
 }
 div{
   display:inline-block;
