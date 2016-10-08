@@ -1,0 +1,111 @@
+0 info it worked if it ends with ok
+1 verbose cli [ 'C:\\Program Files\\nodejs\\node.exe',
+1 verbose cli   'C:\\Program Files\\nodejs\\node_modules\\npm\\bin\\npm-cli.js',
+1 verbose cli   'install',
+1 verbose cli   'angular-ui-boostrap',
+1 verbose cli   '--save' ]
+2 info using npm@2.15.8
+3 info using node@v4.4.7
+4 verbose install initial load of C:\xampp\htdocs\Final\client\package.json
+5 warn package.json client@1.0.0 No description
+6 warn package.json client@1.0.0 No repository field.
+7 warn package.json client@1.0.0 No README data
+8 verbose installManyTop reading scoped package data from C:\xampp\htdocs\Final\client\node_modules\angular\package.json
+9 verbose installManyTop reading scoped package data from C:\xampp\htdocs\Final\client\node_modules\angular-animate\package.json
+10 verbose installManyTop reading scoped package data from C:\xampp\htdocs\Final\client\node_modules\angular-aria\package.json
+11 verbose installManyTop reading scoped package data from C:\xampp\htdocs\Final\client\node_modules\angular-material\package.json
+12 verbose installManyTop reading scoped package data from C:\xampp\htdocs\Final\client\node_modules\angular-messages\package.json
+13 verbose installManyTop reading scoped package data from C:\xampp\htdocs\Final\client\node_modules\angular-route\package.json
+14 verbose installManyTop reading scoped package data from C:\xampp\htdocs\Final\client\node_modules\angular-touch\package.json
+15 verbose installManyTop reading scoped package data from C:\xampp\htdocs\Final\client\node_modules\angular-ui-bootstrap\package.json
+16 verbose installManyTop reading scoped package data from C:\xampp\htdocs\Final\client\node_modules\bootstrap\package.json
+17 verbose installManyTop reading scoped package data from C:\xampp\htdocs\Final\client\node_modules\gulp\package.json
+18 verbose installManyTop reading scoped package data from C:\xampp\htdocs\Final\client\node_modules\gulp-concat\package.json
+19 verbose installManyTop reading scoped package data from C:\xampp\htdocs\Final\client\node_modules\gulp-watch\package.json
+20 info package.json angular-material@1.1.1 No license field.
+21 verbose readDependencies loading dependencies from C:\xampp\htdocs\Final\client\package.json
+22 silly cache add args [ 'angular-ui-boostrap', null ]
+23 verbose cache add spec angular-ui-boostrap
+24 silly cache add parsed spec Result {
+24 silly cache add   raw: 'angular-ui-boostrap',
+24 silly cache add   scope: null,
+24 silly cache add   name: 'angular-ui-boostrap',
+24 silly cache add   rawSpec: '',
+24 silly cache add   spec: 'latest',
+24 silly cache add   type: 'tag' }
+25 silly addNamed angular-ui-boostrap@latest
+26 verbose addNamed "latest" is being treated as a dist-tag for angular-ui-boostrap
+27 info addNameTag [ 'angular-ui-boostrap', 'latest' ]
+28 silly mapToRegistry name angular-ui-boostrap
+29 silly mapToRegistry using default registry
+30 silly mapToRegistry registry https://registry.npmjs.org/
+31 silly mapToRegistry data Result {
+31 silly mapToRegistry   raw: 'angular-ui-boostrap',
+31 silly mapToRegistry   scope: null,
+31 silly mapToRegistry   name: 'angular-ui-boostrap',
+31 silly mapToRegistry   rawSpec: '',
+31 silly mapToRegistry   spec: 'latest',
+31 silly mapToRegistry   type: 'tag' }
+32 silly mapToRegistry uri https://registry.npmjs.org/angular-ui-boostrap
+33 verbose addNameTag registry:https://registry.npmjs.org/angular-ui-boostrap not in flight; fetching
+34 verbose request uri https://registry.npmjs.org/angular-ui-boostrap
+35 verbose request no auth needed
+36 info attempt registry request try #1 at 23:45:11
+37 verbose request id 94eed9c70626d52c
+38 http request GET https://registry.npmjs.org/angular-ui-boostrap
+39 http 404 https://registry.npmjs.org/angular-ui-boostrap
+40 verbose headers { 'content-type': 'application/json',
+40 verbose headers   'cache-control': 'max-age=0',
+40 verbose headers   'content-length': '2',
+40 verbose headers   'accept-ranges': 'bytes',
+40 verbose headers   date: 'Fri, 07 Oct 2016 20:45:12 GMT',
+40 verbose headers   via: '1.1 varnish',
+40 verbose headers   age: '0',
+40 verbose headers   connection: 'keep-alive',
+40 verbose headers   'x-served-by': 'cache-fra1231-FRA',
+40 verbose headers   'x-cache': 'MISS',
+40 verbose headers   'x-cache-hits': '0',
+40 verbose headers   'x-timer': 'S1475873111.962726,VS0,VE427',
+40 verbose headers   vary: 'Accept-Encoding' }
+41 silly get cb [ 404,
+41 silly get   { 'content-type': 'application/json',
+41 silly get     'cache-control': 'max-age=0',
+41 silly get     'content-length': '2',
+41 silly get     'accept-ranges': 'bytes',
+41 silly get     date: 'Fri, 07 Oct 2016 20:45:12 GMT',
+41 silly get     via: '1.1 varnish',
+41 silly get     age: '0',
+41 silly get     connection: 'keep-alive',
+41 silly get     'x-served-by': 'cache-fra1231-FRA',
+41 silly get     'x-cache': 'MISS',
+41 silly get     'x-cache-hits': '0',
+41 silly get     'x-timer': 'S1475873111.962726,VS0,VE427',
+41 silly get     vary: 'Accept-Encoding' } ]
+42 verbose stack Error: Registry returned 404 for GET on https://registry.npmjs.org/angular-ui-boostrap
+42 verbose stack     at makeError (C:\Program Files\nodejs\node_modules\npm\node_modules\npm-registry-client\lib\request.js:264:12)
+42 verbose stack     at CachingRegistryClient.<anonymous> (C:\Program Files\nodejs\node_modules\npm\node_modules\npm-registry-client\lib\request.js:242:14)
+42 verbose stack     at Request._callback (C:\Program Files\nodejs\node_modules\npm\node_modules\npm-registry-client\lib\request.js:172:14)
+42 verbose stack     at Request.self.callback (C:\Program Files\nodejs\node_modules\npm\node_modules\request\request.js:200:22)
+42 verbose stack     at emitTwo (events.js:87:13)
+42 verbose stack     at Request.emit (events.js:172:7)
+42 verbose stack     at Request.<anonymous> (C:\Program Files\nodejs\node_modules\npm\node_modules\request\request.js:1067:10)
+42 verbose stack     at emitOne (events.js:82:20)
+42 verbose stack     at Request.emit (events.js:169:7)
+42 verbose stack     at IncomingMessage.<anonymous> (C:\Program Files\nodejs\node_modules\npm\node_modules\request\request.js:988:12)
+43 verbose statusCode 404
+44 verbose pkgid angular-ui-boostrap
+45 verbose cwd C:\xampp\htdocs\Final\client
+46 error Windows_NT 10.0.10240
+47 error argv "C:\\Program Files\\nodejs\\node.exe" "C:\\Program Files\\nodejs\\node_modules\\npm\\bin\\npm-cli.js" "install" "angular-ui-boostrap" "--save"
+48 error node v4.4.7
+49 error npm  v2.15.8
+50 error code E404
+51 error 404 Registry returned 404 for GET on https://registry.npmjs.org/angular-ui-boostrap
+51 error 404
+51 error 404 'angular-ui-boostrap' is not in the npm registry.
+51 error 404 You should bug the author to publish it (or use the name yourself!)
+51 error 404 It was specified as a dependency of 'client'
+51 error 404
+51 error 404 Note that you can also install from a
+51 error 404 tarball, folder, http url, or git url.
+52 verbose exit [ 1, true ]

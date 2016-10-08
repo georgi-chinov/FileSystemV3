@@ -12,10 +12,8 @@ var mainApp = angular.module('mainModule', ['ngRoute', 'ngAnimate', 'ui.bootstra
                 //redirect to forgotten password page with routing
                 
                 .otherwise({
-                    template: '<h1>Not found</h1><h2>{{message}}</h2>',
-                    controller: function ($scope) {
-                        $scope.message = 'not found page is shown'
-                    }
+                    templateUrl: './index.html',
+                    controller:'MainController'
                 })
 			})
 			//this is the main controller with nested scopes in it 

@@ -7,8 +7,13 @@ var gulp = require('gulp'),
 //var watch = require('gulp-watch');
 
 
-var jsPath = './app/**/*.js';
-
+var jsPath = ['./app/**/*.js', './node_modules/angular/angular.min.js'];
+/*[
+  '/path/to/app.js',
+  '/path/to/mymodule/mymodule.js',
+  '/path/to/mymodule/mymodule/*.js'
+]
+ * */
 gulp.task('js-concat', function () {
 gulp.src(jsPath)
     .pipe(concat('concat.js'))
