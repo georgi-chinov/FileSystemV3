@@ -13,8 +13,6 @@ var smtpTransport = nodemailer.createTransport("SMTP",{
 });
 
 router.post('/', function (req, res) {
-	
-	console.log(req.body.to);
 	var newpass = randomstring.generate({
 		  length: 12,
 		  charset: 'alphabetic'

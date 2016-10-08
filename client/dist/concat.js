@@ -80,23 +80,16 @@ mainApp.factory('userSrv', function ($http) {
 	var baseUrl = 'http://localhost:3000/';
     return {
         lostEmail: function (lostmail) {
-            console.log(lostmail);
             return $http.post(baseUrl + 'lostpassword', lostmail)
-            /*$http({
-			    method: "post",
-			    url: 'http://localhost:3000/',
-			    headers: {'Content-Type': 'application/x-www-form-urlencoded'},
-			    data: $httpParamSerializerJQLike(data)
-			})*/
+        },
+        userRegister: function (user) {
+        	return $http.post(baseUrl + 'register', user)
+        },
+        userLogin: function (user) {
+        	return $http.post(baseUrl + 'login', user)
         }
     };
 });
-/**
- * 
- */
-mainApp.controller('homeController' , function($scope){
-	
-})
 /**
  * 
  */
@@ -120,22 +113,17 @@ mainApp.controller('emailController' , function($scope, $http, $httpParamSeriali
 
 })
 /**
-emailApp.config(['$httpProvider', function ($httpProvider) {
-
-	  $httpProvider.defaults.headers.common = {};
-	  $httpProvider.defaults.headers.post = {};
-	  $httpProvider.defaults.headers.put = {};
-	  $httpProvider.defaults.headers.patch = {};
-	}]);**/
+ * 
+ */
+mainApp.controller('homeController' , function($scope){
+	
+})
 /**
  * 
  */
-mainApp.controller('loginController',function($scope){
+mainApp.controller('loginController',function($scope, userSrv){
 
-	$scope.user = {name:'',password:''};
-	 $scope.login = function(){
-		 //send data
-	 }
+
 	 //Checks if the data is valid
 		$scope.isValid= function(){
 			if(($scope.log.username.$valid) && ($scope.log.userpass.$valid)){
@@ -144,28 +132,35 @@ mainApp.controller('loginController',function($scope){
 					return true;
 				}
 		}
+		
+		$scope.user = {name:'',password:''};
+		
+		 $scope.login = function(){
+			 if ($scope.user.name && $scope.user.password) {
+					userSrv.userLogin($scope.user);
+				}
+		 }
 
 				
 })
 /**
  * 
  */
-mainApp.controller ('registerController',function($scope){
+mainApp.controller ('registerController',function($scope, userSrv){
 	
 	$scope.user = {name:'',password:'' , passRepeated:'' , email:''};
 
-	$scope.login = function(){
-		//send data
-	 }
-	//this function checks whether the data to send  is valid
 	$scope.isValid= function(){
-		
 		if(($scope.sign.username.$valid) && ($scope.sign.userpass.$valid) && ($scope.sign.passRepeated.$valid) && ($scope.sign.userEmail.$valid)){
 			return false;
 		} else {
 			return true;
 		}
 	}
-	
+	$scope.reg = function(){
+		if ($scope.user.name && $scope.user.password && $scope.user.passRepeated && $scope.user.email) {
+			userSrv.userRegister($scope.user);
+		}
+	 }
 });
 
