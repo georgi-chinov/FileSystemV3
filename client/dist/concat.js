@@ -73,46 +73,36 @@ var mainApp = angular.module('mainModule', ['ngRoute', 'ngAnimate', 'ui.bootstra
        })
 
     
-mainApp.factory('userSrv', function ($http) {
+mainApp.factory('userSrv', function ($http , $location) {
 	var baseUrl = 'http://localhost:3000/';
     return {
         lostEmail: function (lostmail) {
-            return $http.post(baseUrl + 'lostpassword', lostmail)
+            return $http.post(baseUrl + 'lostpassword', lostmail).then(successCallback);
+            
+            function successCallback(response) {
+            	console.log(response);
+            }
+        
         },
         userRegister: function (user) {
-        	return $http.post(baseUrl + 'register', user)
+        	return $http.post(baseUrl + 'register', user).then(successCallback);
+            
+            function successCallback(response) {
+            	if(response.data == 'User registered!'){
+            		console.log("Success");
+            		$location.path('/login');
+            		return;
+            	} 
+            		console.log("Fail!");
+            		alert('Error!');
+            }
+            
         },
         userLogin: function (user) {
         	return $http.post(baseUrl + 'login', user)
         }
     };
 });
-/**
- * 
- */
-
-mainApp.factory('userSvc', function($http) {
-	var baseUrl="http://localhost:3000";
-	
-	
-	return {
-		sendLoginData: function() {
-			return $http.post(baseUrl).then(function(response) {
-				return response;
-			});
-		},
-		getUserById: function(id) {
-			return users[id];
-		},
-		addNewUser: function(newUser) {
-			return $http.post(baseUrl, {newUser:newUser});
-		},
-		updateById:function(id, updatedData) {
-			users[id] = updatedData;
-		}
-	}
-});
-
 /**
  * 
  */
@@ -172,7 +162,32 @@ mainApp.controller('loginController',function($scope, userSrv){
 mainApp.controller ('registerController',function($scope, userSrv){
 	
 	$scope.user = {name:'',password:'' , passRepeated:'' , email:''};
-
+	
+	$scope.validate = function(){
+		var emailReg = "/^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/";
+		var passwordReg = "/^[a-zA-Z0-9.\-_$@*!]{8,20}$/";
+		var userReg = "/^[a-zA-Z0-9.\-_$@*!]{5,20}$/";
+		if(userReg.test(user.name)){
+			$scope.showName = true;
+		} else {
+			$scope.showName = false;
+			
+		}
+		
+		if(passwordReg.test(user.password)){
+			$scope.showPass = true;
+		}  else {
+			$scope.showPass = false;
+			
+		}
+		
+		if(emailReg.test(user.name)){
+			$scope.showEmail = true;
+		}  else {
+			$scope.showEmail = false;
+			
+		}
+	}
 	$scope.isValid= function(){
 		if(($scope.sign.username.$valid) && ($scope.sign.userpass.$valid) && ($scope.sign.passRepeated.$valid) && ($scope.sign.userEmail.$valid)){
 			return false;
@@ -183,7 +198,9 @@ mainApp.controller ('registerController',function($scope, userSrv){
 	$scope.submitRegisterForm = function(){
 		if ($scope.user.name && $scope.user.password && $scope.user.passRepeated && $scope.user.email) {
 			userSrv.userRegister($scope.user);
+			return;
 		}
+		
 	 }
 });
 

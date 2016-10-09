@@ -14,7 +14,7 @@ body{
 }
 
  .horizontal-collapse {
- 	
+ 	background:transparent;
  	display:inline;
  
  }
@@ -22,11 +22,18 @@ body{
     overflow-y: hidden;
 	background:transparent;
   }
+ .navbar-collapse.collapse {
+    overflow-y: hidden;
+	background:transparent;
+  }
 .navbar-brand{
-	font-size:1.8em;
+	font-size:18px;
 	font-weight:bold;
 	color:#337AB7 !important;
+	background:transparent;
+  	
 }
+
   .elegant-aero {
 	 margin-left:auto;
 	 margin-right:auto;
@@ -47,11 +54,6 @@ body{
 	display:block;
 }
 
-.elegant-aero label {
-  display: block;
-  font-size:1.2em;
-  
-}
 
 .elegant-aero input[type="text"], .elegant-aero input[type="password"] , .elegant-aero input[type="email"]{
   display:block;
