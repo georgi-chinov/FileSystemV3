@@ -1,3 +1,4 @@
+var nfo = require ('./../credentials.js');
 var express = require('express');
 var router = express.Router();
 var randomstring = require("randomstring");
@@ -7,8 +8,8 @@ var nodemailer = require("nodemailer");
 var smtpTransport = nodemailer.createTransport("SMTP",{
     service: "Gmail",
     auth: {
-        user: "filesystemfinal@gmail.com",
-        pass: "ihaveapen"
+        user: nfo.email_name,
+        pass: nfo.email_password
     }
 });
 
