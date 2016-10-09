@@ -163,33 +163,44 @@ mainApp.controller ('registerController',function($scope, userSrv){
 	
 	$scope.user = {name:'',password:'' , passRepeated:'' , email:''};
 	
-	$scope.validate = function(){
-		var emailReg = "/^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/";
-		var passwordReg = "/^[a-zA-Z0-9.\-_$@*!]{8,20}$/";
-		var userReg = "/^[a-zA-Z0-9.\-_$@*!]{5,20}$/";
-		if(userReg.test(user.name)){
-			$scope.showName = true;
+	//validate function
+	//1) for username
+	$scope.isValidName = function(){
+		var userReg = new RegExp(/^[a-zA-Z0-9.\-_$@*!]{5,20}$/);
+		if(userReg.test($scope.user.name)){
+			return true;
 		} else {
-			$scope.showName = false;
-			
+			return false;
 		}
-		
-		if(passwordReg.test(user.password)){
-			$scope.showPass = true;
-		}  else {
-			$scope.showPass = false;
-			
+	}
+	//validate password
+	$scope.isValidPassword = function(){
+		var passwordReg = new RegExp(/^[a-zA-Z0-9.\-_$@*!]{8,20}$/);
+		if(passwordReg.test($scope.user.password)){
+			return true;
+		} else {
+			return false;
 		}
-		
-		if(emailReg.test(user.name)){
-			$scope.showEmail = true;
-		}  else {
-			$scope.showEmail = false;
-			
+	}
+	//check if passwords are the same
+	$scope.isValidPassword2 = function(){
+		if($scope.user.password == $scope.user.passRepeated){
+			return true;
+		} else {
+			return false;
+		}
+	}
+	//check if email is valid
+	$scope.isValidEmail = function(){
+		var emailReg = new RegExp(/^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/);
+		if(emailReg.test($scope.user.email)){
+			return true;
+		} else {
+			return false;
 		}
 	}
 	$scope.isValid= function(){
-		if(($scope.sign.username.$valid) && ($scope.sign.userpass.$valid) && ($scope.sign.passRepeated.$valid) && ($scope.sign.userEmail.$valid)){
+		if($scope.isValidName() && $scope.isValidPassword() && $scope.isValidPassword2() && $scope.isValidEmail()){
 			return false;
 		} else {
 			return true;
