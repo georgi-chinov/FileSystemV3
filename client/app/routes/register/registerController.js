@@ -26,7 +26,7 @@ mainApp.controller ('registerController',function($scope, userSrv){
 	}
 	//check if passwords are the same
 	$scope.isValidPassword2 = function(){
-		if($scope.user.password == $scope.user.passRepeated){
+		if($scope.user.password == $scope.user.passRepeated && $scope.user.passRepeated != ''){
 			return true;
 		} else {
 			return false;

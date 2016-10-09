@@ -112,10 +112,12 @@ mainApp.controller('emailController' , function($scope, $http, $httpParamSeriali
 	$scope.lostmail =  {to: ''};
 	
 	$scope.isValidEmail = function(){
-    	if(($scope.forgottenPassword.userEmail.$valid)){
-			return  false;
+		var emailReg = new RegExp(/^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/);
+		if(emailReg.test($scope.lostmail.to)){
+			return true;
+		} else {
+			return false;
 		}
-    	return  true;
 	}
 	$scope.submitForm = function() {
 		if ($scope.lostmail.to) {
@@ -135,18 +137,35 @@ mainApp.controller('homeController' , function($scope){
  * 
  */
 mainApp.controller('loginController',function($scope, userSrv){
-
+	$scope.user = {name:'',password:''};
+	
+	//check whether the username is valid 
+	$scope.isValidName = function(){
+		var userReg = new RegExp(/^[a-zA-Z0-9.\-_$@*!]{5,20}$/);
+		if(userReg.test($scope.user.name)){
+			return true;
+		} else {
+			return false;
+		}
+	}
+	//check whether the password is valid 
+	$scope.isValidPassword = function(){
+		var passwordReg = new RegExp(/^[a-zA-Z0-9.\-_$@*!]{8,20}$/);
+		if(passwordReg.test($scope.user.password)){
+			return true;
+		} else {
+			return false;
+		}
+	}
 
 	 //Checks if the data is valid
 		$scope.isValid= function(){
-			if(($scope.log.username.$valid) && ($scope.log.userpass.$valid)){
+			if($scope.isValidName() && $scope.isValidPassword()){
 					return false;
 				} else {
 					return true;
 				}
 		}
-		
-		$scope.user = {name:'',password:''};
 		
 		 $scope.login = function(){
 			 if ($scope.user.name && $scope.user.password) {
@@ -184,7 +203,7 @@ mainApp.controller ('registerController',function($scope, userSrv){
 	}
 	//check if passwords are the same
 	$scope.isValidPassword2 = function(){
-		if($scope.user.password == $scope.user.passRepeated){
+		if($scope.user.password == $scope.user.passRepeated && $scope.user.passRepeated != ''){
 			return true;
 		} else {
 			return false;

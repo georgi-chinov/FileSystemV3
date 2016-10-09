@@ -7,10 +7,12 @@ mainApp.controller('emailController' , function($scope, $http, $httpParamSeriali
 	$scope.lostmail =  {to: ''};
 	
 	$scope.isValidEmail = function(){
-    	if(($scope.forgottenPassword.userEmail.$valid)){
-			return  false;
+		var emailReg = new RegExp(/^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/);
+		if(emailReg.test($scope.lostmail.to)){
+			return true;
+		} else {
+			return false;
 		}
-    	return  true;
 	}
 	$scope.submitForm = function() {
 		if ($scope.lostmail.to) {
