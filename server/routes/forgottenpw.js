@@ -1,4 +1,5 @@
 var nfo = require ('./../credentials.js');
+var db = require ('./../db.js');
 var express = require('express');
 var router = express.Router();
 var randomstring = require("randomstring");
@@ -14,23 +15,39 @@ var smtpTransport = nodemailer.createTransport("SMTP",{
 });
 
 router.post('/', function (req, res) {
-	var newpass = randomstring.generate({
-		  length: 12,
-		  charset: 'alphabetic'
-		});
-	var mailOptions={
-      to : req.body.to,
-      subject : 'Forgotten password',
-      text : 'Your new password is:' + newpass + ' . You can login to change it.'
-	}
-	smtpTransport.sendMail(mailOptions, function(error, response){
-		if(error){
-          console.log(error);
-          res.end("error");
-		}else{
-          console.log("Message sent: " + response.message);
-          res.end("sent");
-       }
+	
+	db.query('SELECT * FROM users WHERE email = ?',[req.body.to], function(err, results, query) {
+	    if(!err) {
+	    	if (results.length) {
+	    		
+	    		var newpass = randomstring.generate({
+	    			  length: 12,
+	    			  charset: 'alphabetic'
+	    			});
+	    		var mailOptions={
+	    	      to : req.body.to,
+	    	      subject : 'Forgotten password',
+	    	      text : 'Your new password is:' + newpass + ' . You can login and change it.'
+	    		}
+	    		
+	    		smtpTransport.sendMail(mailOptions, function(error, response){
+	    			if(error){
+	    	          console.log(error);
+	    	          res.end("error");
+	    	          return;
+	    			} else {
+	    				db.query('UPDATE users SET ? WHERE email = ?',[newpass,req.body.to])
+	    				console.log("Message sent: " + response.message);
+	    				res.end("sent");	    				
+	    			}
+	    		});
+	    		return;
+	    	}
+	    }
 	});
+	
+	
+	
+	
 });
 module.exports = router;
