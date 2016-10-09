@@ -12,7 +12,7 @@ mainApp.controller ('registerController',function($scope, userSrv){
 			return true;
 		}
 	}
-	$scope.reg = function(){
+	$scope.submitRegisterForm = function(){
 		if ($scope.user.name && $scope.user.password && $scope.user.passRepeated && $scope.user.email) {
 			userSrv.userRegister($scope.user);
 		}
