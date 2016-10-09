@@ -28,14 +28,14 @@
 </head>
 <body  style="text-align: center">
 <!-- FORGOTTEN PASSWORD -->
-	<form name="forgottenPassword"  data-ng-class="{'elegant-aero':true , 'visible':isVisisble}" data-ng-submit="submitForm()" novalidate data-ng-show = showEmail=true>
+	<form name="forgottenPassword"  data-ng-class="{'elegant-aero':true , 'visible':isVisisble}" data-ng-submit="submitForm()" novalidate autocomplete="off">
   		<div data-ng-class ="{'caption':true}" style = "color:white">Forgotten password</div>
-  		<div id = "username">
-	    	<label >Your e-mail:
-		   	<input type="email" name="userEmail" data-ng-model="lostmail.to" data-ng-pattern="/^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/" required />
-	    	</label>	    
+  		<div id = "useremail">
+	    	<div class="input-group">
+		  		<div class="input-group-addon"><span class= "glyphicon glyphicon-envelope"></span></div>
+  		   			<input type="email" name="userEmail" data-ng-model="lostmail.to" data-ng-pattern="/^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/" required placeholder= "Enter your email" />
+	    	</div>    
 			<div data-ng-messages="forgottenPassword.userEmail.$error">
-				<div data-ng-message="required">This field is required</div>
 				<div data-ng-message="pattern">Your email is invalid</div>
 			</div>
 	 	</div>

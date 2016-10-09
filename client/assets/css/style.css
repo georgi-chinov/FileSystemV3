@@ -1,11 +1,16 @@
 @CHARSET "UTF-8";
+@import url("https://fonts.google.com/specimen/Indie+Flower");
 body{
-	background-image: url("../images/background.jpg");
+	background-image: url("../images/images.jpg");
+	font-family:"Indie Flower" ;
+	
 }
+
 .navbar-default{
 	float:right;
 	background:transparent;	
 	border:none;
+	
 }
 
  .horizontal-collapse {
@@ -17,6 +22,11 @@ body{
     overflow-y: hidden;
 	background:transparent;
   }
+.navbar-brand{
+	font-size:1.8em;
+	font-weight:bold;
+	color:#337AB7 !important;
+}
   .elegant-aero {
 	 margin-left:auto;
 	 margin-right:auto;
@@ -26,7 +36,7 @@ body{
 	 border:2px solid  #337AB7;
 	 border-radius:5px;
 	 padding: 15px 20px 20px 20px;
-	 font: 12px Arial, Helvetica, sans-serif;
+	 font-size: 12px;
 
 }
 
@@ -45,14 +55,15 @@ body{
 
 .elegant-aero input[type="text"], .elegant-aero input[type="password"] , .elegant-aero input[type="email"]{
   display:block;
-  color: black;
+  color: #2B6046;
   width: 99%;
   padding: 0px 0px 0px 5px;
   border:none;
   background: transparent;
   outline: 0;
   border-bottom:1px solid white;
-  font: 200 12px/25px Arial, Helvetica, sans-serif;
+  font-size:1.4em;
+  font-weight:bold;
   margin-bottom:5px;
   margin-top:5px;  
   text-align:center;
@@ -60,6 +71,10 @@ body{
 }
 .elegant-aero input:focus{
 	
+}
+.elegant-aero input:-webkit-autofill {
+    background-color: #FAFFBD !important;
+
 }
 div{
   display:inline-block;
@@ -70,9 +85,8 @@ div{
 }
 .caption{
 	display:block;
-	
-	font:1.9em Arial, Helvetica, sans-serif;
-	width:40%;
+	font-size:1.8em ;
+	width:50%;
 	color:blue;
 	margin:10px auto;
 }
