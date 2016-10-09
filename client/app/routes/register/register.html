@@ -26,9 +26,9 @@
   <form name="sign" data-ng-controller = "registerController"  data-ng-class="{'elegant-aero':true}" data-ng-class="{'navbar-form':true }" data-ng-submit="submitRegisterForm()" novalidate autocomplete="off">
   	<div data-ng-class ="{'caption':true}" style = "color:white">Register</div>
   	<div id = "username">
-	    <div  data-ng-class="{'input-group':true ,'form-group':true ,'has-success':true}">
+	    <div  data-ng-class="{'input-group':true ,'form-group':true ,'has-error':true}">
 		  	<div class="input-group-addon"><span class="glyphicon glyphicon-user"></span></div>
-	    		<input type="text" name="username" data-ng-class="{'form-control':true , 'form-control-success':true}" placeholder="Enter username" data-ng-model="user.name"  required />
+	    		<input type="text" name="username" data-ng-class="{'form-control':true , 'form-control-danger':true}" placeholder="Enter username" data-ng-model="user.name"  required />
 		</div>	    		    
 <!-- 	<div data-ng-messages="sign.username.$error">
 	      
@@ -52,9 +52,9 @@
     </div>
     
 	<div id = "passRepeated">
-		<div class="input-group">
+		<div data-ng-class="{'input-group':true ,'has-error':true}">
 		  	<div class="input-group-addon"><span class= "glyphicon glyphicon-lock"></span></div>
-  			   	<input type="password" name="passRepeated" class="form-control" placeholder="Repeat password" data-ng-model="user.passRepeated" data-ng-pattern="{{user.password}}" required  />
+  			   	<input type="password" name="passRepeated" data-ng-class="{'form-control':true , 'form-control-danger':true}"  placeholder="Repeat password" data-ng-model="user.passRepeated" data-ng-pattern="{{user.password}}" required  />
 		</div>
 <!-- 		 <div data-ng-messages="sign.passRepeated.$error">
 		    <div data-ng-message="pattern">Your passwords do not match</div>
@@ -62,9 +62,9 @@
  -->   
     </div>
 	<div id = "userEmail">
-		<div class="input-group">
+		<div data-ng-class="{'input-group':true ,'has-error':true}">
 		  	<div class="input-group-addon"><span class= "glyphicon glyphicon-envelope"></span></div>
-  		   		<input type="email" name="userEmail" data-ng-model="user.email" class="form-control" placeholder="Enter email"  required />
+  		   		<input type="email" name="userEmail" data-ng-model="user.email" data-ng-class="{'form-control':true , 'form-control-danger':true}" placeholder="Enter email"  required />
 		</div>
 <!-- 		 <div data-ng-messages="sign.userEmail.$error">
 		    <div data-ng-message="pattern">Your email is invalid</div>
