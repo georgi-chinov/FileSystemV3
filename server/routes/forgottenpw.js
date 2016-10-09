@@ -36,7 +36,7 @@ router.post('/', function (req, res) {
 	    	          res.end("error");
 	    	          return;
 	    			} else {
-	    				db.query('UPDATE users SET ? WHERE email = ?',[newpass,req.body.to])
+	    				db.query('UPDATE users SET password = ? WHERE email = ?',[newpass,req.body.to])
 	    				console.log("Message sent: " + response.message);
 	    				res.end("sent");	    				
 	    			}
