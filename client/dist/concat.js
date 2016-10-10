@@ -138,16 +138,6 @@ mainApp.controller('homeController' , function($scope){
 /**
  * 
  */
-
-mainApp.controller('mainpageController' , function($scope, FileUploader){
-	        $scope.uploader = new FileUploader();
-	        console.log($scope.uploader);
-	        console.log(123);
-
-})
-/**
- * 
- */
 mainApp.controller('loginController',function($scope, userSrv){
 	$scope.user = {name:'',password:''};
 	
@@ -186,6 +176,16 @@ mainApp.controller('loginController',function($scope, userSrv){
 		 }
 
 				
+})
+/**
+ * 
+ */
+
+mainApp.controller('mainpageController' , function($scope, FileUploader){
+	        $scope.uploader = new FileUploader();
+	        console.log($scope.uploader);
+	        console.log(123);
+
 })
 /**
  * 
