@@ -30,7 +30,7 @@ var mainApp = angular.module('mainModule', ['ngRoute', 'ngAnimate', 'ui.bootstra
                 
 			})
 			//this is the main controller with nested scopes in it 
-	
+		
        .controller('CollapseDemoCtrl', function ($scope) {
             $scope.isNavCollapsed = true;
             $scope.isCollapsed = false;
@@ -138,6 +138,16 @@ mainApp.controller('homeController' , function($scope){
 /**
  * 
  */
+
+mainApp.controller('mainpageController' , function($scope, FileUploader){
+	        $scope.uploader = new FileUploader();
+	        console.log($scope.uploader);
+	        console.log(123);
+
+})
+/**
+ * 
+ */
 mainApp.controller('loginController',function($scope, userSrv){
 	$scope.user = {name:'',password:''};
 	
@@ -176,16 +186,6 @@ mainApp.controller('loginController',function($scope, userSrv){
 		 }
 
 				
-})
-/**
- * 
- */
-
-mainApp.controller('mainpageController' , function($scope, FileUploader){
-	        $scope.uploader = new FileUploader();
-	        console.log($scope.uploader);
-	        console.log(123);
-
 })
 /**
  * 

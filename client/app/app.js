@@ -30,7 +30,7 @@ var mainApp = angular.module('mainModule', ['ngRoute', 'ngAnimate', 'ui.bootstra
                 
 			})
 			//this is the main controller with nested scopes in it 
-	
+		
        .controller('CollapseDemoCtrl', function ($scope) {
             $scope.isNavCollapsed = true;
             $scope.isCollapsed = false;
