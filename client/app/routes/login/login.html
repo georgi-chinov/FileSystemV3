@@ -1,20 +1,6 @@
-    <div data-ng-show=!isValid() data-ng-class="{'modal-dialog':true }">
-    <div data-ng-class="{'modal-content':true}"> 
-        <div data-ng-class="{'modal-header':true }">
-          <button type="button" class="close" data-dismiss="modal">&times;</button>
-          <h4 data-ng-class="{'modal-title':true}">Modal Header</h4>
-        </div>
-        <div data-ng-class="{'modal-body':true }">
-          <p data-ng-show=isValid()>Some text in the modal.</p>
-        </div>
-        <div data-ng-class="{'modal-footer':true}">
-          <button type="button" data-ng-class="{'btn btn-default':true}" data-dismiss="modal">Close</button>
-        </div>
-      </div>
-    </div>
-  
+<div data-ng-controller = "loginController">
 
-<form name="log" data-ng-controller = "loginController" class="form-group" data-ng-class="{'elegant-aero':true}" data-ng-submit="login()" novalidate autocomplete="off">
+<form name="log"  class="form-group" data-ng-class="{'elegant-aero':true}" data-ng-submit="login()" novalidate autocomplete="off">
   	<div data-ng-class ="{'caption':true}" style = "color:white">Log in</div>
   	<div id = "username">
 	  	 <div data-ng-class="{'input-group':true ,'form-group':true ,'has-error':!isValidName() , 'has-success':isValidName()}">
@@ -37,5 +23,9 @@
 		 	<div data-ng-message="pattern">Your password is invalid</div>
 	</div>
     <button type = "submit" data-ng-class = "{ 'btn': true, 'btn-primary': true , 'btn-lg':true , 'disabled':isValid()}" data-ng-attr-id="sumbit" data-ng-disabled=" !(log.userpass.$valid) || !(log.username.$valid) ">Submit</button>
-  	<div > <a href="#/email" >Forgotten Password:</a></div>
   </form>
+  <div data-ng-model = "show" data-ng-show = show>
+ 	<span>Wrong data!</span>
+ 	<div><a href="#/email" style="font-weight:bold" >Did you forget your password?</a></div>
+ </div>
+ </div>

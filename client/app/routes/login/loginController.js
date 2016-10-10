@@ -5,7 +5,12 @@ mainApp.controller('loginController',function($scope, $location,userSrv){
 	$scope.user = {name:'',password:''};
 	//show message
 	$scope.showModal = function(){
-		return true ;
+		if(	$scope.show == true){
+			$scope.show = false ;
+		} else {
+			$scope.show = true ;
+		}
+
 	}
 	
 	
@@ -42,12 +47,12 @@ mainApp.controller('loginController',function($scope, $location,userSrv){
 			 if (!$scope.isValid()) {
 					userSrv.userLogin($scope.user).then(function(response){
 				        if(response.data == "Logged!"){
-				        	console.log("awe ne we")
-							//$location.path('/main');
+				        	console.log("probe when logged")
+							$location.path('/main');
 					
 				        	} else if("No such user!") {
 				        		$scope.showModal();
-				        		console.log("awe ne!!!");
+				        		console.log("probe when NOT logged");
 				        	}
 					})
 			 	}
