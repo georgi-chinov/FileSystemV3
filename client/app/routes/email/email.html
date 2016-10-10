@@ -1,33 +1,3 @@
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-
-	<script src="././node_modules/angular/angular.min.js"></script>
-    <script src="././node_modules/angular-route/angular-route.min.js"></script>
-    <script src="././node_modules/angular-messages/angular-messages.min.js"></script>
-
-
-
-    <script src="././node_modules/angular-animate/angular-animate.min.js"></script>
-
-    <link rel="stylesheet" href="././node_modules/bootstrap/dist/css/bootstrap.css">
-    <link rel="stylesheet" href="././node_modules/bootstrap/dist/css/bootstrap-theme.css">
-    <link rel="stylesheet" href="././node_modules/angular-ui-bootstrap/dist/ui-bootstrap-csp.css"/>
-    <script src="././node_modules/angular-ui-bootstrap/dist/ui-bootstrap.js"></script>
-    <script src="././node_modules/angular-ui-bootstrap/dist/ui-bootstrap-tpls.js"></script>
-
-
-
-    <script src="../app.js"></script>
-    
-    <link rel = "stylesheet" type="text/css" href = "././assets/css/style.css">
-  	<meta name = "viewport " content = "width=device-width , initial-scale =1">
-  	
-</head>
-<body  style="text-align: center">
-<!-- FORGOTTEN PASSWORD -->
 	<form name="forgottenPassword"  data-ng-class="{'elegant-aero':true , 'visible':isVisisble}" data-ng-submit="submitForm()" novalidate autocomplete="off">
   		<div data-ng-class ="{'caption':true}" style = "color:white">Forgotten password</div>
   		<div id = "useremail">
@@ -41,7 +11,4 @@
 	 	</div>
    		<button type = "submit" data-ng-class = "{ 'btn': true, 'btn-primary': true , 'btn-lg':true , 'disabled':!isValidEmail()} "  >Submit</button>
   	</form>
-  
  
-</body>
-</html>

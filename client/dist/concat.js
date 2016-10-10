@@ -3,7 +3,7 @@
  */
 var mainApp = angular.module('mainModule', ['ngRoute', 'ngAnimate', 'ui.bootstrap' , 'ngMessages', 'angularFileUpload'])
 	//routing
-		.config(function ($routeProvider, $locationProvider) {
+		.config(function ($routeProvider, $locationProvider ) {
             $routeProvider
                 .when('/home', {
                     templateUrl: './app/routes/home/home.html',
@@ -30,7 +30,7 @@ var mainApp = angular.module('mainModule', ['ngRoute', 'ngAnimate', 'ui.bootstra
                 
 			})
 			//this is the main controller with nested scopes in it 
-			.controller('MainController', function ($scope, $location) {
+			.controller('MainController', function ($scope, $location , userSrv) {
 
         })
        .controller('CollapseDemoCtrl', function ($scope) {
@@ -90,21 +90,25 @@ mainApp.factory('userSrv', function ($http , $location) {
         },
         userRegister: function (user) {
         	return $http.post(baseUrl + 'register', user).then(successCallback);
-            
+        
             function successCallback(response) {
             	if(response.data == 'User registered!'){
             		console.log("Success");
             		$location.path('/login');
             		return;
             	} 
+            		
             		console.log("Fail!");
             		alert('Error!');
+            		
             }
             
         },
         userLogin: function (user) {
-        	return $http.post(baseUrl + 'login', user)
-        }
+        	
+        	return $http.post(baseUrl + 'login', user).then(successCallback);
+        },
+        
     };
 });
 /**
@@ -142,7 +146,7 @@ mainApp.controller('homeController' , function($scope){
  */
 mainApp.controller('loginController',function($scope, userSrv){
 	$scope.user = {name:'',password:''};
-	
+ 
 	//check whether the username is valid 
 	$scope.isValidName = function(){
 		var userReg = new RegExp(/^[a-zA-Z0-9.\-_$@*!]{5,20}$/);
@@ -163,9 +167,9 @@ mainApp.controller('loginController',function($scope, userSrv){
 	}
 
 	 //Checks if the data is valid
-		$scope.isValid= function(){
+		$scope.isValid = function(){
 			if($scope.isValidName() && $scope.isValidPassword()){
-					return false;
+				return false;
 				} else {
 					return true;
 				}
@@ -174,7 +178,9 @@ mainApp.controller('loginController',function($scope, userSrv){
 		 $scope.login = function(){
 			 if ($scope.user.name && $scope.user.password) {
 					userSrv.userLogin($scope.user);
-				}
+					
+			 }
+			 	
 		 }
 
 				

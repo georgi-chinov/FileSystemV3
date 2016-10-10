@@ -3,7 +3,7 @@
  */
 var mainApp = angular.module('mainModule', ['ngRoute', 'ngAnimate', 'ui.bootstrap' , 'ngMessages', 'angularFileUpload'])
 	//routing
-		.config(function ($routeProvider, $locationProvider) {
+		.config(function ($routeProvider, $locationProvider ) {
             $routeProvider
                 .when('/home', {
                     templateUrl: './app/routes/home/home.html',
@@ -30,7 +30,7 @@ var mainApp = angular.module('mainModule', ['ngRoute', 'ngAnimate', 'ui.bootstra
                 
 			})
 			//this is the main controller with nested scopes in it 
-			.controller('MainController', function ($scope, $location) {
+			.controller('MainController', function ($scope, $location , userSrv) {
 
         })
        .controller('CollapseDemoCtrl', function ($scope) {
