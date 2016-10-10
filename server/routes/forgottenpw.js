@@ -43,6 +43,7 @@ router.post('/', function (req, res) {
 	    		});
 	    		return;
 	    	}
+	    	res.send('Wrong email!');
 	    }
 	});
 	

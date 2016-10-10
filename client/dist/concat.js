@@ -1,7 +1,7 @@
 /**
  * 
  */
-var mainApp = angular.module('mainModule', ['ngRoute', 'ngAnimate', 'ui.bootstrap' , 'ngMessages'])
+var mainApp = angular.module('mainModule', ['ngRoute', 'ngAnimate', 'ui.bootstrap' , 'ngMessages', 'angularFileUpload'])
 	//routing
 		.config(function ($routeProvider, $locationProvider) {
             $routeProvider
@@ -21,14 +21,16 @@ var mainApp = angular.module('mainModule', ['ngRoute', 'ngAnimate', 'ui.bootstra
                     templateUrl: './app/routes/email/email.html',
                     controller: 'emailController'
                 })
+                 .when('/main', {
+                    templateUrl: './app/routes/main/main.html',
+                    controller: 'mainpageController'
+                })
                 //redirect to forgotten password page with routing
                 
                 
 			})
 			//this is the main controller with nested scopes in it 
-			.controller('MainController', function ($scope, $location) {
-
-        })
+	
        .controller('CollapseDemoCtrl', function ($scope) {
             $scope.isNavCollapsed = true;
             $scope.isCollapsed = false;
@@ -174,6 +176,16 @@ mainApp.controller('loginController',function($scope, userSrv){
 		 }
 
 				
+})
+/**
+ * 
+ */
+
+mainApp.controller('mainpageController' , function($scope, FileUploader){
+	        $scope.uploader = new FileUploader();
+	        console.log($scope.uploader);
+	        console.log(123);
+
 })
 /**
  * 

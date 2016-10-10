@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "gulp":"gulp"
+    "gulp": "gulp"
   },
   "author": "",
   "license": "ISC",
@@ -13,6 +13,7 @@
     "angular": "^1.5.8",
     "angular-animate": "^1.5.8",
     "angular-aria": "^1.5.8",
+    "angular-file-upload": "^2.3.4",
     "angular-material": "^1.1.1",
     "angular-messages": "^1.5.8",
     "angular-route": "^1.5.8",
