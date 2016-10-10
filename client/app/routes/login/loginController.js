@@ -33,7 +33,7 @@ mainApp.controller('loginController',function($scope, userSrv){
 		}
 		
 		 $scope.login = function(){
-			 if ($scope.user.name && $scope.user.password) {
+			 if (!$scope.isValid()) {
 					userSrv.userLogin($scope.user);
 					
 			 }

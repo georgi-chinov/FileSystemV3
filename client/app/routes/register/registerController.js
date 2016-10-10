@@ -49,7 +49,7 @@ mainApp.controller ('registerController',function($scope, userSrv){
 		}
 	}
 	$scope.submitRegisterForm = function(){
-		if ($scope.user.name && $scope.user.password && $scope.user.passRepeated && $scope.user.email) {
+		if (!$scope.isValid()) {
 			userSrv.userRegister($scope.user);
 			return;
 		}
