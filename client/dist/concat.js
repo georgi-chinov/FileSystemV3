@@ -105,18 +105,18 @@ mainApp.factory('userSrv', function ($http , $location) {
             
         },
         userLogin: function (user) {
-        	function successCallback(response) {
+        	/**function successCallback(response) {
             	if(response.data == 'Logged!'){
             		console.log("Success");
             		$location.path('/main');
             		return true;
-            	} 
-            		
+            	} else{
             		console.log("Fail!");
-            		//alert('Error!');
-            		return false;
-            }
-        	return $http.post(baseUrl + 'login', user).then(successCallback);
+	            	return false;	
+            	} 
+      			.then(successCallback);
+            }*/
+        	return $http.post(baseUrl + 'login', user)
         },
         
     };
@@ -154,12 +154,12 @@ mainApp.controller('homeController' , function($scope){
 /**
  * 
  */
-mainApp.controller('loginController',function($scope, userSrv){
+mainApp.controller('loginController',function($scope, $location,userSrv){
 	$scope.user = {name:'',password:''};
 	//show message
 	$scope.showModal = function(){
-		$scope.isShown = true;
-	};
+		return true ;
+	}
 	
 	
 	
@@ -193,17 +193,19 @@ mainApp.controller('loginController',function($scope, userSrv){
 		
 		 $scope.login = function(){
 			 if (!$scope.isValid()) {
-					if(!userSrv.userLogin($scope.user)){
-						$scope.showModal();
-						console.log("True did it!");
-					};
+					userSrv.userLogin($scope.user).then(function(response){
+				        if(response.data == "Logged!"){
+				        	console.log("awe ne we")
+							//$location.path('/main');
 					
-			 }
-			 	
-		 }
-
-				
-})
+				        	} else if("No such user!") {
+				        		$scope.showModal();
+				        		console.log("awe ne!!!");
+				        	}
+					})
+			 	}
+		 }	
+	})
 /**
  * 
  */

@@ -113,9 +113,13 @@ button {
 	width:100px;
 	margin:10px 200px;
 }
-
-
-@keyframes fadeIn {
-    from {opacity: 0;}
-    to {opacity:1 ;}
+.modal-dialog {
+	display:block;
 }
+ .visible{
+	display:block;
+}
+ .modal-content {
+	display:block;
+}
+

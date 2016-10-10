@@ -1,14 +1,14 @@
-    <div data-ng-class="{'modal-dialog':true}"  data-ng-model = "isShown" data-ng-show={{isShown}}>
-     <div class="modal-content">
-        <div class="modal-header">
+    <div data-ng-show=!isValid() data-ng-class="{'modal-dialog':true }">
+    <div data-ng-class="{'modal-content':true}"> 
+        <div data-ng-class="{'modal-header':true }">
           <button type="button" class="close" data-dismiss="modal">&times;</button>
-          <h4 class="modal-title">Modal Header</h4>
+          <h4 data-ng-class="{'modal-title':true}">Modal Header</h4>
         </div>
-        <div class="modal-body">
-          <p>Some text in the modal.</p>
+        <div data-ng-class="{'modal-body':true }">
+          <p data-ng-show=isValid()>Some text in the modal.</p>
         </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <div data-ng-class="{'modal-footer':true}">
+          <button type="button" data-ng-class="{'btn btn-default':true}" data-dismiss="modal">Close</button>
         </div>
       </div>
     </div>
