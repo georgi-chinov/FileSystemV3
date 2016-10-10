@@ -105,7 +105,17 @@ mainApp.factory('userSrv', function ($http , $location) {
             
         },
         userLogin: function (user) {
-        	
+        	function successCallback(response) {
+            	if(response.data == 'Logged!'){
+            		console.log("Success");
+            		$location.path('/main');
+            		return true;
+            	} 
+            		
+            		console.log("Fail!");
+            		//alert('Error!');
+            		return false;
+            }
         	return $http.post(baseUrl + 'login', user).then(successCallback);
         },
         
@@ -146,7 +156,13 @@ mainApp.controller('homeController' , function($scope){
  */
 mainApp.controller('loginController',function($scope, userSrv){
 	$scope.user = {name:'',password:''};
- 
+	//show message
+	$scope.showModal = function(){
+		$scope.isShown = true;
+	};
+	
+	
+	
 	//check whether the username is valid 
 	$scope.isValidName = function(){
 		var userReg = new RegExp(/^[a-zA-Z0-9.\-_$@*!]{5,20}$/);
@@ -177,7 +193,10 @@ mainApp.controller('loginController',function($scope, userSrv){
 		
 		 $scope.login = function(){
 			 if (!$scope.isValid()) {
-					userSrv.userLogin($scope.user);
+					if(!userSrv.userLogin($scope.user)){
+						$scope.showModal();
+						console.log("True did it!");
+					};
 					
 			 }
 			 	
@@ -192,7 +211,7 @@ mainApp.controller('loginController',function($scope, userSrv){
 mainApp.controller('mainpageController' , function($scope, FileUploader){
 		$scope.uploader = new FileUploader();
 		console.log($scope.item);
-	        console.log(123);
+	        //console.log(123);
 	       $scope.upload = function () {
 	    	   
 	       }

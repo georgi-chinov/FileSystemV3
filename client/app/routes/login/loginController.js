@@ -3,7 +3,13 @@
  */
 mainApp.controller('loginController',function($scope, userSrv){
 	$scope.user = {name:'',password:''};
- 
+	//show message
+	$scope.showModal = function(){
+		$scope.isShown = true;
+	};
+	
+	
+	
 	//check whether the username is valid 
 	$scope.isValidName = function(){
 		var userReg = new RegExp(/^[a-zA-Z0-9.\-_$@*!]{5,20}$/);
@@ -34,7 +40,10 @@ mainApp.controller('loginController',function($scope, userSrv){
 		
 		 $scope.login = function(){
 			 if (!$scope.isValid()) {
-					userSrv.userLogin($scope.user);
+					if(!userSrv.userLogin($scope.user)){
+						$scope.showModal();
+						console.log("True did it!");
+					};
 					
 			 }
 			 	

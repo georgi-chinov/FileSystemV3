@@ -1,4 +1,4 @@
-    <div data-ng-class="{'modal-dialog':true}"  data-ng-show=userSrv.showModal()>
+    <div data-ng-class="{'modal-dialog':true}"  data-ng-model = "isShown" data-ng-show={{isShown}}>
      <div class="modal-content">
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal">&times;</button>

@@ -26,7 +26,17 @@ mainApp.factory('userSrv', function ($http , $location) {
             
         },
         userLogin: function (user) {
-        	
+        	function successCallback(response) {
+            	if(response.data == 'Logged!'){
+            		console.log("Success");
+            		$location.path('/main');
+            		return true;
+            	} 
+            		
+            		console.log("Fail!");
+            		//alert('Error!');
+            		return false;
+            }
         	return $http.post(baseUrl + 'login', user).then(successCallback);
         },
         
