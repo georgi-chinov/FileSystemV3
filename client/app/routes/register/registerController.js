@@ -1,12 +1,20 @@
 /**
  * 
  */
-mainApp.controller ('registerController',function($scope, userSrv){
+mainApp.controller ('registerController',function($scope, userSrv  , $location){
 	
 	$scope.user = {name:'',password:'' , passRepeated:'' , email:''};
+	//show message
+	$scope.showModal = function(){
+		if(	$scope.show == true){
+			$scope.show = false ;
+		} else {
+			$scope.show = true ;
+		}
+
+	}
 	
-	//validate function
-	//1) for username
+	//validate username
 	$scope.isValidName = function(){
 		var userReg = new RegExp(/^[a-zA-Z0-9.\-_$@*!]{5,20}$/);
 		if(userReg.test($scope.user.name)){
@@ -41,6 +49,7 @@ mainApp.controller ('registerController',function($scope, userSrv){
 			return false;
 		}
 	}
+	//check whether all the information is valid in order to allow the user to submit info
 	$scope.isValid= function(){
 		if($scope.isValidName() && $scope.isValidPassword() && $scope.isValidPassword2() && $scope.isValidEmail()){
 			return false;
@@ -48,10 +57,19 @@ mainApp.controller ('registerController',function($scope, userSrv){
 			return true;
 		}
 	}
+	//register
 	$scope.submitRegisterForm = function(){
 		if (!$scope.isValid()) {
-			userSrv.userRegister($scope.user);
-			return;
+			userSrv.userRegister($scope.user).then(function(response){
+		        if(response.data == "User registered!"){
+		        	console.log("probe when registered")
+					$location.path('/login');
+			
+		        	} else if(response.data == "User exists!") {
+		        		$scope.showModal();
+		        		console.log("probe when could NOT register");
+		        	}
+			})
 		}
 		
 	 }
