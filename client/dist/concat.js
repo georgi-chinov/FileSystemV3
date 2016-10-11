@@ -81,42 +81,17 @@ mainApp.factory('userSrv', function ($http , $location) {
 	var baseUrl = 'http://localhost:3000/';
     return {
         lostEmail: function (lostmail) {
-            return $http.post(baseUrl + 'lostpassword', lostmail).then(successCallback);
-            
-            function successCallback(response) {
-            	console.log(response);
-            }
-        
+            return $http.post(baseUrl + 'lostpassword', lostmail);
         },
         userRegister: function (user) {
-        	return $http.post(baseUrl + 'register', user).then(successCallback);
+        	
+        	return $http.post(baseUrl + 'register', user);
         
-            function successCallback(response) {
-            	if(response.data == 'User registered!'){
-            		console.log("Success");
-            		$location.path('/login');
-            		return;
-            	} 
-            		
-            		console.log("Fail!");
-            		alert('Error!');
-            		
-            }
-            
         },
         userLogin: function (user) {
-        	/**function successCallback(response) {
-            	if(response.data == 'Logged!'){
-            		console.log("Success");
-            		$location.path('/main');
-            		return true;
-            	} else{
-            		console.log("Fail!");
-	            	return false;	
-            	} 
-      			.then(successCallback);
-            }*/
+        	
         	return $http.post(baseUrl + 'login', user)
+        
         },
         
     };
@@ -129,6 +104,18 @@ mainApp.controller('emailController' , function($scope, $http, $httpParamSeriali
 	
 	$scope.lostmail =  {to: ''};
 	
+	//show message
+	$scope.showModal = function(){
+		if(	$scope.show == true){
+			$scope.show = false ;
+			$scope.hide = true;
+		} else {
+			$scope.show = true ;
+			$scope.hide = false;
+		}
+
+	}
+	 //check whether the email is valid
 	$scope.isValidEmail = function(){
 		var emailReg = new RegExp(/^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/);
 		if(emailReg.test($scope.lostmail.to)){
@@ -137,10 +124,20 @@ mainApp.controller('emailController' , function($scope, $http, $httpParamSeriali
 			return false;
 		}
 	}
+	//submitting form
 	$scope.submitForm = function() {
 		if ($scope.lostmail.to) {
-			userSrv.lostEmail($scope.lostmail);
-			console.log(143);
+			userSrv.lostEmail($scope.lostmail).then(function(response){
+				console.log(response);
+		        if(response.data == "sent"){
+		        	console.log("probe when email sent")
+		        	$scope.showModal();
+	        
+		        	} else if(response.data == "Wrong email!") {
+		        		$scope.showModal();
+		        		console.log("probe when NOT sent an email");
+		        	}
+			})
 		}
 	};
 
@@ -165,8 +162,6 @@ mainApp.controller('loginController',function($scope, $location,userSrv){
 		}
 
 	}
-	
-	
 	
 	//check whether the username is valid 
 	$scope.isValidName = function(){
@@ -203,7 +198,7 @@ mainApp.controller('loginController',function($scope, $location,userSrv){
 				        	console.log("probe when logged")
 							$location.path('/main');
 					
-				        	} else if("No such user!") {
+				        	} else if(response.data == "No such user!") {
 				        		$scope.showModal();
 				        		console.log("probe when NOT logged");
 				        	}
@@ -227,12 +222,20 @@ mainApp.controller('mainpageController' , function($scope, FileUploader){
 /**
  * 
  */
-mainApp.controller ('registerController',function($scope, userSrv){
+mainApp.controller ('registerController',function($scope, userSrv  , $location){
 	
 	$scope.user = {name:'',password:'' , passRepeated:'' , email:''};
+	//show message
+	$scope.showModal = function(){
+		if(	$scope.show == true){
+			$scope.show = false ;
+		} else {
+			$scope.show = true ;
+		}
+
+	}
 	
-	//validate function
-	//1) for username
+	//validate username
 	$scope.isValidName = function(){
 		var userReg = new RegExp(/^[a-zA-Z0-9.\-_$@*!]{5,20}$/);
 		if(userReg.test($scope.user.name)){
@@ -267,6 +270,7 @@ mainApp.controller ('registerController',function($scope, userSrv){
 			return false;
 		}
 	}
+	//check whether all the information is valid in order to allow the user to submit info
 	$scope.isValid= function(){
 		if($scope.isValidName() && $scope.isValidPassword() && $scope.isValidPassword2() && $scope.isValidEmail()){
 			return false;
@@ -274,10 +278,19 @@ mainApp.controller ('registerController',function($scope, userSrv){
 			return true;
 		}
 	}
+	//register
 	$scope.submitRegisterForm = function(){
 		if (!$scope.isValid()) {
-			userSrv.userRegister($scope.user);
-			return;
+			userSrv.userRegister($scope.user).then(function(response){
+		        if(response.data == "User registered!"){
+		        	console.log("probe when registered")
+					$location.path('/login');
+			
+		        	} else if(response.data == "User exists!") {
+		        		$scope.showModal();
+		        		console.log("probe when could NOT register");
+		        	}
+			})
 		}
 		
 	 }

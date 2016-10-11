@@ -1,17 +1,11 @@
-  <form name="sign" data-ng-controller = "registerController"  data-ng-class="{'elegant-aero':true}" data-ng-class="{'navbar-form':true }" data-ng-submit="submitRegisterForm()" novalidate autocomplete="off">
+ <div data-ng-controller = "registerController">
+  <form name="sign"   data-ng-class="{'elegant-aero':true}" data-ng-class="{'navbar-form':true }" data-ng-submit="submitRegisterForm()" novalidate autocomplete="off">
   	<div data-ng-class ="{'caption':true}" style = "color:white">Register</div>
   	<div id = "username">
 	    <div  data-ng-class="{'input-group':true ,'form-group':true ,'has-error':!isValidName() , 'has-success':isValidName()}">
 		  	<div class="input-group-addon"><span class="glyphicon glyphicon-user"></span></div>
 	    		<input type="text" name="username" data-ng-class="{'form-control':true , 'form-control-danger':!isValidName(), 'form-control-success':isValidName()}" placeholder="Enter username" data-ng-model="user.name"  data-ng-blur="onBlur($event)" required />
 		</div>	    		    
-<!-- 	<div data-ng-messages="sign.username.$error">
-	      
-	      <div data-ng-message="minlength">Minimal number of symbols is 5.</div>
-	      <div data-ng-message="maxlength">Maximal number of symbols is 20.</div>
-		  <div data-ng-message="pattern">Your username is invalid</div>
-	 </div>
- -->
    </div> 
 
 	<div id = "password">
@@ -19,35 +13,22 @@
 		  	<div data-ng-class="{'input-group-addon':true}"><span class= "glyphicon glyphicon-lock"></span></div>
   				<input type="password" name="userpass" data-ng-class="{'form-control':true , 'form-control-danger':!isValidPassword(),'form-control-success':isValidPassword()}" placeholder="Enter password" data-ng-model="user.password"  required >
   		</div>
-  		
-<!--   	 <div data-ng-messages="sign.userpass.$error">
-		   <div data-ng-message="pattern">Your password is invalid</div>
-		 </div>
- -->  
-    </div>
-    
+  	</div>
 	<div id = "passRepeated">
 		<div  data-ng-class="{'input-group':true, 'form-group':true ,'has-error':!isValidPassword2(), 'has-success':isValidPassword2()}">
 		  	<div class="input-group-addon"><span class= "glyphicon glyphicon-lock"></span></div>
   			   	<input type="password" name="passRepeated"  data-ng-class="{'form-control':true , 'form-control-danger':!isValidPassword2(),'form-control-success':isValidPassword2()}" placeholder="Enter password"   placeholder="Repeat password" data-ng-model="user.passRepeated"  required  />
 		</div>
-<!-- 		 <div data-ng-messages="sign.passRepeated.$error">
-		    <div data-ng-message="pattern">Your passwords do not match</div>
-		 </div>
- -->   
-    </div>
+   </div>
 	<div id = "userEmail">
 		<div data-ng-class="{'input-group':true, 'form-group':true ,'has-error':!isValidEmail(), 'has-success':isValidEmail()}">
 		  	<div class="input-group-addon"><span class= "glyphicon glyphicon-envelope"></span></div>
   		   		<input type="email" name="userEmail" data-ng-model="user.email" data-ng-class="{'form-control':true , 'form-control-danger':!isValidEmail() , 'form-control-success':isValidEmail()}" placeholder="Enter email"  required />
 		</div>
-<!-- 		 <div data-ng-messages="sign.userEmail.$error">
-		    <div data-ng-message="pattern">Your email is invalid</div>
-		 </div>
- -->
     </div>	 
 	<button data-ng-class = "{ 'btn': true, 'btn-primary': true , 'btn-lg':true , 'disabled':isValid()}" >Submit</button>
- 
   </form>
- </body>
- </html>
+   <div data-ng-model = "show" data-ng-show = show>
+ 	<p style="font-weight:bold ; font-size:18px"><span>User exists!</span></p>
+ </div>
+</div>

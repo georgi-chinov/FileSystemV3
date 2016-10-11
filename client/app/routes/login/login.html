@@ -23,9 +23,10 @@
 		 	<div data-ng-message="pattern">Your password is invalid</div>
 	</div>
     <button type = "submit" data-ng-class = "{ 'btn': true, 'btn-primary': true , 'btn-lg':true , 'disabled':isValid()}" data-ng-attr-id="sumbit" data-ng-disabled=" !(log.userpass.$valid) || !(log.username.$valid) ">Submit</button>
+  	<div><a href="#/email" style="font-weight:bold ; font-size:16px" >Forgotten password</a></div>
   </form>
   <div data-ng-model = "show" data-ng-show = show>
- 	<span>Wrong data!</span>
- 	<div><a href="#/email" style="font-weight:bold" >Did you forget your password?</a></div>
+ 	<p style="font-weight:bold ; font-size:18px"><span>Wrong username or password!</span></p>
+ 	<div><a href="#/email" style="font-weight:bold ; font-size:18px" >Did you forget your password?</a></div>
  </div>
  </div>

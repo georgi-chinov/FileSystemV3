@@ -13,8 +13,6 @@ mainApp.controller('loginController',function($scope, $location,userSrv){
 
 	}
 	
-	
-	
 	//check whether the username is valid 
 	$scope.isValidName = function(){
 		var userReg = new RegExp(/^[a-zA-Z0-9.\-_$@*!]{5,20}$/);
@@ -50,7 +48,7 @@ mainApp.controller('loginController',function($scope, $location,userSrv){
 				        	console.log("probe when logged")
 							$location.path('/main');
 					
-				        	} else if("No such user!") {
+				        	} else if(response.data == "No such user!") {
 				        		$scope.showModal();
 				        		console.log("probe when NOT logged");
 				        	}
