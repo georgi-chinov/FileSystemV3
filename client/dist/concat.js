@@ -84,18 +84,22 @@ mainApp.factory('userSrv', function ($http , $location) {
             return $http.post(baseUrl + 'lostpassword', lostmail);
         },
         userRegister: function (user) {
-        	
         	return $http.post(baseUrl + 'register', user);
-        
         },
         userLogin: function (user) {
-        	
         	return $http.post(baseUrl + 'login', user)
-        
-        },
+        },user123: function (user) {
+        	return $http.get(baseUrl + 'main', user)
+        }
         
     };
 });
+/**
+ * 
+ */
+mainApp.controller('homeController' , function($scope){
+	
+})
 /**
  * 
  */
@@ -141,12 +145,6 @@ mainApp.controller('emailController' , function($scope, $http, $httpParamSeriali
 		}
 	};
 
-})
-/**
- * 
- */
-mainApp.controller('homeController' , function($scope){
-	
 })
 /**
  * 
@@ -210,13 +208,14 @@ mainApp.controller('loginController',function($scope, $location,userSrv){
  * 
  */
 
-mainApp.controller('mainpageController' , function($scope, FileUploader){
+mainApp.controller('mainpageController' , function($scope, FileUploader, userSrv,$rootScope){
 		$scope.uploader = new FileUploader();
 		console.log($scope.item);
 	        //console.log(123);
 	       $scope.upload = function () {
 	    	   
 	       }
+	       $rootScope.hide = true;
 
 })
 /**

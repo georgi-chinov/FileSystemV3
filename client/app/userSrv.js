@@ -5,15 +5,13 @@ mainApp.factory('userSrv', function ($http , $location) {
             return $http.post(baseUrl + 'lostpassword', lostmail);
         },
         userRegister: function (user) {
-        	
         	return $http.post(baseUrl + 'register', user);
-        
         },
         userLogin: function (user) {
-        	
         	return $http.post(baseUrl + 'login', user)
-        
-        },
+        },user123: function (user) {
+        	return $http.get(baseUrl + 'main', user)
+        }
         
     };
 });
