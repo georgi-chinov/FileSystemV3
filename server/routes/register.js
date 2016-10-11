@@ -3,7 +3,7 @@ var router = express.Router();
 var db = require ('./../db.js');
 
 router.post('/', function (req, res) {
-
+	// make it check for email and username seperately
 	usernfo = {username: req.body.name,password:req.body.password,email:req.body.email}
 	console.log(usernfo);
 	db.query('INSERT INTO users SET ?',usernfo, function(err, results, query) {
