@@ -151,8 +151,14 @@ button {
  ul li {
  	list-style-type: none;
  }
- .search{
+ .bar{
  	height:50px;
  	border:1px solid black;
  	border-radius:5px;
  }
+ .uploadFile{
+ 	width:200px;
+ 	height:100px;
+ border:1px solid blue;
+ }
+ 
