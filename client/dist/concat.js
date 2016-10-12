@@ -47,6 +47,7 @@ var mainApp = angular.module('mainModule', ['ngRoute', 'ngAnimate', 'ui.bootstra
 			}
             
        })
+       
 
     
 mainApp.factory('userSrv', function ($http , $location) {
@@ -180,7 +181,7 @@ mainApp.controller('loginController',function($scope, $location,userSrv){
  * 
  */
 
-mainApp.controller('mainpageController' , function($scope, FileUploader, userSrv,$rootScope){
+mainApp.controller('mainpageController' , function($scope, FileUploader, userSrv,$rootScope , $http){
 		$scope.uploader = new FileUploader();
 		console.log($scope.item);
 	        //console.log(123);
@@ -189,110 +190,31 @@ mainApp.controller('mainpageController' , function($scope, FileUploader, userSrv
 	       }
 	       $rootScope.hide = true;
 	       console.log($scope.item)
-});
-
-/**
- * 
- */
-mainApp.controller ('registerController',function($scope, userSrv  , $location){
-	
-	$scope.user = {name:'',password:'' , passRepeated:'' , email:''};
-	//show message
-	$scope.showModal = function(){
-		if(	$scope.show == true){
-			$scope.show = false ;
-		} else {
-			$scope.show = true ;
-		}
-
-	}
-	
-	//validate username
-	$scope.isValidName = function(){
-		var userReg = new RegExp(/^[a-zA-Z0-9.\-_$@*!]{5,20}$/);
-		if(userReg.test($scope.user.name)){
-			return true;
-		} else {
-			return false;
-		}
-	}
-	//validate password
-	$scope.isValidPassword = function(){
-		var passwordReg = new RegExp(/^[a-zA-Z0-9.\-_$@*!]{8,20}$/);
-		if(passwordReg.test($scope.user.password)){
-			return true;
-		} else {
-			return false;
-		}
-	}
-	//check if passwords are the same
-	$scope.isValidPassword2 = function(){
-		if($scope.user.password == $scope.user.passRepeated && $scope.user.passRepeated != ''){
-			return true;
-		} else {
-			return false;
-		}
-	}
-	//check if email is valid
-	$scope.isValidEmail = function(){
-		var emailReg = new RegExp(/^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/);
-		if(emailReg.test($scope.user.email)){
-			return true;
-		} else {
-			return false;
-		}
-	}
-	//check whether all the information is valid in order to allow the user to submit info
-	$scope.isValid= function(){
-		if($scope.isValidName() && $scope.isValidPassword() && $scope.isValidPassword2() && $scope.isValidEmail()){
-			return false;
-		} else {
-			return true;
-		}
-	}
-	//register
-	$scope.submitRegisterForm = function(){
-		if (!$scope.isValid()) {
-			userSrv.userRegister($scope.user).then(function(response){
-		        if(response.data == "User registered!"){
-		        	console.log("probe when registered")
-					$location.path('/login');
-			
-		        	} else if(response.data == "User exists!") {
-		        		$scope.showModal();
-		        		console.log("probe when could NOT register");
-		        	}
-			})
-		}
+	       addExpandAllCollapseAll($scope);
+	$scope.treeData = null;
+	$http.get("smalltree.js").success(function (data) {
+		console.log(data);
+		$scope.treeData = data;
+		console.log(data);
 		
-	 }
-});
-
-
-'use strict';
-
-angular.module('app.controllers', [])
-
-	.controller('MenuCtrl', ['$scope', '$route', 'menu'], function($scope, $route, menu) {
-		$scope.menu = menu;
-		$scope.getCurrentMenuItem = function() {
-			return $route.current && $route.current.locals && $route.current.locals.menuItem;
+	});
+	$scope.drop = function (targetNode, sourceNode, sourceParentNode) {
+		var children = sourceParentNode.children;
+		for (var i = 0 ; i < children.length ; i++) {
+			if (children[i] == sourceNode) {
+				children.splice(i, 1);
+				if (!targetNode.children) {
+					targetNode.children = [];
+				}
+				targetNode.children.push(sourceNode);
+				break;
+			}
 		}
-	})
+	}
+})
 
 
-	.controller('TreeCtrlSmall', ['$scope', '$http'], function($scope, $http) {
-		addExpandAllCollapseAll($scope);
-		$scope.treeData = null;
-		$http.get("smalltree.js").success(function (data) {
-			$scope.treeData = data;
-		});
-		$scope.action = function(node) {
-			alert("Action on node : " + node.label);
-		};
-	})
-
-    function addExpandAllCollapseAll($scope) {
+function addExpandAllCollapseAll($scope) {
         function rec(nodes, action) {
             for (var i = 0 ; i < nodes.length ; i++) {
                 action(nodes[i]);
@@ -373,13 +295,8 @@ angular.module('app.controllers', [])
                 }
             }
         }
-    }
-'use strict';
-
-angular.module('app.directives', [])
-
-    // Main directive, that just publish a controller
-    .directive('frangTree', function ($parse, $animate) {
+}
+    mainApp.directive('frangTree', function ($parse, $animate) {
         return {
             restrict: 'EA',
             controller: function($scope, $element) {
@@ -757,14 +674,6 @@ angular.module('app.directives', [])
             }
         };
     })
-'use strict';
-
-angular.module('app.filters', []);
-
-'use strict';
-
-angular.module('app.services', [])
-    .constant('menu', []);
 
 [
     {"label": "root", "children": [
@@ -808,110 +717,77 @@ angular.module('app.services', [])
 /**
  * 
  */
-
-var app = angular.module('app', ['app.controllers', 'app.directives', 'app.services', 'app.filters'])
-
-app.controller('TreeCtrlSmall', function($scope, $http) {
-	addExpandAllCollapseAll($scope);
-	$scope.treeData = null;
-	$http.get("smalltree.js").success(function (data) {
-		console.log(data)
-		$scope.treeData = data;
-	});
-	$scope.drop = function (targetNode, sourceNode, sourceParentNode) {
-		var children = sourceParentNode.children;
-		for (var i = 0 ; i < children.length ; i++) {
-			if (children[i] == sourceNode) {
-				children.splice(i, 1);
-				if (!targetNode.children) {
-					targetNode.children = [];
-				}
-				targetNode.children.push(sourceNode);
-				break;
-			}
+mainApp.controller ('registerController',function($scope, userSrv  , $location){
+	
+	$scope.user = {name:'',password:'' , passRepeated:'' , email:''};
+	//show message
+	$scope.showModal = function(){
+		if(	$scope.show == true){
+			$scope.show = false ;
+		} else {
+			$scope.show = true ;
 		}
-	};
-})
 
-function addExpandAllCollapseAll($scope) {
-        function rec(nodes, action) {
-            for (var i = 0 ; i < nodes.length ; i++) {
-                action(nodes[i]);
-                if (nodes[i].children) {
-                    rec(nodes[i].children, action);
-                }
-            }
-        }
-        $scope.collapseAll = function () {
-            rec($scope.treeData, function (node) {
-                node.collapsed = true;
-            });
-        };
-        $scope.expandAll = function () {
-            rec($scope.treeData, function (node) {
-                node.collapsed = false;
-            });
-        };
-    }
+	}
+	
+	//validate username
+	$scope.isValidName = function(){
+		var userReg = new RegExp(/^[a-zA-Z0-9.\-_$@*!]{5,20}$/);
+		if(userReg.test($scope.user.name)){
+			return true;
+		} else {
+			return false;
+		}
+	}
+	//validate password
+	$scope.isValidPassword = function(){
+		var passwordReg = new RegExp(/^[a-zA-Z0-9.\-_$@*!]{8,20}$/);
+		if(passwordReg.test($scope.user.password)){
+			return true;
+		} else {
+			return false;
+		}
+	}
+	//check if passwords are the same
+	$scope.isValidPassword2 = function(){
+		if($scope.user.password == $scope.user.passRepeated && $scope.user.passRepeated != ''){
+			return true;
+		} else {
+			return false;
+		}
+	}
+	//check if email is valid
+	$scope.isValidEmail = function(){
+		var emailReg = new RegExp(/^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/);
+		if(emailReg.test($scope.user.email)){
+			return true;
+		} else {
+			return false;
+		}
+	}
+	//check whether all the information is valid in order to allow the user to submit info
+	$scope.isValid= function(){
+		if($scope.isValidName() && $scope.isValidPassword() && $scope.isValidPassword2() && $scope.isValidEmail()){
+			return false;
+		} else {
+			return true;
+		}
+	}
+	//register
+	$scope.submitRegisterForm = function(){
+		if (!$scope.isValid()) {
+			userSrv.userRegister($scope.user).then(function(response){
+		        if(response.data == "User registered!"){
+		        	console.log("probe when registered")
+					$location.path('/login');
+			
+		        	} else if(response.data == "User exists!") {
+		        		$scope.showModal();
+		        		console.log("probe when could NOT register");
+		        	}
+			})
+		}
+		
+	 }
+});
 
-
-    /* ---------- functions used to build the sample trees ------------- */
-
-    function addChild(parent, label) {
-        if (!parent.children) {
-            parent.children = [];
-        }
-        var newNode = {
-            label: label,
-            collapsed: false
-        };
-        parent.children.push(newNode);
-        return newNode;
-    }
-    function addChildren(parent, labels) {
-        for (var i = 0 ; i < labels.length ; i++) {
-            addChild(parent, labels[i]);
-        }
-    }
-
-    function smallTree() {
-        var root = {
-            label: "root"
-        };
-        var folderA = addChild(root, "folder A");
-        var folderB = addChild(folderA, "folder B");
-        var folderC = addChild(root, "folder C");
-        var folderD = addChild(folderC, "folder D");
-        folderD.collapsed = true;
-        var folderE = addChild(folderD, "folder E");
-        var folderF = addChild(folderC, "folder F");
-        var folderG = addChild(root, "folder G");
-        var folderH = addChild(root, "folder H");
-        addChildren(folderA, ["file A1", "file A2", "file A3", "file A4"]);
-        addChildren(folderB, ["file B1", "file B2"]);
-        addChildren(folderC, ["file C1"]);
-        addChildren(folderE, ["file E1", "file E2", "file E3"]);
-        addChildren(folderF, ["file F1", "file F2"]);
-        addChildren(folderG, ["file G1", "file G2", "file G3", "file G4"]);
-        addChildren(folderH, ["file H1", "file H2", "file H3"]);
-        return [root];
-    }
-
-    function buildTree() {
-        var maxLevel = 6;
-        var size = 2;
-        var root = {};
-        recursiveAddChildren(maxLevel, 0, size, root, "A");
-        return root.children;
-
-        function recursiveAddChildren(maxLevel, currentLevel, size, parent, prefix) {
-            for (var i = 0 ; i < size ; i++) {
-                var label = (currentLevel < maxLevel ? "Folder" : "File")
-                    + ' ' + prefix + i;
-                var node = addChild(parent, label);
-                if (currentLevel < maxLevel) {
-                    recursiveAddChildren(maxLevel, currentLevel + 1, size, node, prefix + i);
-                }
-            }
-        }
-}

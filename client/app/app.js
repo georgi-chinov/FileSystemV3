@@ -47,5 +47,6 @@ var mainApp = angular.module('mainModule', ['ngRoute', 'ngAnimate', 'ui.bootstra
 			}
             
        })
+       
 
     

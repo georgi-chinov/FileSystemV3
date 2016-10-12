@@ -29,11 +29,32 @@
 						<li><a href="javascript:void(0)"><span class= "glyphicon glyphicon-open-file"></span>&nbsp;Add file</a></li>
 					</ul>
 			</div>
-			<div class="mainMain col-lg-12 col-xs-12">
-				<div class="leftMain col-lg-3 col-xs-4">
-					<!-- FILE TREE -->
-				</div>
-						
+		<div class="leftMain col-xs-3" >
+		<div class="mainMain col-xs-12">
+				
+					<p id="expand-collapse-all">
+						<a href="" data-ng-click="expandAll()">Expand all</a>
+						<a href="" data-ng-click="collapseAll()">Collapse all</a>
+					</p>
+
+					<ul frang-tree>
+						<li frang-tree-repeat="node in treeData">
+							<div>
+								<span class="icon"
+								data-ng-class="{collapsed: node.collapsed, expanded: !node.collapsed}"
+								data-ng-show="node.children && node.children.length > 0"
+								data-ng-click="node.collapsed = !node.collapsed"></span>
+								<span class="label"
+								data-ng-class="{folder: node.children && node.children.length > 0}"
+								data-ng-bind="node.label"
+								data-ng-click="action(node)"></span>
+							</div>
+							<ul data-ng-if="!node.collapsed && node.children && node.children.length > 0" frang-tree-insert-children="node.children"></ul>
+						</li>
+					</ul>
+					
+				
+				</div></div>		
 				<div  data-nv-file-drop data-uploader="uploader" class="rightMain col-lg-9 col-xs-8">
 					<div data-ng-class="{'uploadFile':true}">
 											
@@ -50,5 +71,5 @@
 				</div>
 				
 			</div>
-			</div>	
+	
 <

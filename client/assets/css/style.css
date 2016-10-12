@@ -125,8 +125,8 @@ button {
 }
 .middle {
 	height: 50px; 
-	border: 1px solid black;
 	border-radius:5px;
+	background-color: white;
 }
 
 .mainMain {
@@ -138,14 +138,14 @@ button {
 	border: 1px solid black;
 	height: 500px;
 	border-radius: 5px;
-	background-color:grey;
+	background-color:white;
 	opacity:0.7;
 }
 .rightMain{
 	border: 1px solid black;
 	height: 500px;
 	border-radius: 5px;
-	background-color:grey;
+	background-color:white;
 	opacity:0.7;
 }
  ul li {
@@ -159,11 +159,7 @@ button {
  .uploadFile{
  	width:200px;
  	height:100px;
- border:1px solid blue;
  }
-  //tree
-  @CHARSET "ISO-8859-1";
-
 .wrapper { 
 	border: 1px solid black;
 }
@@ -235,11 +231,11 @@ li {
     width: 16px;
     height: 16px;
 }
-.expanded {
-    background-image: url(img/expanded.png);
+ .leftMain .expanded {
+    background-image: url('../images/expanded.png');
 }
-.collapsed {
-    background-image: url(img/collapsed.png);
+.leftMain .collapsed {
+    background-image: url('../images/collapsed.png');
 }
 
 .label {
