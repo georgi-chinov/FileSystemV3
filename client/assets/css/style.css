@@ -161,4 +161,99 @@ button {
  	height:100px;
  border:1px solid blue;
  }
- 
+  //tree
+  @CHARSET "ISO-8859-1";
+
+.wrapper { 
+	border: 1px solid black;
+}
+
+.header {
+	height: 50px; 
+	border: 1px solid purple;
+	margin-top: 15px;
+}
+
+.logo {
+	height: 48px; 
+	border: 1px solid blue;
+	text-align: center;
+}
+
+.userInfo{
+	height: 48px; 
+	border: 1px solid red;
+	text-align: center;
+}
+
+.userButton {
+	margin:6px auto;
+}
+
+.divTish {
+	margin-top: 10px;
+	height: 50px; 
+	border: 1px solid black;
+}
+
+.mainMain {
+	margin-top: 10px;
+}
+.leftMain{
+	border: 1px solid black;
+	height: 450px;
+	border-radius: 5px;
+	overflow: scroll;
+}
+.rightMain{
+	border: 1px solid black;
+	height: 450px;
+	border-radius: 5px;
+}
+
+#menu ul li {
+    display: inline-block;
+    padding: 5px 15px 5px 15px;
+    border-left: 2px solid grey;
+}
+
+ul {
+	padding: 5px;
+}
+
+#menu ul li:first-child {
+    border-left: none;
+}
+
+li {
+    list-style-type: none;
+}
+
+.icon {
+    display: block;
+    float: left;
+    width: 16px;
+    height: 16px;
+}
+.expanded {
+    background-image: url(img/expanded.png);
+}
+.collapsed {
+    background-image: url(img/collapsed.png);
+}
+
+.label {
+    color: green;
+}
+.label.folder {
+    color: darkmagenta;
+}
+
+ul .tree-drag > div > span.label {
+    background-color: lightsalmon;
+}
+.tree-drag-over > div > span.label {
+    background-color: darkseagreen;
+}
+
+  
