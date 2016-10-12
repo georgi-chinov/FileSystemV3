@@ -113,13 +113,46 @@ button {
 	width:100px;
 	margin:10px 200px;
 }
-.modal-dialog {
-	display:block;
-}
- .visible{
-	display:block;
-}
- .modal-content {
-	display:block;
+
+.logo {
+	height: 48px; 
+	text-align: center;
 }
 
+.userInfo{
+	height: 48px; 
+	text-align: center;
+}
+.middle {
+	height: 50px; 
+	border: 1px solid black;
+	border-radius:5px;
+}
+
+.mainMain {
+	margin-top: 10px;
+	
+}
+.leftMain{
+	
+	border: 1px solid black;
+	height: 500px;
+	border-radius: 5px;
+	background-color:grey;
+	opacity:0.7;
+}
+.rightMain{
+	border: 1px solid black;
+	height: 500px;
+	border-radius: 5px;
+	background-color:grey;
+	opacity:0.7;
+}
+ ul li {
+ 	list-style-type: none;
+ }
+ .search{
+ 	height:50px;
+ 	border:1px solid black;
+ 	border-radius:5px;
+ }

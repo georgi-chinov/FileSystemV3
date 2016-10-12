@@ -10,5 +10,5 @@ mainApp.controller('mainpageController' , function($scope, FileUploader, userSrv
 	    	   
 	       }
 	       $rootScope.hide = true;
-
-})
+	       console.log($scope.item)
+});

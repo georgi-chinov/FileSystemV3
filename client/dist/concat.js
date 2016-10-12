@@ -45,34 +45,6 @@ var mainApp = angular.module('mainModule', ['ngRoute', 'ngAnimate', 'ui.bootstra
 					$scope.isAct = false;
 				}
 			}
-            //these are functions to show and hide the login and the sign up form
-            $scope.showIt = function(){
-            	if($scope.show){
-            		$scope.show = false;
-            		$scope.show2=false;
-            		$scope.isAct = false;
-            		
-            	} else {
-            		$scope.show = true;
-            		$scope.show2 = false;
-            		$scope.isAct = true;
-            		if($scope.showEmail == true){
-            			$scope.showEmail = false;
-            		}
-            	}
-            }
-            $scope.showIt2 = function(){
-            	if($scope.show2){
-            		$scope.show2 = false;
-            		
-            		$scope.isAct = false;
-            	} else {
-            		$scope.show = false;
-            		$scope.show2 = true;
-            		$scope.isAct = true;
-            	}
-            }
-			
             
        })
 
@@ -94,12 +66,6 @@ mainApp.factory('userSrv', function ($http , $location) {
         
     };
 });
-/**
- * 
- */
-mainApp.controller('homeController' , function($scope){
-	
-})
 /**
  * 
  */
@@ -145,6 +111,12 @@ mainApp.controller('emailController' , function($scope, $http, $httpParamSeriali
 		}
 	};
 
+})
+/**
+ * 
+ */
+mainApp.controller('homeController' , function($scope){
+	
 })
 /**
  * 
@@ -216,8 +188,9 @@ mainApp.controller('mainpageController' , function($scope, FileUploader, userSrv
 	    	   
 	       }
 	       $rootScope.hide = true;
+	       console.log($scope.item)
+});
 
-})
 /**
  * 
  */

@@ -11,22 +11,21 @@
     <script src="node_modules/angular-route/angular-route.min.js"></script>
     <script src="node_modules/angular-messages/angular-messages.min.js"></script>
 	<script src="././node_modules/angular-file-upload/dist/angular-file-upload.min.js"></script>
-
-
-    <script src="node_modules/angular-animate/angular-animate.min.js"></script>
-
+	<script src="node_modules/angular-animate/angular-animate.min.js"></script>
+	<script src="node_modules/jquery/dist/jquery.min.js"></script>
+	
 	<link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.css">
     <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap-theme.css">
+	<script src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+	<link rel="stylesheet" href="node_modules/angular-ui-bootstrap/dist/ui-bootstrap-csp.css"/>
     
-
-    <link rel="stylesheet" href="node_modules/angular-ui-bootstrap/dist/ui-bootstrap-csp.css"/>
     <script src="node_modules/angular-ui-bootstrap/dist/ui-bootstrap.js"></script>
     <script src="node_modules/angular-ui-bootstrap/dist/ui-bootstrap-tpls.js"></script>
-
+	
 	<script src="dist/concat.js"></script>
     
     <link rel = "stylesheet" type="text/css" href = "assets/css/style.css">
-  	<meta name = "viewport " content = "width=device-width , initial-scale =1">
+ 	<meta name = "viewport " content = "width=device-width , initial-scale =1">
   	
     </head>
 <body data-ng-app="mainModule" data-ng-controller="MainController" style="text-align: center" >
@@ -49,80 +48,6 @@
 	   <div class="collapse navbar-collapse"  > 
         		<a class="navbar-brand" href="#">LOGO</a>
        </div>
-<!-- LOG IN 
-
-<form name="log" data-ng-controller = "logInCtrl" class="form-group" data-ng-class="{'elegant-aero':true}" data-ng-submit="submitLoginForm()" novalidate data-ng-show=show >
-  	<div data-ng-class ="{'caption':true}" style = "color:white">Log in</div>
-  	<div id = "username">
-		 <label for="username">Username</label>
-	  	 <input type="text" name="username" class="form-control" placeholder="Enter username" data-ng-model="user.name" data-ng-minlength=5 data-ng-maxlength=20 data-ng-pattern="/^[a-zA-Z0-9.\-_$@*!]{5,20}$/" required>    
-	</div>
-	<div data-ng-messages="log.username.$error">
-	      <div data-ng-message="required">This field is required</div>
-	      <div data-ng-message="minlength">Minimal number of symbols is 5.</div>
-	      <div data-ng-message="maxlength">Maximal number of symbols is 20.</div>
-		  <div data-ng-message="pattern">Your username is invalid</div>
-	 </div>
-	 <div id = "password">
-	 	<label for="userpass">Password:</label>
-    	<input name = "userpass" type="password" class="form-control"  placeholder="Enter password" data-ng-model="user.password" data-ng-pattern="/^[a-zA-Z0-9.\-_$@*!]{8,20}$/" required>
-    </div>
-	 <div data-ng-messages="log.userpass.$error">
-		 	<div data-ng-message="required">This field is required</div>
-		    <div data-ng-message="pattern">Your password is invalid</div>
-	</div>
-    <button type = "submit" data-ng-class = "{ 'btn': true, 'btn-primary': true , 'btn-lg':true , 'disabled':isValid()}" data-ng-attr-id="sumbit" data-ng-disabled=" !(log.userpass.$valid) || !(log.username.$valid) ">Submit</button>
-  	<div > <a href="#/email" >Forgotten Password:</a></div>
-  </form>
--->
-<!-- SIGN UP 
-
-  <form name="sign" data-ng-controller = "myCtrl" class="form-group" data-ng-class="{'elegant-aero':true}" data-ng-class="{'navbar-form':true }" data-ng-submit="submitSignUpForm()" novalidate data-ng-show = show2>
-  	<div data-ng-class ="{'caption':true}" style = "color:white">Register</div>
-  	<div id = "username">
-	    <label>Username:
-	    	<input type="text" name="username" class="form-control" placeholder="Enter username" data-ng-model="user.name" data-ng-pattern="/^[a-zA-Z0-9.\-_$@*!]{5,20}$/" data-ng-minlength="5" data-ng-maxlength="20" required />
-	    </label>	    
-	<div data-ng-messages="sign.username.$error">
-	      <div data-ng-message="required">This field is required</div>
-	      <div data-ng-message="minlength">Minimal number of symbols is 5.</div>
-	      <div data-ng-message="maxlength">Maximal number of symbols is 20.</div>
-		  <div data-ng-message="pattern">Your username is invalid</div>
-	 </div>
-   </div> 
-
-	<div id = "password">
-		<label>Password:
-		   	<input type="password" name="userpass" class="form-control" placeholder="Enter password" data-ng-model="user.password" data-ng-pattern="/^[a-zA-Z0-9.\-_$@*!]{8,20}$/" required />
-		 </label>
-		 <div data-ng-messages="sign.userpass.$error">
-		 	<div data-ng-message="required">This field is required</div>
-		    <div data-ng-message="pattern">Your password is invalid</div>
-		 </div>
-    </div>
-    
-	<div id = "passRepeated">
-		<label>Repeat password:
-		   	<input type="password" name="passRepeated" class="form-control" placeholder="Repeat password" data-ng-model="user.passRepeated" data-ng-pattern="{{user.password}}" required data-ng-compare-to="log.passRepeat" />
-		 </label>
-		 <div data-ng-messages="sign.passRepeated.$error">
-		 	<div data-ng-message="required">This field is required</div>
-		    <div data-ng-message="pattern">Your passwords do not match</div>
-		 </div>
-    </div>
-	<div id = "userEmail">
-		<label>Email:
-		   	<input type="email" name="userEmail" data-ng-model="user.email" class="form-control" placeholder="Enter email" data-ng-pattern="/^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/" required />
-		 </label>
-		 <div data-ng-messages="sign.userEmail.$error">
-		 	<div data-ng-message="required">This field is required</div>
-		    <div data-ng-message="pattern">Your email is invalid</div>
-		 </div>
-    </div>	 
-	<button data-ng-class = "{ 'btn': true, 'btn-primary': true , 'btn-lg':true , 'disabled':isValid()}" >Submit</button>
- 
-  </form>
-  -->
 </div>
 <div data-ng-view></div>
 </body>

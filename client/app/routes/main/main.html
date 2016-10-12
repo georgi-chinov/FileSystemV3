@@ -1,6 +1,4 @@
-<body>
-<div data-ng-app="mainApp">
-    <div data-ng-controller="mainpageController">
+<!--      <div data-ng-controller="mainpageController">
         <input type="file" data-nv-file-select data-uploader="uploader"/><br/>
         <ul>
             <li data-ng-repeat="item in uploader.queue">
@@ -10,3 +8,37 @@
         </ul>
     </div>
 </div>
+-->
+<div class="container-fluid">
+		<div class="header col-sm-12">
+				<div class="logo col-sm-1 col-xs-6"><span>some logo</span></div>
+				<div class="col-sm-2 col-sm-offset-9 col-xs-6 dropdown">
+					<button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">User <span class="caret"></span></button>
+					<ul class="dropdown-menu col-xs-12"  style="text-align: center">
+						<li><a href="#">Friends</a></li>
+						<li><a href="#">Edit Profile</a></li>
+						<li><a href="#">Log Out</a></li>
+					</ul>
+				</div>
+				
+			</div>
+			<div class="search col-sm-12" ></div>
+			<div class="mainMain col-lg-12 col-xs-12">
+				<div class="leftMain col-lg-3 col-xs-4">
+					 <input type="file" data-nv-file-select data-uploader="uploader"/><br/>
+        		</div>
+						
+				<div  data-nv-file-drop data-uploader="uploader" class="rightMain col-lg-9 col-xs-8">
+					<ul>
+           				 <li data-ng-repeat="item in uploader.queue">
+               				 Name: <span data-ng-bind="item.file.name"></span><br/>
+               				
+               				<button data-ng-click="item.upload()">upload</button>
+            			</li>
+        			</ul>	
+				
+				</div>
+				
+			</div>
+			</div>	
+<
