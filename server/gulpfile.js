@@ -1,9 +1,7 @@
 var gulp = require('gulp');
 var nodemon = require('gulp-nodemon');
-
 var jsFiles = ['*.js', '**/*.js'];
-
-gulp.task('serve', function () {
+gulp.task('serve', function() {
     var options = {
         script: 'app.js',
         delayTime: 1,
@@ -12,8 +10,6 @@ gulp.task('serve', function () {
         },
         watch: jsFiles
     };
-
     return nodemon(options);
 });
-
 gulp.task('default', ['serve']);
