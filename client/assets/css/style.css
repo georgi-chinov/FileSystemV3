@@ -12,14 +12,12 @@ body{
 .navbar-default{
 	float:right;
 	background:transparent;	
-	border:none;
-	
+	border:none;	
 }
 
  .horizontal-collapse {
  	background:transparent;
  	display:inline;
- 
  }
 .navbar-collapse.in {
     overflow-y: hidden;
