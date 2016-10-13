@@ -10,7 +10,9 @@ mainApp.controller('mainpageController' , function($scope, FileUploader, userSrv
 	    	   
 	       }
 	       $rootScope.hide = true;
-	       console.log($scope.item)
+	       $rootScope.$scope.showCarousel = true;
+	       console.log($scope.item);
+	       
 	       addExpandAllCollapseAll($scope);
 	$scope.treeData = null;
 	$http.get("smalltree.js").success(function (data) {
