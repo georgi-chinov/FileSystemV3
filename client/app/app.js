@@ -33,7 +33,7 @@ var mainApp = angular.module('mainModule', ['ngRoute', 'ngAnimate', 'ui.bootstra
 			.controller('MainController', function ($scope, $location , userSrv) {
 
         })
-       .controller('CollapseDemoCtrl', function ($scope) {
+       .controller('CollapseDemoCtrl', function ($scope , $rootScope) {
             $scope.isNavCollapsed = true;
             $scope.isCollapsed = false;
             $scope.isCollapsedHorizontal = false;
@@ -46,6 +46,7 @@ var mainApp = angular.module('mainModule', ['ngRoute', 'ngAnimate', 'ui.bootstra
 				}
 			}
             
+     
        })
        
 

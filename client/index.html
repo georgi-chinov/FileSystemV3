@@ -31,6 +31,7 @@
 <body data-ng-app="mainModule" data-ng-controller="MainController" style="text-align: center" >
 
 <div data-ng-controller="CollapseDemoCtrl" data-ng-hide = "hide">
+
     <nav class=" navbar navbar-default" role="navigation">
         <div class="navbar-header">
             <button type="button" class="navbar-toggle" data-ng-click="isNavCollapsed = !isNavCollapsed" >
@@ -48,9 +49,10 @@
 	   <div class="collapse navbar-collapse"  > 
         		<a class="navbar-brand" href="#">LOGO</a>
        </div>
+ {{showCarousel}}
 
-
-	<div id="myCarousel" data-ng-class="{'carousel':true,'slide':true,'col-md-8':true,' col-md-offset-2':true,'col-xs-12':true}" data-ride="carousel" data-ng-hide="showCarousel">
+	<div id="myCarousel" data-ng-class="{'carousel':true,'slide':true,'col-md-8':true,' col-md-offset-2':true,'col-xs-12':true}" data-ride="carousel" data-ng-init="showCarousel=true" data-ng-hide="showCarousel">
+		
 			<ol class="carousel-indicators">
 				<li data-target="#myCarousel" data-slide-to="0" class="active"></li>
 				<li data-target="#myCarousel" data-slide-to="1"></li>
@@ -76,7 +78,7 @@
 			</div>
 		</div>
 </div>
-</div>
+
 <div data-ng-view></div>
 </body>
 </html>

@@ -33,7 +33,7 @@ var mainApp = angular.module('mainModule', ['ngRoute', 'ngAnimate', 'ui.bootstra
 			.controller('MainController', function ($scope, $location , userSrv) {
 
         })
-       .controller('CollapseDemoCtrl', function ($scope) {
+       .controller('CollapseDemoCtrl', function ($scope , $rootScope) {
             $scope.isNavCollapsed = true;
             $scope.isCollapsed = false;
             $scope.isCollapsedHorizontal = false;
@@ -46,6 +46,7 @@ var mainApp = angular.module('mainModule', ['ngRoute', 'ngAnimate', 'ui.bootstra
 				}
 			}
             
+     
        })
        
 
@@ -67,12 +68,6 @@ mainApp.factory('userSrv', function ($http , $location) {
         
     };
 });
-/**
- * 
- */
-mainApp.controller('homeController' , function($scope){
-	
-})
 /**
  * 
  */
@@ -118,6 +113,12 @@ mainApp.controller('emailController' , function($scope, $http, $httpParamSeriali
 		}
 	};
 
+})
+/**
+ * 
+ */
+mainApp.controller('homeController' , function($scope){
+	
 })
 /**
  * 
@@ -180,94 +181,17 @@ mainApp.controller('loginController',function($scope, $location,userSrv){
 /**
  * 
  */
-mainApp.controller ('registerController',function($scope, userSrv  , $location){
-	
-	$scope.user = {name:'',password:'' , passRepeated:'' , email:''};
-	//show message
-	$scope.showModal = function(){
-		if(	$scope.show == true){
-			$scope.show = false ;
-		} else {
-			$scope.show = true ;
-		}
-
-	}
-	
-	//validate username
-	$scope.isValidName = function(){
-		var userReg = new RegExp(/^[a-zA-Z0-9.\-_$@*!]{5,20}$/);
-		if(userReg.test($scope.user.name)){
-			return true;
-		} else {
-			return false;
-		}
-	}
-	//validate password
-	$scope.isValidPassword = function(){
-		var passwordReg = new RegExp(/^[a-zA-Z0-9.\-_$@*!]{8,20}$/);
-		if(passwordReg.test($scope.user.password)){
-			return true;
-		} else {
-			return false;
-		}
-	}
-	//check if passwords are the same
-	$scope.isValidPassword2 = function(){
-		if($scope.user.password == $scope.user.passRepeated && $scope.user.passRepeated != ''){
-			return true;
-		} else {
-			return false;
-		}
-	}
-	//check if email is valid
-	$scope.isValidEmail = function(){
-		var emailReg = new RegExp(/^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/);
-		if(emailReg.test($scope.user.email)){
-			return true;
-		} else {
-			return false;
-		}
-	}
-	//check whether all the information is valid in order to allow the user to submit info
-	$scope.isValid= function(){
-		if($scope.isValidName() && $scope.isValidPassword() && $scope.isValidPassword2() && $scope.isValidEmail()){
-			return false;
-		} else {
-			return true;
-		}
-	}
-	//register
-	$scope.submitRegisterForm = function(){
-		if (!$scope.isValid()) {
-			userSrv.userRegister($scope.user).then(function(response){
-		        if(response.data == "User registered!"){
-		        	console.log("probe when registered")
-					$location.path('/login');
-			
-		        	} else if(response.data == "User exists!") {
-		        		$scope.showModal();
-		        		console.log("probe when could NOT register");
-		        	}
-			})
-		}
-		
-	 }
-});
-
-
-/**
- * 
- */
 
 mainApp.controller('mainpageController' , function($scope, FileUploader, userSrv,$rootScope , $http){
 		$scope.uploader = new FileUploader();
 		console.log($scope.item);
-	        //console.log(123);
 	       $scope.upload = function () {
 	    	   
 	       }
 	       $rootScope.hide = true;
-	       console.log($scope.item)
+	     
+	       console.log($scope.item);
+	       
 	       addExpandAllCollapseAll($scope);
 	$scope.treeData = null;
 	$http.get("smalltree.js").success(function (data) {
@@ -790,3 +714,80 @@ function addExpandAllCollapseAll($scope) {
         ]}
     ]}
 ]
+/**
+ * 
+ */
+mainApp.controller ('registerController',function($scope, userSrv  , $location){
+	
+	$scope.user = {name:'',password:'' , passRepeated:'' , email:''};
+	//show message
+	$scope.showModal = function(){
+		if(	$scope.show == true){
+			$scope.show = false ;
+		} else {
+			$scope.show = true ;
+		}
+
+	}
+	
+	//validate username
+	$scope.isValidName = function(){
+		var userReg = new RegExp(/^[a-zA-Z0-9.\-_$@*!]{5,20}$/);
+		if(userReg.test($scope.user.name)){
+			return true;
+		} else {
+			return false;
+		}
+	}
+	//validate password
+	$scope.isValidPassword = function(){
+		var passwordReg = new RegExp(/^[a-zA-Z0-9.\-_$@*!]{8,20}$/);
+		if(passwordReg.test($scope.user.password)){
+			return true;
+		} else {
+			return false;
+		}
+	}
+	//check if passwords are the same
+	$scope.isValidPassword2 = function(){
+		if($scope.user.password == $scope.user.passRepeated && $scope.user.passRepeated != ''){
+			return true;
+		} else {
+			return false;
+		}
+	}
+	//check if email is valid
+	$scope.isValidEmail = function(){
+		var emailReg = new RegExp(/^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/);
+		if(emailReg.test($scope.user.email)){
+			return true;
+		} else {
+			return false;
+		}
+	}
+	//check whether all the information is valid in order to allow the user to submit info
+	$scope.isValid= function(){
+		if($scope.isValidName() && $scope.isValidPassword() && $scope.isValidPassword2() && $scope.isValidEmail()){
+			return false;
+		} else {
+			return true;
+		}
+	}
+	//register
+	$scope.submitRegisterForm = function(){
+		if (!$scope.isValid()) {
+			userSrv.userRegister($scope.user).then(function(response){
+		        if(response.data == "User registered!"){
+		        	console.log("probe when registered")
+					$location.path('/login');
+			
+		        	} else if(response.data == "User exists!") {
+		        		$scope.showModal();
+		        		console.log("probe when could NOT register");
+		        	}
+			})
+		}
+		
+	 }
+});
+

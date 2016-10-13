@@ -5,12 +5,11 @@
 mainApp.controller('mainpageController' , function($scope, FileUploader, userSrv,$rootScope , $http){
 		$scope.uploader = new FileUploader();
 		console.log($scope.item);
-	        //console.log(123);
 	       $scope.upload = function () {
 	    	   
 	       }
 	       $rootScope.hide = true;
-	       $rootScope.$scope.showCarousel = true;
+	     
 	       console.log($scope.item);
 	       
 	       addExpandAllCollapseAll($scope);

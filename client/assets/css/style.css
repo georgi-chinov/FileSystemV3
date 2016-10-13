@@ -289,3 +289,6 @@ ul .tree-drag > div > span.label {
    	box-shadow: none;
    	-moz-box-shadow: none;
 }
+.elegant-aero .addName{
+	  z-index: -1;
+}
