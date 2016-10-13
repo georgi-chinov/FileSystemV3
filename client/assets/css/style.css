@@ -278,6 +278,7 @@ ul .tree-drag > div > span.label {
    	-webkit-box-shadow: none;
    	box-shadow: none;
    	-moz-box-shadow: none;
+   	width:100%;
 }
 .btn-file input[type=file] {
     position: absolute;
@@ -293,13 +294,18 @@ ul .tree-drag > div > span.label {
     background: transparent;
   	cursor: inherit;
     display: block;
-    -webkit-box-shadow:(0,0,0,0);
+    -webkit-box-shadow: none;
+   	box-shadow: none;
+   	-moz-box-shadow: none;
+   	 width:100%;
 }
   .btn-file:hover{
   
     background: transparent;
     border-color:transparent;
-    -webkit-box-shadow:(0,0,0,0);
+   	-webkit-box-shadow: none;
+   	box-shadow: none;
+   	-moz-box-shadow: none;
   
   }
 .btn-file input[type=file]:active:focus {
@@ -309,6 +315,14 @@ ul .tree-drag > div > span.label {
    	box-shadow: none;
    	-moz-box-shadow: none;
 }
-.elegant-aero .addName{
-	  z-index: -1;
+.addForm{
+	 position: relative;
+      z-index: 1;
+      top: -400px;
+}
+.elegant-aero .form-group .AddName{
+
+	  width:300px;
+	  height:200px;
+	 
 }

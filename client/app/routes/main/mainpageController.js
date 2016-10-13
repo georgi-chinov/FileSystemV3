@@ -4,6 +4,9 @@
 
 mainApp.controller('mainpageController' , function($scope, FileUploader, userSrv,$rootScope , $http){
 		$scope.uploader = new FileUploader();
+		$scope.visible = false;
+		$scope.folder = {name: ''};
+		
 		console.log($scope.item);
 	       $scope.upload = function () {
 	    	   
@@ -13,7 +16,32 @@ mainApp.controller('mainpageController' , function($scope, FileUploader, userSrv
 	       
 	       console.log($scope.item);
 	       
-	       addExpandAllCollapseAll($scope);
+	       //show the form
+	       $scope.showForm = function(){
+
+	       	if($scope.visible == false){
+	       		$scope.visible = true;
+	       	   
+	       		
+	       		
+	       	}else{
+	       		
+	       		$scope.visible = false;
+	       	}
+	       	
+	       	
+	       }
+	       
+	       //get name
+	       $scope.addName = function(){
+	    	   console.log($scope.folder.name);
+	       }
+	       
+	       
+	       
+	 //tree logic      
+	       
+	addExpandAllCollapseAll($scope);
 	$scope.treeData = null;
 	$http.get("smalltree.js").success(function (data) {
 		console.log(data)
@@ -495,3 +523,6 @@ function addExpandAllCollapseAll($scope) {
             }
         };
     })
+
+    
+    //show Form  function
