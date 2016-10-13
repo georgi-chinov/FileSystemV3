@@ -41,7 +41,7 @@
 
 					<ul data-frang-tree>
 						<li data-frang-tree-repeat="node in treeData">
-							<div>
+							<div data-ng-class="{'tree':true}">
 								<span class="icon"
 								data-ng-class="{collapsed: node.collapsed, expanded: !node.collapsed}"
 								data-ng-show="node.children && node.children.length > 0"

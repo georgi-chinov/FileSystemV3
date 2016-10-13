@@ -138,8 +138,9 @@ button {
 	border: 1px solid black;
 	height: 500px;
 	border-radius: 5px;
-	background-color:white;
-	opacity:0.7;
+	background-color: white;
+	opacity: 0.7;
+	text-align: left;
 }
 .rightMain{
 	border: 1px solid black;
@@ -185,10 +186,8 @@ button {
 	margin:6px auto;
 }
 
-.divTish {
-	margin-top: 10px;
-	height: 50px; 
-
+#expand-collapse-all{
+	text-align:center;
 }
 
 .mainMain {
@@ -228,27 +227,48 @@ li {
     display: block;
     float: left;
     width: 16px;
-    height: 16px;
+    height: 16px;`
+    margin:0;
+    padding:0;
 }
  .leftMain .expanded {
     background-image: url('../images/expanded.png');
+    margin:0;
+    padding:0;
+    float:left;
 }
 .leftMain .collapsed {
     background-image: url('../images/collapsed.png');
+     margin:0;
+     padding:0;
+
 }
 
 .label {
     color: green;
+    margin:0;
+     padding:0;
 }
 .label.folder {
     color: darkmagenta;
+    margin:0;
+     padding:0;
 }
 
 ul .tree-drag > div > span.label {
-    background-color: lightsalmon;
+     background-color: lightsalmon;
+     margin:0;
+     padding:0;
+          float:left;
 }
 .tree-drag-over > div > span.label {
     background-color: darkseagreen;
+    margin:0;
+    padding:0;
+    float:left;
+}
+.tree{
+	width:35%;
 }
 .btn-file {
     position: relative;
