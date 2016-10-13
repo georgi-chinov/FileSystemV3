@@ -172,13 +172,12 @@ button {
 
 .logo {
 	height: 48px; 
-	border: 1px solid blue;
 	text-align: center;
 }
 
 .userInfo{
 	height: 48px; 
-	border: 1px solid red;
+
 	text-align: center;
 }
 
@@ -189,7 +188,7 @@ button {
 .divTish {
 	margin-top: 10px;
 	height: 50px; 
-	border: 1px solid black;
+
 }
 
 .mainMain {
@@ -251,5 +250,42 @@ ul .tree-drag > div > span.label {
 .tree-drag-over > div > span.label {
     background-color: darkseagreen;
 }
-
+.btn-file {
+    position: relative;
+    overflow: hidden;
+    background: transparent;
+    border-color: transparent;
+   	-webkit-box-shadow: none;
+   	box-shadow: none;
+   	-moz-box-shadow: none;
+}
+.btn-file input[type=file] {
+    position: absolute;
+    top: 0;
+    right: 0;
+    min-width: 100%;
+    min-height: 100%;
+    font-size: 100px;
+    text-align: right;
+    filter: alpha(opacity=0);
+    opacity: 0;
+    outline: none;
+    background: transparent;
+  	cursor: inherit;
+    display: block;
+    -webkit-box-shadow:(0,0,0,0);
+}
+  .btn-file:hover{
   
+    background: transparent;
+    border-color:transparent;
+    -webkit-box-shadow:(0,0,0,0);
+  
+  }
+.btn-file input[type=file]:active:focus {
+    background: transparent;
+    border-color: transparent;
+   	-webkit-box-shadow: none;
+   	box-shadow: none;
+   	-moz-box-shadow: none;
+}
