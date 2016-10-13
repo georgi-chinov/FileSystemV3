@@ -1,10 +1,12 @@
 @CHARSET "UTF-8";
 @import url("https://fonts.google.com/specimen/Indie+Flower");
 body{
-	background-image: url("../images/images.jpg");
-	 background-size: cover;
+	background: url("../images/newDesk.jpg") no-repeat center center fixed; 
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
 	font-family:"Indie Flower" ;
-	
 }
 
 .navbar-default{

@@ -193,10 +193,8 @@ mainApp.controller('mainpageController' , function($scope, FileUploader, userSrv
 	       addExpandAllCollapseAll($scope);
 	$scope.treeData = null;
 	$http.get("smalltree.js").success(function (data) {
-		console.log(data);
+		console.log(data)
 		$scope.treeData = data;
-		console.log(data);
-		
 	});
 	$scope.drop = function (targetNode, sourceNode, sourceParentNode) {
 		var children = sourceParentNode.children;
