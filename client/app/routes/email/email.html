@@ -4,8 +4,7 @@
   		<div data-ng-class ="{'caption':true}" style = "color:white">Forgotten password</div>
   		<div id = "useremail">
 	    	<div data-ng-class="{'input-group':true, 'form-group':true ,'has-error':!isValidEmail(), 'has-success':isValidEmail()}">
-		  		<div class="input-group-addon"><span class= "glyphicon glyphicon-envelope"></span></div>
-  		   			<input type="email" name="userEmail" data-ng-model="lostmail.to"  data-ng-class="{'form-control':true , 'form-control-danger':!isValidEmail() , 'form-control-success':isValidEmail()}" placeholder= "Enter your email" required  />
+		  		<input type="email" name="userEmail" data-ng-model="lostmail.to"  data-ng-class="{'form-control':true , 'form-control-danger':!isValidEmail() , 'form-control-success':isValidEmail()}" placeholder= "Enter your email" required  />
 	    	</div>    
 			<div data-ng-messages="forgottenPassword.userEmail.$error">
 				<div data-ng-message="pattern">Your email is invalid</div>

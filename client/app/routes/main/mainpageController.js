@@ -9,7 +9,8 @@ mainApp.controller('mainpageController' , function($scope, FileUploader, userSrv
 	    	   
 	       }
 	       $rootScope.hide = true;
-	     
+	       $rootScope.showCarousel = false;
+	       
 	       console.log($scope.item);
 	       
 	       addExpandAllCollapseAll($scope);

@@ -46,7 +46,9 @@ var mainApp = angular.module('mainModule', ['ngRoute', 'ngAnimate', 'ui.bootstra
 				}
 			}
             
-     
+            $rootScope.showCarousel = true;
+          
+           
        })
        
 
@@ -72,10 +74,11 @@ mainApp.factory('userSrv', function ($http , $location) {
  * 
  */
 
-mainApp.controller('emailController' , function($scope, $http, $httpParamSerializerJQLike, userSrv, $location){
+mainApp.controller('emailController' , function($rootScope, $scope, $http, $httpParamSerializerJQLike, userSrv, $location){
 	
 	$scope.lostmail =  {to: ''};
-	
+	$rootScope.showCarousel = false;
+    
 	//show message
 	$scope.showModal = function(){
 		if(	$scope.show == true){
@@ -117,14 +120,17 @@ mainApp.controller('emailController' , function($scope, $http, $httpParamSeriali
 /**
  * 
  */
-mainApp.controller('homeController' , function($scope){
-	
+mainApp.controller('homeController' , function($rootScope,$scope){
+	$rootScope.showCarousel = false;
 })
 /**
  * 
  */
-mainApp.controller('loginController',function($scope, $location,userSrv){
+mainApp.controller('loginController',function($scope, $rootScope, $location,userSrv){
 	$scope.user = {name:'',password:''};
+	
+	$rootScope.showCarousel = false;
+	
 	//show message
 	$scope.showModal = function(){
 		if(	$scope.show == true){
@@ -189,7 +195,8 @@ mainApp.controller('mainpageController' , function($scope, FileUploader, userSrv
 	    	   
 	       }
 	       $rootScope.hide = true;
-	     
+	       $rootScope.showCarousel = false;
+	       
 	       console.log($scope.item);
 	       
 	       addExpandAllCollapseAll($scope);
@@ -717,9 +724,11 @@ function addExpandAllCollapseAll($scope) {
 /**
  * 
  */
-mainApp.controller ('registerController',function($scope, userSrv  , $location){
+mainApp.controller ('registerController',function($rootScope,$scope, userSrv  , $location){
 	
 	$scope.user = {name:'',password:'' , passRepeated:'' , email:''};
+    $rootScope.showCarousel = false;
+    
 	//show message
 	$scope.showModal = function(){
 		if(	$scope.show == true){

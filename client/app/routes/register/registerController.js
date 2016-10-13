@@ -1,9 +1,11 @@
 /**
  * 
  */
-mainApp.controller ('registerController',function($scope, userSrv  , $location){
+mainApp.controller ('registerController',function($rootScope,$scope, userSrv  , $location){
 	
 	$scope.user = {name:'',password:'' , passRepeated:'' , email:''};
+    $rootScope.showCarousel = false;
+    
 	//show message
 	$scope.showModal = function(){
 		if(	$scope.show == true){

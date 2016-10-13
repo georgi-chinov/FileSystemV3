@@ -2,10 +2,11 @@
  * 
  */
 
-mainApp.controller('emailController' , function($scope, $http, $httpParamSerializerJQLike, userSrv, $location){
+mainApp.controller('emailController' , function($rootScope, $scope, $http, $httpParamSerializerJQLike, userSrv, $location){
 	
 	$scope.lostmail =  {to: ''};
-	
+	$rootScope.showCarousel = false;
+    
 	//show message
 	$scope.showModal = function(){
 		if(	$scope.show == true){

@@ -1,6 +1,6 @@
 /**
  * 
  */
-mainApp.controller('homeController' , function($scope){
-	
+mainApp.controller('homeController' , function($rootScope,$scope){
+	$rootScope.showCarousel = false;
 })

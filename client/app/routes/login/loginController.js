@@ -1,8 +1,11 @@
 /**
  * 
  */
-mainApp.controller('loginController',function($scope, $location,userSrv){
+mainApp.controller('loginController',function($scope, $rootScope, $location,userSrv){
 	$scope.user = {name:'',password:''};
+	
+	$rootScope.showCarousel = false;
+	
 	//show message
 	$scope.showModal = function(){
 		if(	$scope.show == true){
