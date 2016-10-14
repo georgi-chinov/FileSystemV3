@@ -22,10 +22,11 @@
 	</div>
 		
 	<div class="mainMain col-xs-12">
-		<div class="leftMain col-xs-3" >
+		<div class="leftMain col-xs-12 col-sm-3" >
 			<p id="expand-collapse-all">
-				<a href="" data-ng-click="expandAll()">Expand all</a>
-				<a href="" data-ng-click="collapseAll()">Collapse all</a>
+				<a href="" data-ng-click="expandAll()">Expand</a>
+				<span class="expCol"> | </span>
+				<a href="" data-ng-click="collapseAll()">Collapse </a>
 			</p>
 			<ul data-frang-tree>
 				<li data-frang-tree-repeat="node in treeData">
@@ -44,7 +45,7 @@
 			</ul>
 		</div>
 				
-		<div  data-nv-file-drop data-uploader="uploader" class="rightMain col-lg-9 col-xs-8">
+		<div  data-nv-file-drop data-uploader="uploader" class="rightMain col-xs-12 col-sm-9">
 			<ul>
 	           	<li data-ng-repeat="item in uploader.queue">Name: 
 	           		<span data-ng-bind="item.file.name"></span><br/>
@@ -66,16 +67,4 @@
 			<button type = "submit" data-ng-class = "{ 'btn': true, 'btn-success': true}">Ready?</button>
 	 	</form>
 	</div>
-
-	<div class='addForm' data-ng-show = visible>
-		<form data-ng-class="{'elegant-aero':true , 'form-group':true , 'addName':true}" data-ng-submit="addName()" data-ng-show = visible novalidate autocomplete="off">
-		  	<div data-ng-class ="{'caption':true}" style = "color: blue">Add folder</div>
-		  	<div id = "foldername">
-		  		<div data-ng-class="{'input-group':true ,'form-group':true}">
-					<input type="text" name="folder" data-ng-class="{'form-control':true}" placeholder="Enter folder name" data-ng-model="folder.name"  required >    
-				</div>
-			</div>
-			<button type = "submit" data-ng-class = "{ 'btn': true, 'btn-success': true}">Ready?</button>
-		</form>
-	 </div>
 </div>
