@@ -217,7 +217,7 @@ mainApp.controller('loginController',function($scope, $rootScope, $location,user
 		
 		 $scope.login = function(){
 			 if (!$scope.isValid()) {
-					fileSrv.userLogin($scope.user).then(function(response){
+					userSrv.userLogin($scope.user).then(function(response){
 				        if(response.data == "Logged!"){
 				        	console.log("probe when logged")
 							$location.path('/main');
