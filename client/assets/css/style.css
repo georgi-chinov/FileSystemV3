@@ -317,8 +317,8 @@ ul .tree-drag > div > span.label {
 }
 .addForm{
 	 position: relative;
-      z-index: 1;
-      top: -400px;
+     z-index: 1;
+     top: -400px;
 }
 .elegant-aero .form-group .AddName{
 

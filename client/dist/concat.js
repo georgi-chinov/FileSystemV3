@@ -53,6 +53,17 @@ var mainApp = angular.module('mainModule', ['ngRoute', 'ngAnimate', 'ui.bootstra
        
 
     
+/**
+ * 
+ */
+mainApp.factory('fileSrv', function ($http , $location) {
+	var baseUrl = 'http://localhost:3000/';
+    return {
+       sendFolderName: function (folder) {
+            return $http.post(baseUrl + 'main', folder);
+        }
+    };
+});
 mainApp.factory('userSrv', function ($http , $location) {
 	var baseUrl = 'http://localhost:3000/';
     return {
@@ -171,7 +182,7 @@ mainApp.controller('loginController',function($scope, $rootScope, $location,user
 		
 		 $scope.login = function(){
 			 if (!$scope.isValid()) {
-					userSrv.userLogin($scope.user).then(function(response){
+					fileSrv.userLogin($scope.user).then(function(response){
 				        if(response.data == "Logged!"){
 				        	console.log("probe when logged")
 							$location.path('/main');
@@ -188,7 +199,7 @@ mainApp.controller('loginController',function($scope, $rootScope, $location,user
  * 
  */
 
-mainApp.controller('mainpageController' , function($scope, FileUploader, userSrv,$rootScope , $http){
+mainApp.controller('mainpageController' , function($scope, FileUploader, userSrv, fileSrv,$rootScope , $http){
 		$scope.uploader = new FileUploader();
 		$scope.visible = false;
 		$scope.folder = {name: ''};
@@ -221,9 +232,17 @@ mainApp.controller('mainpageController' , function($scope, FileUploader, userSrv
 	       //get name
 	       $scope.addName = function(){
 	    	   console.log($scope.folder.name);
+	    	   fileSrv.sendFolderName($scope.folder.user).then(function(response){
+			        if(response.data == "Ready!"){
+			        	console.log("probe when folder name is not taken")
+				
+			        	} else if(response.data == "Exists!") {
+			        		$scope.showModal();
+			        		console.log("probe when folder name exists");
+			        	}
+	    	   });
+	       
 	       }
-	       
-	       
 	       
 	 //tree logic      
 	       

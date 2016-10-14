@@ -2,7 +2,7 @@
  * 
  */
 
-mainApp.controller('mainpageController' , function($scope, FileUploader, userSrv,$rootScope , $http){
+mainApp.controller('mainpageController' , function($scope, FileUploader, userSrv, fileSrv,$rootScope , $http){
 		$scope.uploader = new FileUploader();
 		$scope.visible = false;
 		$scope.folder = {name: ''};
@@ -35,9 +35,17 @@ mainApp.controller('mainpageController' , function($scope, FileUploader, userSrv
 	       //get name
 	       $scope.addName = function(){
 	    	   console.log($scope.folder.name);
+	    	   fileSrv.sendFolderName($scope.folder.user).then(function(response){
+			        if(response.data == "Ready!"){
+			        	console.log("probe when folder name is not taken")
+				
+			        	} else if(response.data == "Exists!") {
+			        		$scope.showModal();
+			        		console.log("probe when folder name exists");
+			        	}
+	    	   });
+	       
 	       }
-	       
-	       
 	       
 	 //tree logic      
 	       
