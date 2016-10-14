@@ -114,18 +114,6 @@ mainApp.factory('userSrv', function ($http , $location) {
         
     };
 });
-mainApp.service('multipartForm',['$http', function($http){
-	this.post = function(uploadUrl, data){
-		var fd = new FormData();
-		for(var key in data){
-			fd.append(key,data[key]);
-			$http.post(uploadUrl, fd , {
-				transformRequest : angular.identity,
-				headers :{'Content-Type': undefined}
-			})
-		}
-	}
-}])
 mainApp.directive('fileModel', ['$parse',function($parse){
 	return{
 		restricted : "A",
@@ -140,9 +128,74 @@ mainApp.directive('fileModel', ['$parse',function($parse){
 		}
 	}
 }])
+mainApp.service('multipartForm',['$http', function($http){
+	this.post = function(uploadUrl, data){
+		var fd = new FormData();
+		for(var key in data){
+			fd.append(key,data[key]);
+			$http.post(uploadUrl, fd , {
+				transformRequest : angular.identity,
+				headers :{'Content-Type': undefined}
+			})
+		}
+	}
+}])
 /**
  * 
  */
+/**
+ * 
+ */
+
+mainApp.controller('emailController' , function($rootScope, $scope, $http, $httpParamSerializerJQLike, userSrv, $location){
+	
+	$scope.lostmail =  {to: ''};
+	$rootScope.showCarousel = false;
+    
+	//show message
+	$scope.showModal = function(){
+		if(	$scope.show == true){
+			$scope.show = false ;
+			$scope.hide = true;
+		} else {
+			$scope.show = true ;
+			$scope.hide = false;
+		}
+
+	}
+	 //check whether the email is valid
+	$scope.isValidEmail = function(){
+		var emailReg = new RegExp(/^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/);
+		if(emailReg.test($scope.lostmail.to)){
+			return true;
+		} else {
+			return false;
+		}
+	}
+	//submitting form
+	$scope.submitForm = function() {
+		if ($scope.lostmail.to) {
+			userSrv.lostEmail($scope.lostmail).then(function(response){
+				console.log(response);
+		        if(response.data == "sent"){
+		        	console.log("probe when email sent")
+		        	$scope.showModal();
+	        
+		        	} else if(response.data == "Wrong email!") {
+		        		$scope.showModal();
+		        		console.log("probe when NOT sent an email");
+		        	}
+			})
+		}
+	};
+
+})
+/**
+ * 
+ */
+mainApp.controller('homeController' , function($rootScope,$scope){
+	$rootScope.showCarousel = false;
+})
 /**
  * 
  */
@@ -208,62 +261,10 @@ mainApp.controller('loginController',function($scope, $rootScope, $location,user
  * 
  */
 
-mainApp.controller('emailController' , function($rootScope, $scope, $http, $httpParamSerializerJQLike, userSrv, $location){
-	
-	$scope.lostmail =  {to: ''};
-	$rootScope.showCarousel = false;
-    
-	//show message
-	$scope.showModal = function(){
-		if(	$scope.show == true){
-			$scope.show = false ;
-			$scope.hide = true;
-		} else {
-			$scope.show = true ;
-			$scope.hide = false;
-		}
-
-	}
-	 //check whether the email is valid
-	$scope.isValidEmail = function(){
-		var emailReg = new RegExp(/^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/);
-		if(emailReg.test($scope.lostmail.to)){
-			return true;
-		} else {
-			return false;
-		}
-	}
-	//submitting form
-	$scope.submitForm = function() {
-		if ($scope.lostmail.to) {
-			userSrv.lostEmail($scope.lostmail).then(function(response){
-				console.log(response);
-		        if(response.data == "sent"){
-		        	console.log("probe when email sent")
-		        	$scope.showModal();
-	        
-		        	} else if(response.data == "Wrong email!") {
-		        		$scope.showModal();
-		        		console.log("probe when NOT sent an email");
-		        	}
-			})
-		}
-	};
-
-})
-/**
- * 
- */
-mainApp.controller('homeController' , function($rootScope,$scope){
-	$rootScope.showCarousel = false;
-})
-/**
- * 
- */
-
-mainApp.controller('mainpageController' , function($parse,$scope, FileUploader, userSrv, multipartForm,$rootScope , $http){
+mainApp.controller('mainpageController' , function($parse,$scope,  $http, FileUploader, userSrv, fileSrv, multipartForm,$rootScope ){
 		$scope.uploader = new FileUploader();
 		$scope.visible = false;
+		$scope.visibleFileForm = false;
 		$scope.folder = {name: ''};
 		$scope.customer = {};
 		$rootScope.hide = true;
@@ -299,26 +300,32 @@ mainApp.controller('mainpageController' , function($parse,$scope, FileUploader, 
 	       
 	       }
 	       
-	       //handle async
-	       
-	       $scope.uploadFile = function(element) {
-	    	   $scope.$apply(function($scope) {
-	    	     $scope.files = element.files;         
-	    	   });
+	       //add file - form
+	       $scope.showFileForm = function(){
+	    	   if($scope.visibleFileForm == false){
+	    		   $scope.visibleFileForm = true;
+	    	   } else {
+	    		   $scope.visibleFileForm = false;
+	    	   }
 	       }
-			
-	       //the mere function for uploading files
-	       $scope.addFile = function() {
-	    	   fileSrv.uploadFile($scope.files,
-	    	     function( msg ) // success
-	    	     {
-	    	      console.log('uploaded');
-	    	     },
-	    	     function( msg ) // error
-	    	     {
-	    	      console.log('error');
-	    	     });
-	    	 }
+	       
+	       //close forms 
+	       $scope.hideFileForm = function(){
+	    	   if($scope.visibleFileForm == true){
+	    		   $scope.visibleFileForm = false;
+	    	   }
+	       }  
+	    	
+	       
+	       $scope.hideForm = function(){
+	    		
+	    		if($scope.visible == true){
+	    		    
+		    		   $scope.visible = false;
+		    	}
+	       }
+	        
+	       
 	       
 	 //tree logic      
 	       
