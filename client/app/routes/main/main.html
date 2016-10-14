@@ -49,7 +49,7 @@
 			<ul>
 	           	<li data-ng-repeat="item in uploader.queue">Name: 
 	           		<span data-ng-bind="item.file.name"></span><br/>
-           			<button data-ng-class="{'btn btn-success':true}" data-ng-click="item.upload()">upload</button>
+           			<button data-ng-class="{'btn btn-success':true}" data-ng-click="item.addFile()">upload</button>
            		</li>
        		</ul>	
 		</div>
