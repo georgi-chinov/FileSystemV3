@@ -2,9 +2,10 @@
  * 
  */
 
-mainApp.controller('mainpageController' , function($parse,$scope, FileUploader, userSrv, multipartForm,$rootScope , $http){
+mainApp.controller('mainpageController' , function($parse,$scope,  $http, FileUploader, userSrv, fileSrv, multipartForm,$rootScope ){
 		$scope.uploader = new FileUploader();
 		$scope.visible = false;
+		$scope.visibleFileForm = false;
 		$scope.folder = {name: ''};
 		$scope.customer = {};
 		$rootScope.hide = true;
@@ -40,26 +41,32 @@ mainApp.controller('mainpageController' , function($parse,$scope, FileUploader, 
 	       
 	       }
 	       
-	       //handle async
-	       
-	       $scope.uploadFile = function(element) {
-	    	   $scope.$apply(function($scope) {
-	    	     $scope.files = element.files;         
-	    	   });
+	       //add file - form
+	       $scope.showFileForm = function(){
+	    	   if($scope.visibleFileForm == false){
+	    		   $scope.visibleFileForm = true;
+	    	   } else {
+	    		   $scope.visibleFileForm = false;
+	    	   }
 	       }
-			
-	       //the mere function for uploading files
-	       $scope.addFile = function() {
-	    	   fileSrv.uploadFile($scope.files,
-	    	     function( msg ) // success
-	    	     {
-	    	      console.log('uploaded');
-	    	     },
-	    	     function( msg ) // error
-	    	     {
-	    	      console.log('error');
-	    	     });
-	    	 }
+	       
+	       //close forms 
+	       $scope.hideFileForm = function(){
+	    	   if($scope.visibleFileForm == true){
+	    		   $scope.visibleFileForm = false;
+	    	   }
+	       }  
+	    	
+	       
+	       $scope.hideForm = function(){
+	    		
+	    		if($scope.visible == true){
+	    		    
+		    		   $scope.visible = false;
+		    	}
+	       }
+	        
+	       
 	       
 	 //tree logic      
 	       
