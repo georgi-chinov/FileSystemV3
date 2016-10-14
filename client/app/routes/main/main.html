@@ -13,7 +13,7 @@
 			
 	<div class="bar col-sm-12" >
 		<button class="btn btn-success dropdown-toggle col-xs-3" type="button" data-toggle="dropdown">Create<span class="caret"></span></button>
-		<ul class="dropdown-menu col-xs-3"  style="text-align: center">
+		<ul class="dropdown-menu col-xs-4"  style="text-align: center">
 			<li data-ng-click = "showForm()"><a href="javascript:void(0)" ><span class= "glyphicon glyphicon-folder-close"></span>&nbsp;&nbsp;A folder</a></li>
 			<li><a href="javascript:void(0)"><span class="btn btn-default btn-file glyphicon glyphicon-folder-close">
     		Browse <input type="file" data-nv-file-select data-uploader="uploader">
@@ -57,15 +57,29 @@
 		
 	<div class='addForm' data-ng-show = visible>
 		<form data-ng-class="{'elegant-aero':true , 'form-group':true , 'addName':true}" data-ng-submit="addName()" data-ng-show = visible novalidate autocomplete="off">
-		  	<span class="close">&#10006</span>
+		  	<span class="close">&#10006;</span>
 		  	<div data-ng-class ="{'caption':true}" style = "color: blue">Add folder</div>
-		  	<div id = "username">
+		  	<div id = "foldername">
 			  	 <div data-ng-class="{'input-group':true ,'form-group':true}">
 				  	<input type="text" name="folder" data-ng-class="{'form-control':true}" placeholder="Enter folder name" data-ng-model="folder.name"  required >    
 				 </div>
 			</div>
-			<button type = "submit" data-ng-class = "{ 'btn': true, 'btn-success': true}">Ready?</button>
+			<button type = "submit" data-ng-class = "{ 'btn': true, 'btn-success': true}" data-ng-click = "addFile()" onchange="angular.element(this).scope().uploadFile(this)">Ready?</button>
 	 	</form>
 
 	</div>
+	<div class='addForm' data-ng-show = visible>
+		<form data-ng-class="{'elegant-aero':true , 'form-group':true , 'addName':true}"  novalidate autocomplete="off">
+		  	<span class="close">&#10006;</span>
+		  	<div data-ng-class ="{'caption':true}" style = "color: blue">Add folder</div>
+		  	<div id = "file">
+			  	 <div data-ng-class="{'input-group':true ,'form-group':true}">
+				  	<input type="file" name="file" data-ng-class="{'form-control':true}" placeholder="Enter folder name" data-ng-model="folder.name" data-file-model = "customer.file" required >    
+				 </div>
+			</div>
+			<button type = "submit" data-ng-class = "{ 'btn': true, 'btn-success': true}" data-ng-click= "Submit()" >Ready?</button>
+	 	</form>
+
+	</div>
+	
 </div>

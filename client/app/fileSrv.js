@@ -7,12 +7,10 @@ mainApp.factory('fileSrv', function ($http , $location) {
        sendFolderName: function (folder) {
             return $http.post(baseUrl + 'main', folder);
         },
-        uploadfile : function( files,success, error )
+        uploadFile : function( files,success, error )
         {
 
          var fd = new FormData();
-
-         var url = 'your web service url';
 
          angular.forEach(files,function(file){
          fd.append('file',file);
@@ -26,7 +24,7 @@ mainApp.factory('fileSrv', function ($http , $location) {
 
          fd.append("data", JSON.stringify(data));
 
-         $http.post(url, fd, {
+         $http.post(baseUrl + 'main', fd, {
           withCredentials : false,
           headers : {
           'Content-Type' : undefined

@@ -28,7 +28,7 @@ var mainApp = angular.module('mainModule', ['ngRoute', 'ngAnimate', 'ui.bootstra
                    
 			})
 			//this is the main controller with nested scopes in it 
-			.controller('MainController', function ($scope, $location , userSrv) {
+			.controller('MainController', function ($scope, $location , userSrv ) {
 
 			})
 			
@@ -61,12 +61,10 @@ mainApp.factory('fileSrv', function ($http , $location) {
        sendFolderName: function (folder) {
             return $http.post(baseUrl + 'main', folder);
         },
-        uploadfile : function( files,success, error )
+        uploadFile : function( files,success, error )
         {
 
          var fd = new FormData();
-
-         var url = 'your web service url';
 
          angular.forEach(files,function(file){
          fd.append('file',file);
@@ -80,7 +78,7 @@ mainApp.factory('fileSrv', function ($http , $location) {
 
          fd.append("data", JSON.stringify(data));
 
-         $http.post(url, fd, {
+         $http.post(baseUrl + 'main', fd, {
           withCredentials : false,
           headers : {
           'Content-Type' : undefined
@@ -116,6 +114,35 @@ mainApp.factory('userSrv', function ($http , $location) {
         
     };
 });
+mainApp.directive('fileModel', ['$parse',function($parse){
+	return{
+		restricted : "A",
+		link: function(scope , element , attrs){
+			var model = $parse(attrs.fileModel);
+			var modelSetter = model.assign;
+			element.bind('change', function(){
+				scope.$apply(function(){
+					modelSetter(scope,element[0].files[0]);
+				})
+			})
+		}
+	}
+}])
+mainApp.service('multipartForm',['$http', function($http){
+	this.post = function(uploadUrl, data){
+		var fd = new FormData();
+		for(var key in data){
+			fd.append(key,data[key]);
+			$http.post(uploadUrl, fd , {
+				transformRequest : angular.identity,
+				headers :{'Content-Type': undefined}
+			})
+		}
+	}
+}])
+/**
+ * 
+ */
 /**
  * 
  */
@@ -234,13 +261,18 @@ mainApp.controller('loginController',function($scope, $rootScope, $location,user
  * 
  */
 
-mainApp.controller('mainpageController' , function($scope, FileUploader, userSrv, fileSrv,$rootScope , $http){
+mainApp.controller('mainpageController' , function($parse,$scope, FileUploader, userSrv, multipartForm,$rootScope , $http){
 		$scope.uploader = new FileUploader();
 		$scope.visible = false;
 		$scope.folder = {name: ''};
+		$scope.customer = {};
 		$rootScope.hide = true;
 	    $rootScope.showCarousel = false;
-	       
+	    
+	    $scope.Submit = function(){
+	    	var uploadUrl = 'http://localhost:3000/main';
+	    	multipartForm.post(uploadUrl , $scope.customer);
+	    }
 	    console.log($scope.item);
 	       
 	       //show the form
@@ -269,7 +301,7 @@ mainApp.controller('mainpageController' , function($scope, FileUploader, userSrv
 	       
 	       //handle async
 	       
-	       $scope.uploadedFile = function(element) {
+	       $scope.uploadFile = function(element) {
 	    	   $scope.$apply(function($scope) {
 	    	     $scope.files = element.files;         
 	    	   });

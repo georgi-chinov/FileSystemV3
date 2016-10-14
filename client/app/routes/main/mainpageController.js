@@ -2,13 +2,18 @@
  * 
  */
 
-mainApp.controller('mainpageController' , function($scope, FileUploader, userSrv, fileSrv,$rootScope , $http){
+mainApp.controller('mainpageController' , function($parse,$scope, FileUploader, userSrv, multipartForm,$rootScope , $http){
 		$scope.uploader = new FileUploader();
 		$scope.visible = false;
 		$scope.folder = {name: ''};
+		$scope.customer = {};
 		$rootScope.hide = true;
 	    $rootScope.showCarousel = false;
-	       
+	    
+	    $scope.Submit = function(){
+	    	var uploadUrl = 'http://localhost:3000/main';
+	    	multipartForm.post(uploadUrl , $scope.customer);
+	    }
 	    console.log($scope.item);
 	       
 	       //show the form
@@ -37,7 +42,7 @@ mainApp.controller('mainpageController' , function($scope, FileUploader, userSrv
 	       
 	       //handle async
 	       
-	       $scope.uploadedFile = function(element) {
+	       $scope.uploadFile = function(element) {
 	    	   $scope.$apply(function($scope) {
 	    	     $scope.files = element.files;         
 	    	   });

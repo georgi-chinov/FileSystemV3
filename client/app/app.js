@@ -28,7 +28,7 @@ var mainApp = angular.module('mainModule', ['ngRoute', 'ngAnimate', 'ui.bootstra
                    
 			})
 			//this is the main controller with nested scopes in it 
-			.controller('MainController', function ($scope, $location , userSrv) {
+			.controller('MainController', function ($scope, $location , userSrv ) {
 
 			})
 			
