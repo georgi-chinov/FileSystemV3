@@ -328,6 +328,12 @@ ul .tree-drag > div > span.label {
      z-index: 1;
      top: -400px;
 }
+.close {
+	float: right;
+}
+.close:hover {
+	color: red;
+}
 .elegant-aero .form-group .AddName{
 
 	  width:300px;
