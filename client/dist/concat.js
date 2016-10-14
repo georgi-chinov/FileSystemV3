@@ -61,11 +61,41 @@ mainApp.factory('fileSrv', function ($http , $location) {
        sendFolderName: function (folder) {
             return $http.post(baseUrl + 'main', folder);
         },
-        uploadFile: function(){
-        	
-        	
-        	
-        }
+        uploadfile : function( files,success, error )
+        {
+
+         var fd = new FormData();
+
+         var url = 'your web service url';
+
+         angular.forEach(files,function(file){
+         fd.append('file',file);
+         });
+
+         //sample data
+         var data ={
+          name : name,
+          type : type
+         };
+
+         fd.append("data", JSON.stringify(data));
+
+         $http.post(url, fd, {
+          withCredentials : false,
+          headers : {
+          'Content-Type' : undefined
+          },
+          transformRequest : angular.identity
+         })
+         .success(function(data)
+         {
+          console.log(data);
+         })
+         .error(function(data)
+         {
+          console.log(data);
+         });
+        },
     };
 
 });
@@ -208,33 +238,21 @@ mainApp.controller('mainpageController' , function($scope, FileUploader, userSrv
 		$scope.uploader = new FileUploader();
 		$scope.visible = false;
 		$scope.folder = {name: ''};
-		
-		console.log($scope.item);
-	       $scope.upload = function () {
-	    	   
-	       }
-	       $rootScope.hide = true;
-	       $rootScope.showCarousel = false;
+		$rootScope.hide = true;
+	    $rootScope.showCarousel = false;
 	       
-	       console.log($scope.item);
+	    console.log($scope.item);
 	       
 	       //show the form
-	       $scope.showForm = function(){
-
-	       	if($scope.visible == false){
-	       		$scope.visible = true;
-	       	   
-	       		
-	       		
-	       	}else{
-	       		
-	       		$scope.visible = false;
-	       	}
-	       	
-	       	
+	    $scope.showForm = function(){
+	    	if($scope.visible == false){
+	    		$scope.visible = true;
+		       	}else{
+		       		$scope.visible = false;
+		       	}
 	       }
 	       
-	       //get name
+	       //get folder name
 	       $scope.addName = function(){
 	    	   console.log($scope.folder.name);
 	    	   fileSrv.sendFolderName($scope.folder.user).then(function(response){
@@ -248,6 +266,27 @@ mainApp.controller('mainpageController' , function($scope, FileUploader, userSrv
 	    	   });
 	       
 	       }
+	       
+	       //handle async
+	       
+	       $scope.uploadedFile = function(element) {
+	    	   $scope.$apply(function($scope) {
+	    	     $scope.files = element.files;         
+	    	   });
+	       }
+			
+	       //the mere function for uploading files
+	       $scope.addFile = function() {
+	    	   fileSrv.uploadFile($scope.files,
+	    	     function( msg ) // success
+	    	     {
+	    	      console.log('uploaded');
+	    	     },
+	    	     function( msg ) // error
+	    	     {
+	    	      console.log('error');
+	    	     });
+	    	 }
 	       
 	 //tree logic      
 	       
