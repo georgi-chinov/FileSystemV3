@@ -1,26 +1,27 @@
 <div data-ng-controller = "loginController">
 
-<form name="log"  class="form-group" data-ng-class="{'elegant-aero':true}" data-ng-submit="login()" novalidate autocomplete="off">
-  	<div data-ng-class ="{'caption':true}" style = "color:white">Log in</div>
-  	<div id = "username">
-	  	 <div data-ng-class="{'input-group':true ,'form-group':true ,'has-error':!isValidName() , 'has-success':isValidName()}">
-		  	<input type="text" name="username" data-ng-class="{'form-control':true , 'form-control-danger':!isValidName(), 'form-control-success':isValidName()}" placeholder="Enter username" data-ng-model="user.name"  required >    
-		 </div>
-	</div>
+	<form name="log"  class="form-group" data-ng-class="{'elegant-aero':true}" data-ng-submit="login()" novalidate autocomplete="off">
+		<div data-ng-class ="{'caption':true}" style = "color:white">Log in</div>
+		<div id = "username">
+			<div data-ng-class="{'input-group':true ,'form-group':true ,'has-error':!isValidName() , 'has-success':isValidName()}">
+				<input type="text" name="username" data-ng-class="{'form-control':true , 'form-control-danger':!isValidName(), 'form-control-success':isValidName()}" placeholder="Enter username" data-ng-model="user.name"  required >    
+			</div>
+		</div>
 
-	 <div id = "password">
-    	<div data-ng-class="{'input-group':true, 'form-group':true ,'has-error':!isValidPassword(), 'has-success':isValidPassword()}">
-			  	<input name = "userpass" type="password" data-ng-class="{'form-control':true , 'form-control-danger':!isValidPassword(),'form-control-success':isValidPassword()}"  placeholder="Enter password" data-ng-model="user.password" required>
-    	</div>	
-    </div>
-	 <div data-ng-messages="log.userpass.$error">
-		 	<div data-ng-message="pattern">Your password is invalid</div>
+		<div id = "password">
+			<div data-ng-class="{'input-group':true, 'form-group':true ,'has-error':!isValidPassword(), 'has-success':isValidPassword()}">
+				<input name = "userpass" type="password" data-ng-class="{'form-control':true , 'form-control-danger':!isValidPassword(),'form-control-success':isValidPassword()}"  placeholder="Enter password" data-ng-model="user.password" required>
+			</div>	
+		</div>
+	 
+		<div data-ng-messages="log.userpass.$error">
+			<div data-ng-message="pattern">Your password is invalid</div>
+		</div>
+		<button type = "submit" data-ng-class = "{ 'btn': true, 'btn-primary': true , 'btn-lg':true , 'disabled':isValid()}" data-ng-attr-id="sumbit" data-ng-disabled=" !(log.userpass.$valid) || !(log.username.$valid) ">Submit</button>
+	  	<div><a href="#/email" style="font-weight:bold ; font-size:16px" >Forgotten password</a></div>
+	</form>
+	<div data-ng-model = "show" data-ng-show = show>
+		<p style="font-weight:bold ; font-size:18px"><span>Wrong username or password!</span></p>
+		<div><a href="#/email" style="font-weight:bold ; font-size:18px" >Did you forget your password?</a></div>
 	</div>
-    <button type = "submit" data-ng-class = "{ 'btn': true, 'btn-primary': true , 'btn-lg':true , 'disabled':isValid()}" data-ng-attr-id="sumbit" data-ng-disabled=" !(log.userpass.$valid) || !(log.username.$valid) ">Submit</button>
-  	<div><a href="#/email" style="font-weight:bold ; font-size:16px" >Forgotten password</a></div>
-  </form>
-  <div data-ng-model = "show" data-ng-show = show>
- 	<p style="font-weight:bold ; font-size:18px"><span>Wrong username or password!</span></p>
- 	<div><a href="#/email" style="font-weight:bold ; font-size:18px" >Did you forget your password?</a></div>
- </div>
- </div>
+</div>

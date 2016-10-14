@@ -30,28 +30,28 @@
     </head>
 <body data-ng-app="mainModule" data-ng-controller="MainController" style="text-align: center" >
 
-<div data-ng-controller="CollapseDemoCtrl" data-ng-hide = "hide">
-
-    <nav class=" navbar navbar-default" role="navigation">
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle" data-ng-click="isNavCollapsed = !isNavCollapsed" >
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-        </div>
-        <div class="collapse navbar-collapse" data-uib-collapse="isNavCollapsed" >
-            	<a class="navbar-brand" href="#login">Log in</a>
-                <a class="navbar-brand" href="#register">Sign up</a>
-                <a class="navbar-brand" href="#">Home</a>     
-        </div>
-	</nav>
-	   <div class="collapse navbar-collapse"  > 
-        		<a class="navbar-brand" href="#">LOGO</a>
-       </div>
-
-	<div id="myCarousel" data-ng-class="{'carousel':true,'slide':true,'col-md-8':true,' col-md-offset-2':true,'col-xs-12':true}" data-ride="carousel"   data-ng-show="showCarousel">
+	<div data-ng-controller="CollapseDemoCtrl" data-ng-hide = "hide">
+	
+	    <nav class=" navbar navbar-default" role="navigation">
+	        <div class="navbar-header">
+	            <button type="button" class="navbar-toggle" data-ng-click="isNavCollapsed = !isNavCollapsed" >
+	            	<span class="icon-bar"></span>
+	            	<span class="icon-bar"></span>
+	            	<span class="icon-bar"></span>
+	            </button>
+	        </div>
+	        <div class="collapse navbar-collapse" data-uib-collapse="isNavCollapsed" >
+	            <a class="navbar-brand" href="#login">Log in</a>
+	            <a class="navbar-brand" href="#register">Sign up</a>
+	            <a class="navbar-brand" href="#">Home</a>     
+	        </div>
+		</nav>
 		
+		<div class="collapse navbar-collapse"  > 
+	       <a class="navbar-brand" href="#">LOGO</a>
+	    </div>
+		
+		<div id="myCarousel" data-ng-class="{'carousel':true,'slide':true,'col-md-8':true,' col-md-offset-2':true,'col-xs-12':true}" data-ride="carousel"   data-ng-show="showCarousel">
 			<ol class="carousel-indicators">
 				<li data-target="#myCarousel" data-slide-to="0" class="active"></li>
 				<li data-target="#myCarousel" data-slide-to="1"></li>
@@ -60,24 +60,21 @@
 				<div class="item active">
 					<img src="assets/images/Carousel2.jpg" alt="Bobi e chicho charlie">
 				</div>
-
 				<div class="item">
 					<img src="assets/images/Carousel1.jpg" alt="Gosho e smotan">
 				</div>
-			
 				<a class="left carousel-control" href="javascript:void(0)" role="button" data-slide="prev">
 					<span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
 					<span class="sr-only">Previous</span>
 				</a>
-				
 				<a class="right carousel-control" href="javascript:void(0)" role="button" data-slide="next">
 					<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
 					<span class="sr-only">Next</span>
 				</a>
 			</div>
 		</div>
-</div>
+	</div>
 
-<div data-ng-view></div>
+	<div data-ng-view></div>
 </body>
 </html>

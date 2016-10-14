@@ -1,22 +1,21 @@
 <div>
-	
 	<form name="forgottenPassword"  data-ng-class="{'elegant-aero':true}" data-ng-submit="submitForm()" novalidate autocomplete="off">
-  		<div data-ng-class ="{'caption':true}" style = "color:white">Forgotten password</div>
-  		<div id = "useremail">
-	    	<div data-ng-class="{'input-group':true, 'form-group':true ,'has-error':!isValidEmail(), 'has-success':isValidEmail()}">
-		  		<input type="email" name="userEmail" data-ng-model="lostmail.to"  data-ng-class="{'form-control':true , 'form-control-danger':!isValidEmail() , 'form-control-success':isValidEmail()}" placeholder= "Enter your email" required  />
-	    	</div>    
+		<div data-ng-class ="{'caption':true}" style = "color:white">Forgotten password</div>
+		<div id = "useremail">
+			<div data-ng-class="{'input-group':true, 'form-group':true ,'has-error':!isValidEmail(), 'has-success':isValidEmail()}">
+				<input type="email" name="userEmail" data-ng-model="lostmail.to"  data-ng-class="{'form-control':true , 'form-control-danger':!isValidEmail() , 'form-control-success':isValidEmail()}" placeholder= "Enter your email" required  />
+			</div>    
 			<div data-ng-messages="forgottenPassword.userEmail.$error">
 				<div data-ng-message="pattern">Your email is invalid</div>
 			</div>
-	 	</div>
-   		<button type = "submit" data-ng-class = "{ 'btn': true, 'btn-primary': true , 'btn-lg':true , 'disabled':!isValidEmail()} "  >Submit</button>
-  	</form>
+		</div>
+		<button type = "submit" data-ng-class = "{ 'btn': true, 'btn-primary': true , 'btn-lg':true , 'disabled':!isValidEmail()} "  >Submit</button>
+	</form>
 	<div data-ng-show = show data-ng-model = "show">
- 		<p  style="font-weight:bold ; font-size:18px ; color:green"><span>Email has been sent to you!</span></p>
- 	</div> 
- 	<div data-ng-show = hide data-ng-model = "hide">
-		<p  style="font-weight:bold ; font-size:18px  ; color:red"><span>No user with this email!</span></p>
- 	</div> 
+		<p  style="font-weight:bold ; font-size:18px ; color:green"><span>Email has been sent to you!</span></p>
+	</div> 
+	<div data-ng-show = hide data-ng-model = "hide">
+		<p style="font-weight:bold ; font-size:18px  ; color:red"><span>No user with this email!</span></p>
+	</div> 
  </div>
  

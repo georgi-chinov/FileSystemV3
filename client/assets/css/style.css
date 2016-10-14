@@ -12,7 +12,8 @@ body{
 .navbar-default{
 	float:right;
 	background:transparent;	
-	border:none;	
+	border:none;
+	box-shadow: none;	
 }
 
  .horizontal-collapse {
@@ -300,8 +301,7 @@ ul .tree-drag > div > span.label {
    	 width:100%;
 }
   .btn-file:hover{
-  
-    background: transparent;
+	background: transparent;
     border-color:transparent;
    	-webkit-box-shadow: none;
    	box-shadow: none;
