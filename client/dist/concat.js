@@ -25,6 +25,10 @@ var mainApp = angular.module('mainModule', ['ngRoute', 'ngAnimate', 'ui.bootstra
                     templateUrl: './app/routes/main/main.html',
                     controller: 'mainpageController'
                 })
+                .when('/main/edit', {
+                    templateUrl: './app/routes/main/edit/editProfile.html',
+                    controller: 'editController'
+                })
                    
 			})
 			//this is the main controller with nested scopes in it 
@@ -143,6 +147,9 @@ mainApp.service('multipartForm',['$http', function($http){
 /**
  * 
  */
+mainApp.controller('homeController' , function($rootScope,$scope){
+	$rootScope.showCarousel = false;
+})
 /**
  * 
  */
@@ -189,12 +196,6 @@ mainApp.controller('emailController' , function($rootScope, $scope, $http, $http
 		}
 	};
 
-})
-/**
- * 
- */
-mainApp.controller('homeController' , function($rootScope,$scope){
-	$rootScope.showCarousel = false;
 })
 /**
  * 
@@ -933,3 +934,7 @@ mainApp.controller ('registerController',function($rootScope,$scope, userSrv  , 
 	 }
 });
 
+mainApp.controller('editController' , function($rootScope , $scope){
+	$scope.name = "Vasko";
+	
+})

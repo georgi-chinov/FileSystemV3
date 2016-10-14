@@ -25,6 +25,10 @@ var mainApp = angular.module('mainModule', ['ngRoute', 'ngAnimate', 'ui.bootstra
                     templateUrl: './app/routes/main/main.html',
                     controller: 'mainpageController'
                 })
+                .when('/main/edit', {
+                    templateUrl: './app/routes/main/edit/editProfile.html',
+                    controller: 'editController'
+                })
                    
 			})
 			//this is the main controller with nested scopes in it 
