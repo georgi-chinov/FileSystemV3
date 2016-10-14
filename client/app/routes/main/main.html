@@ -13,74 +13,76 @@
 
 	<div class="bar col-sm-12" >
 		<button class="btn btn-success dropdown-toggle col-xs-3" type="button" data-toggle="dropdown">Create<span class="caret"></span></button>
-		<ul class="dropdown-menu col-xs-4"  style="text-align: center">
-			<li data-ng-click = "showForm()"><a href="javascript:void(0)" ><span class= "glyphicon glyphicon-folder-close"></span>&nbsp;&nbsp;A folder</a></li>
-			<li><a href="javascript:void(0)"><span class="btn btn-default btn-file glyphicon glyphicon-folder-close">
-    		Browse <input type="file" data-nv-file-select data-uploader="uploader">
-			</span></a></li>
+		<ul class="dropdown-menu col-xs-3"  style="text-align: center">
+			<li data-ng-click = "showForm()"><a href="javascript:void(0)" ><span data-ng-class="{'glyphicon': true, 'glyphicon-folder-close':true} "></span>&nbsp;Add a folder</a></li>
+			<li data-ng-click = "showFileForm()"><a href="javascript:void(0)"><span data-ng-class="{'btn-file':true , 'glyphicon': true, 'glyphicon-file':true} ">Add a file</span></a></li>
 		</ul>
 	</div>
 		
-	
-	<div class="leftMain col-xs-12 col-sm-3" >
-		<p id="expand-collapse-all">
-			<a href="" data-ng-click="expandAll()">Expand</a>
-			<span class="expCol"> | </span>
-			<a href="" data-ng-click="collapseAll()">Collapse </a>
-		</p>
-		<ul data-frang-tree>
-			<li data-frang-tree-repeat="node in treeData">
-				<div data-ng-class="{'tree':true}">
-					<span class="icon"
-						data-ng-class="{collapsed: node.collapsed, expanded: !node.collapsed}"
-						data-ng-show="node.children && node.children.length > 0"
-						data-ng-click="node.collapsed = !node.collapsed"></span>
-					<span class="label"
-						data-ng-class="{folder: node.children && node.children.length > 0}"
-						data-ng-bind="node.label"
-						data-ng-click="action(node)"></span>
-				</div>
-					<ul data-ng-if="!node.collapsed && node.children && node.children.length > 0" data-frang-tree-insert-children="node.children"></ul>
-			</li>
-		</ul>
-	</div>
+	<div class="mainMain col-xs-12">
+		<div class="leftMain col-xs-12 col-sm-3" >
+			<p id="expand-collapse-all">
+				<a href="" data-ng-click="expandAll()">Expand</a>
+				<span class="expCol"> | </span>
+				<a href="" data-ng-click="collapseAll()">Collapse </a>
+			</p>
+			<ul data-frang-tree>
+				<li data-frang-tree-repeat="node in treeData">
+					<div data-ng-class="{'tree':true}">
+						<span class="icon"
+							data-ng-class="{collapsed: node.collapsed, expanded: !node.collapsed}"
+							data-ng-show="node.children && node.children.length > 0"
+							data-ng-click="node.collapsed = !node.collapsed"></span>
+						<span class="label"
+							data-ng-class="{folder: node.children && node.children.length > 0}"
+							data-ng-bind="node.label"
+							data-ng-click="action(node)"></span>
+					</div>
+						<ul data-ng-if="!node.collapsed && node.children && node.children.length > 0" data-frang-tree-insert-children="node.children"></ul>
+				</li>
+			</ul>
+		</div>
 				
-	<div data-nv-file-drop data-uploader="uploader" class="rightMain col-xs-12 col-sm-9">
-		<ul>
-           	<li data-ng-repeat="item in uploader.queue">Name: 
-	       		<span data-ng-bind="item.file.name"></span><br/>
-       			<button data-ng-class="{'btn btn-success':true}" data-ng-click="item.addFile()">upload</button>
-       		</li>
-    	</ul>	
-	</div>
- 	
+		<div  data-nv-file-drop data-uploader="uploader" class="rightMain col-xs-12 col-sm-9">
+			
+		</div>
+ 	</div>
 		
-	<div class='addForm' data-ng-show = visible>
+	<div data-ng-class="{'addForm': true}" data-ng-show = visible>
 		<form data-ng-class="{'elegant-aero':true , 'form-group':true , 'addName':true}" data-ng-submit="addName()" data-ng-show = visible novalidate autocomplete="off">
-		  	<span class="close">&#10006;</span>
+		  	<span class="close" data-ng-click = "hideForm()">&#10006;</span>
 		  	<div data-ng-class ="{'caption':true}" style = "color: blue">Add folder</div>
 		  	<div id = "foldername">
 			  	 <div data-ng-class="{'input-group':true ,'form-group':true}">
 				  	<input type="text" name="folder" data-ng-class="{'form-control':true}" placeholder="Enter folder name" data-ng-model="folder.name"  required >    
 				 </div>
 			</div>
-			<button type = "submit" data-ng-class = "{ 'btn': true, 'btn-success': true}" data-ng-click = "addFile()" onchange="angular.element(this).scope().uploadFile(this)">Ready?</button>
+			<button type = "submit" data-ng-class = "{ 'btn': true, 'btn-success': true}">Ready?</button>
 	 	</form>
 
 	</div>
-	<div class='addForm' data-ng-show = visible>
+	<div data-ng-class="{'addFile': true}" data-ng-show = visibleFileForm>
 		<form data-ng-class="{'elegant-aero':true , 'form-group':true , 'addName':true}"  novalidate autocomplete="off">
-		  	<span class="close">&#10006;</span>
-		  	<div data-ng-class ="{'caption':true}" style = "color: blue">Add folder</div>
+		  	<span  data-ng-click = "hideFileForm()" data-ng-class="{'close': true}">&#10006;</span>
+		  	<div data-ng-class ="{'caption':true}" style = "color: blue">Add File</div>
 		  	<div id = "file">
 			  	 <div data-ng-class="{'input-group':true ,'form-group':true}">
-				  	<input type="file" name="file" data-ng-class="{'form-control':true}" placeholder="Enter folder name" data-ng-model="folder.name" data-file-model = "customer.file" required >    
+			  	 	<label><span data-ng-bind="item.file.name"></span>
+			  	 		<span class="btn btn-default btn-file glyphicon glyphicon-folder-close">
+				  			Browse<input type="file" name="file" data-ng-class="{'form-control':true}"  data-ng-model="folder.name" data-file-model = "customer.file" required >    
+				 		</span>
+				 	</label>
 				 </div>
 			</div>
-			<button type = "submit" data-ng-class = "{ 'btn': true, 'btn-success': true}" data-ng-click= "Submit()" >Ready?</button>
+			<button type = "submit" data-ng-class = "{ 'btn': true, 'btn-success': true}" data-ng-click= "Submit()">Ready?</button>
 	 	</form>
-
 	</div>
+<<<<<<< HEAD
 	
 
 </div>
+=======
+</div>
+<!-- <li><a href="javascript:void(0)"><span class="btn btn-default btn-file glyphicon glyphicon-folder-close">
+    		Browse <input type="file" data-nv-file-select data-uploader="uploader"> -->
+>>>>>>> d6584aefa99e34ca42cee73095224c9dc40e251f

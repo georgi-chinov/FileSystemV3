@@ -22,7 +22,10 @@ app.use(function(req, res, next) {
     return next();
 });
 app.use(multer({
-    dest: './uploads/'
+    dest: './uploads/',
+    rename: function(fieldname, filename) {
+        return fieldname + filename + Date.now();
+    }
 }).single('file'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
