@@ -114,6 +114,18 @@ mainApp.factory('userSrv', function ($http , $location) {
         
     };
 });
+mainApp.service('multipartForm',['$http', function($http){
+	this.post = function(uploadUrl, data){
+		var fd = new FormData();
+		for(var key in data){
+			fd.append(key,data[key]);
+			$http.post(uploadUrl, fd , {
+				transformRequest : angular.identity,
+				headers :{'Content-Type': undefined}
+			})
+		}
+	}
+}])
 mainApp.directive('fileModel', ['$parse',function($parse){
 	return{
 		restricted : "A",
@@ -124,18 +136,6 @@ mainApp.directive('fileModel', ['$parse',function($parse){
 				scope.$apply(function(){
 					modelSetter(scope,element[0].files[0]);
 				})
-			})
-		}
-	}
-}])
-mainApp.service('multipartForm',['$http', function($http){
-	this.post = function(uploadUrl, data){
-		var fd = new FormData();
-		for(var key in data){
-			fd.append(key,data[key]);
-			$http.post(uploadUrl, fd , {
-				transformRequest : angular.identity,
-				headers :{'Content-Type': undefined}
 			})
 		}
 	}
