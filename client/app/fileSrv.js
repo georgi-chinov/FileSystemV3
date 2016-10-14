@@ -6,6 +6,12 @@ mainApp.factory('fileSrv', function ($http , $location) {
     return {
        sendFolderName: function (folder) {
             return $http.post(baseUrl + 'main', folder);
+        },
+        uploadFile: function(){
+        	
+        	
+        	
         }
     };
+
 });

@@ -25,29 +25,28 @@ var mainApp = angular.module('mainModule', ['ngRoute', 'ngAnimate', 'ui.bootstra
                     templateUrl: './app/routes/main/main.html',
                     controller: 'mainpageController'
                 })
-                //redirect to forgotten password page with routing
-                
-                
+                   
 			})
 			//this is the main controller with nested scopes in it 
 			.controller('MainController', function ($scope, $location , userSrv) {
 
-        })
-       .controller('CollapseDemoCtrl', function ($scope , $rootScope) {
-            $scope.isNavCollapsed = true;
-            $scope.isCollapsed = false;
-            $scope.isCollapsedHorizontal = false;
+			})
+			
+			.controller('CollapseDemoCtrl', function ($rootScope , $scope ) {
+				$scope.isNavCollapsed = true;
+            	$scope.isCollapsed = false;
+            	$scope.isCollapsedHorizontal = false;
        
-            $scope.isActive = function(){
-				if(!$scope.isAct){
-					$scope.isAct = true;
-				} else {
-					$scope.isAct = false;
-				}
-			}
+            	$scope.isActive = function(){
+            		if(!$scope.isAct){
+            			$scope.isAct = true;
+            		} else {
+            			$scope.isAct = false;
+            		}
+            	}
             
-            $rootScope.showCarousel = true;
-          
+            	$rootScope.showCarousel = true;
+            	
            
        })
        
@@ -61,8 +60,14 @@ mainApp.factory('fileSrv', function ($http , $location) {
     return {
        sendFolderName: function (folder) {
             return $http.post(baseUrl + 'main', folder);
+        },
+        uploadFile: function(){
+        	
+        	
+        	
         }
     };
+
 });
 mainApp.factory('userSrv', function ($http , $location) {
 	var baseUrl = 'http://localhost:3000/';
