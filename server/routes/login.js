@@ -12,6 +12,8 @@ router.post('/', function(req, res) {
         }
         if (!err) {
             if (results.length) {
+                console.log('setting');
+                req.session.user = req.body.name;
                 res.send("Logged!");
                 return;
             }
