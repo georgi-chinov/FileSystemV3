@@ -63,7 +63,7 @@ mainApp.factory('fileSrv', function($http, $location) {
     var baseUrl = 'http://localhost:3000/';
     return {
         sendFolderName: function(folder) {
-            return $http.post(baseUrl + 'main', folder, {
+            return $http.post('http://localhoost:3000/createfolder', folder, {
                 withCredentials: true
             });
         },
