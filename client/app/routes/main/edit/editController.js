@@ -2,6 +2,8 @@
  * 
  */
 mainApp.controller('editController' , function($rootScope , $scope){
-	$scope.name = "Vasko";
+	$rootScope.showCarousel = false;
+	$rootScope.hide = true;
+	$scope.name = "test";
 	
 })
