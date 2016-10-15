@@ -10,14 +10,9 @@ router.post('/', function(req, res) {
     var smth = req.file.originalname.split('.');
     var filePath = './uploads/' + req.file.filename
     fs.rename(filePath, filePath + '.' + smth.pop())
-    console.log(req.session);
-    console.log(user);
+    console.log(req.session.user);
+    console.log();
     res.send();
 });
-router.get('/', function(req, res, next) {
-    console.log(req.session);
-    user = req.session.user;
-    res.send();
 
-})
 module.exports = router;

@@ -57,67 +57,73 @@ var mainApp = angular.module('mainModule', ['ngRoute', 'ngAnimate', 'ui.bootstra
 
     
 /**
- * 
+ *
  */
-mainApp.factory('fileSrv', function ($http , $location) {
-	var baseUrl = 'http://localhost:3000/';
+mainApp.factory('fileSrv', function($http, $location) {
+    var baseUrl = 'http://localhost:3000/';
     return {
-       sendFolderName: function (folder) {
-            return $http.post(baseUrl + 'main', folder);
+        sendFolderName: function(folder) {
+            return $http.post(baseUrl + 'main', folder, {
+                withCredentials: true
+            });
         },
-        uploadFile : function( files,success, error )
-        {
+        uploadFile: function(files, success, error) {
 
-         var fd = new FormData();
+            var fd = new FormData();
 
-         angular.forEach(files,function(file){
-         fd.append('file',file);
-         });
+            angular.forEach(files, function(file) {
+                fd.append('file', file);
+            });
 
-         //sample data
-         var data ={
-          name : name,
-          type : type
-         };
+            //sample data
+            var data = {
+                name: name,
+                type: type
+            };
 
-         fd.append("data", JSON.stringify(data));
+            fd.append("data", JSON.stringify(data));
 
-         $http.post(baseUrl + 'main', fd, {
-          withCredentials : false,
-          headers : {
-          'Content-Type' : undefined
-          },
-          transformRequest : angular.identity
-         })
-         .success(function(data)
-         {
-          console.log(data);
-         })
-         .error(function(data)
-         {
-          console.log(data);
-         });
+            $http.post(baseUrl + 'main', fd, {
+                    headers: {
+                        'Content-Type': undefined
+                    },
+                    transformRequest: angular.identity,
+                    withCredentials: true
+                })
+                .success(function(data) {
+                    console.log(data);
+                })
+                .error(function(data) {
+                    console.log(data);
+                });
         },
     };
 
 });
-mainApp.factory('userSrv', function ($http , $location) {
-	var baseUrl = 'http://localhost:3000/';
+
+mainApp.factory('userSrv', function($http, $location) {
+    var baseUrl = 'http://localhost:3000/';
     return {
-        lostEmail: function (lostmail) {
+        lostEmail: function(lostmail) {
             return $http.post(baseUrl + 'lostpassword', lostmail);
         },
-        userRegister: function (user) {
-        	return $http.post(baseUrl + 'register', user);
+        userRegister: function(user) {
+            return $http.post(baseUrl + 'register', user);
         },
-        userLogin: function (user) {
-        	return $http.post(baseUrl + 'login', user)
-        },user123: function (user) {
-        	return $http.get(baseUrl + 'main', user)
+        userLogin: function(user) {
+            return $http.post(baseUrl + 'login', user, {
+                withCredentials: true
+            })
+        },
+        userInformation: function(user) {
+            return $http.get(baseUrl + 'main', {
+                withCredentials: true
+            })
         }
-        
+
     };
 });
+
 mainApp.directive('fileModel', ['$parse',function($parse){
 	return{
 		restricted : "A",
@@ -132,18 +138,22 @@ mainApp.directive('fileModel', ['$parse',function($parse){
 		}
 	}
 }])
-mainApp.service('multipartForm',['$http', function($http){
-	this.post = function(uploadUrl, data){
-		var fd = new FormData();
-		for(var key in data){
-			fd.append(key,data[key]);
-			$http.post(uploadUrl, fd , {
-				transformRequest : angular.identity,
-				headers :{'Content-Type': undefined}
-			})
-		}
-	}
+mainApp.service('multipartForm', ['$http', function($http) {
+    this.post = function(uploadUrl, data) {
+        var fd = new FormData();
+        for (var key in data) {
+            fd.append(key, data[key]);
+            $http.post(uploadUrl, fd, {
+                transformRequest: angular.identity,
+                headers: {
+                    'Content-Type': undefined
+                },
+                withCredentials: true
+            })
+        }
+    }
 }])
+
 /**
  * 
  */
