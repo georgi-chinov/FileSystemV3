@@ -9,7 +9,13 @@ mainApp.controller('mainpageController', function($window, $location, $parse, $s
             //some logic here
         }
     }, function(response) {
-        $location.path('index.html').replace();
+    	var absUrl = $location.absUrl();
+    	var absUrlSplitted = absUrl.split('/');
+        console.log(absUrlSplitted);
+    	absUrlSplitted = absUrlSplitted.splice(0,absUrlSplitted.length - 1).join('/').toString();
+    	$window.location.href = absUrlSplitted;
+
+        console.log(absUrlSplitted);
     })
     $scope.uploader = new FileUploader();
     $scope.visible = false;

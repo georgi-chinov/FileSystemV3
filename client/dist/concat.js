@@ -294,7 +294,13 @@ mainApp.controller('mainpageController', function($window, $location, $parse, $s
             //some logic here
         }
     }, function(response) {
-        $location.path('index.html').replace();
+    	var absUrl = $location.absUrl();
+    	var absUrlSplitted = absUrl.split('/');
+        console.log(absUrlSplitted);
+    	absUrlSplitted = absUrlSplitted.splice(0,absUrlSplitted.length - 1).join('/').toString();
+    	$window.location.href = absUrlSplitted;
+
+        console.log(absUrlSplitted);
     })
     $scope.uploader = new FileUploader();
     $scope.visible = false;
@@ -1046,7 +1052,7 @@ mainApp.controller('editController', function($rootScope, $scope, userSrv) {
             userSrv.userCheckpw($scope.info.oldPassword).then(function(response) {
                 if (response.data && response.data.legit == true) {
                     userSrv.userChangepw($scope.info.password).then(function(response) {
-											
+
                     })
                 }
             });
