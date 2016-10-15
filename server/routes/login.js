@@ -9,6 +9,7 @@ router.post('/', function(req, res) {
         if (!err) {
             if (results.length) {
                 req.session.user = req.body.name;
+                req.session.isLogged = true;
                 res.send("Logged!");
                 return;
             }
