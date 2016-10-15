@@ -4,7 +4,7 @@
 
 mainApp.controller('mainpageController', function($window, $location, $parse, $scope, $http, FileUploader, userSrv, fileSrv, multipartForm, $rootScope) {
     //user info + loading user information
-    userSrv.userInformation().then(function(response) {
+/*    userSrv.userInformation().then(function(response) {
         if (response.status == 200) {
             //some logic here
         }
@@ -16,7 +16,7 @@ mainApp.controller('mainpageController', function($window, $location, $parse, $s
     	$window.location.href = absUrlSplitted;
 
         console.log(absUrlSplitted);
-    })
+    }) */
     $scope.uploader = new FileUploader();
     $scope.visible = false;
     $scope.visibleFileForm = false;
