@@ -4,13 +4,32 @@
 		<div class="col-sm-2 col-sm-offset-9 col-xs-6 dropdown">
 			<button class="btn btn-info dropdown-toggle col-lg-9" type="button" data-toggle="dropdown">User <span class="caret"></span></button>
 			<ul class="dropdown-menu col-xs-2"  style="text-align: center">
-				<li><a href="#">Friends</a></li>
+				<li><a href="#">Shared files</a></li>
 				<li><a href="#main/edit">Edit Profile</a></li>
 				<li><a href="#">Log Out</a></li>
 			</ul>
 		</div>
 	</div>
-	<form>
-		<input type = "text" data-ng-model = "name">
-	</form>
+	<div data-ng-class="{'editPassword': true}" >
+		<form data-ng-class="{'elegant-aero':true , 'form-group':true , 'addName':true}" data-ng-submit="sendNewPass()" novalidate autocomplete="off">
+		  				<div data-ng-class ="{'caption':true}" style = "color: blue">Change password</div>
+		  		<div id = "oldPassword">
+			  	 <div data-ng-class="{'input-group':true, 'form-group':true ,'has-error':!isValidOlPassword(), 'has-success':isValidOlPassword()}">
+					<input name = "oldPassword" type="password" data-ng-class="{'form-control':true , 'form-control-danger':!isValidOlPassword(),'form-control-success':isValidOlPassword()}"  placeholder="Enter old password" data-ng-model="info.oldPassword" required>
+				</div>	
+			</div>
+		  	<div id = "password">
+			  	 <div data-ng-class="{'input-group':true, 'form-group':true ,'has-error':!isValidPassword(), 'has-success':isValidPassword()}">
+					<input name = "password" type="password" data-ng-class="{'form-control':true , 'form-control-danger':!isValidPassword(),'form-control-success':isValidPassword()}"  placeholder="Enter new password" data-ng-model="info.password" required>
+				</div>	
+			</div>
+				<div id = "passwordRepeated">
+			  	 <div data-ng-class="{'input-group':true, 'form-group':true ,'has-error':!isValidRepeated(), 'has-success':isValidRepeated()}">
+					<input name = "repeatedPassword" type="password" data-ng-class="{'form-control':true , 'form-control-danger':!isValidRepeated(),'form-control-success':isValidRepeated()}"  placeholder="Repeat your password" data-ng-model="info.passRepeated" required>
+				</div>	
+			</div>
+			<button type = "submit" data-ng-class = "{ 'btn': true, 'btn-success': true , 'btn-lg':true , 'disabled':isValidInfo()}">Ready?</button>
+	 	</form>
+
+	</div>
 </div>
