@@ -5,7 +5,7 @@ mainApp.factory('fileSrv', function($http, $location) {
     var baseUrl = 'http://localhost:3000/';
     return {
         sendFolderName: function(folder) {
-            return $http.post('http://localhoost:3000/createfolder', folder, {
+            return $http.post('http://localhost:3000/main', folder, {
                 withCredentials: true
             });
         },
