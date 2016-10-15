@@ -90,31 +90,31 @@ div{
   width:95%;
 }
 .caption{
-	display:block;
-	font-size:1.8em ;
-	width:50%;
-	color:blue;
-	margin:10px auto;
+	display: block;
+	font-size: 1.8em ;
+	width: 50%;
+	color: #5483B7;
+	font-weight: bold;
+	margin: 10px auto;
 }
 
 .navbar-collapse .active {
-	background-color:#337AB7;
-	opacity:1;	
+	background-color: #337AB7;
+	opacity: 1;	
 }
 button {
-	margin-bottom:5px;
+	margin-bottom: 5px;
 }
 .elegant-aero .btn-arrow-left {
-
 	position: relative;
     padding-left: 18px;
     padding-right: 18px;
    	padding-right: 36px;
 }
 .elegant-aero #emailBtn{
-	position:relative;
-	width:100px;
-	margin:10px 200px;
+	position: relative;
+	width: 100px;
+	margin: 10px 200px;
 }
 
 .logo {
@@ -128,9 +128,9 @@ button {
 }
 .middle {
 	height: 50px; 
-	border-radius:5px;
-	-webkit-border-radius:5px;
-	-moz-border-radius:5px;
+	border-radius: 5px;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
 	background-color: white;
 }
 
@@ -143,8 +143,8 @@ button {
 .leftMain{
 	height: 500px;
 	border-radius: 5px;
-	-webkit-border-radius:5px;
-	-moz-border-radius:5px;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
 	background-color: white;
 	opacity: 0.7;
 	text-align: left;
@@ -160,25 +160,25 @@ button {
 .rightMain{
 	height: 500px;
 	border-radius: 5px;
-	-webkit-border-radius:5px;
-	-moz-border-radius:5px;
-	background-color:white;
-	opacity:0.7;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	background-color: white;
+	opacity: 0.7;
 	overflow: scroll;
 }
  ul li {
  	list-style-type: none;
  }
  .bar{
- 	height:50px;
- 	border:1px solid black;
- 	border-radius:5px;
- 	-webkit-border-radius:5px;
-	-moz-border-radius:5px;
+ 	height: 50px;
+ 	border: 1px solid black;
+ 	border-radius: 5px;
+ 	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
  }
  .uploadFile{
- 	width:200px;
- 	height:100px;
+ 	width: 200px;
+ 	height: 100px;
  }
 .wrapper { 
 	border: 1px solid black;
@@ -202,11 +202,11 @@ button {
 }
 
 .userButton {
-	margin:6px auto;
+	margin: 6px auto;
 }
 
 #expand-collapse-all{
-	text-align:center;
+	text-align: center;
 }
 
 .mainMain {
@@ -265,18 +265,18 @@ li {
 
 ul .tree-drag > div > span.label {
      background-color: lightsalmon;
-     margin:0;
-     padding:0;
-          float:left;
+     margin: 0;
+     padding: 0;
+          float: left;
 }
 .tree-drag-over > div > span.label {
     background-color: darkseagreen;
-    margin:0;
-    padding:0;
-    float:left;
+    margin: 0;
+    padding: 0;
+    float: left;
 }
 .tree{
-	width:35%;
+	width: 35%;
 }
 .btn-file {
     position: relative;
@@ -309,7 +309,7 @@ ul .tree-drag > div > span.label {
 }
   .btn-file:hover{
 	background: transparent;
-    border-color:transparent;
+    border-color: transparent;
    	-webkit-box-shadow: none;
    	box-shadow: none;
    	-moz-box-shadow: none;
@@ -334,19 +334,24 @@ ul .tree-drag > div > span.label {
 .close:hover {
 	color: red;
 }
-.elegant-aero .form-group .AddName{
 
-	  width:300px;
-	  height:200px;
-	 
+
+.addFile {	
+	position: relative;
+	top: -400px;
+}
+
+.elegant-aero .form-group .fileUplaod{
+	width: 100%;
+	height: 200px;
 }
 
 .leftMain::-webkit-scrollbar-track {
 	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
 	background-color: #F5F5F5;
 	border-radius: 10px;
-	-webkit-border-radius:10px;
-	-moz-border-radius:10px;
+	-webkit-border-radius: 10px;
+	-moz-border-radius: 10px;
 }
 
 .leftMain::-webkit-scrollbar {
@@ -356,8 +361,8 @@ ul .tree-drag > div > span.label {
 
 .leftMain::-webkit-scrollbar-thumb {
 	border-radius: 10px;
-	-webkit-border-radius:5px;
-	-moz-border-radius:5px;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
 	background-image: -webkit-gradient(linear,
 									   left bottom,
 									   left top,
@@ -370,8 +375,8 @@ ul .tree-drag > div > span.label {
 	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
 	background-color: #F5F5F5;
 	border-radius: 10px;
-	-webkit-border-radius:10px;
-	-moz-border-radius:10px;
+	-webkit-border-radius: 10px;
+	-moz-border-radius: 10px;
 }
 
 .rightMain::-webkit-scrollbar {
@@ -381,8 +386,8 @@ ul .tree-drag > div > span.label {
 
 .rightMain::-webkit-scrollbar-thumb {
 	border-radius: 10px;
-	-webkit-border-radius:5px;
-	-moz-border-radius:5px;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
 	background-image: -webkit-gradient(linear,
 									   left bottom,
 									   left top,
