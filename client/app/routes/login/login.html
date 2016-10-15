@@ -13,10 +13,6 @@
 				<input name = "userpass" type="password" data-ng-class="{'form-control':true , 'form-control-danger':!isValidPassword(),'form-control-success':isValidPassword()}"  placeholder="Enter password" data-ng-model="user.password" required>
 			</div>	
 		</div>
-	 
-		<div data-ng-messages="log.userpass.$error">
-			<div data-ng-message="pattern">Your password is invalid</div>
-		</div>
 		<button type = "submit" data-ng-class = "{ 'btn': true, 'btn-primary': true , 'btn-lg':true , 'disabled':isValid()}" data-ng-attr-id="sumbit" data-ng-disabled=" !(log.userpass.$valid) || !(log.username.$valid) ">Submit</button>
 	  	<div><a href="#/email" style="font-weight:bold ; font-size:16px" >Forgotten password</a></div>
 	</form>
