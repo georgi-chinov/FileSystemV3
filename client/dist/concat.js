@@ -33,7 +33,7 @@ var mainApp = angular.module('mainModule', ['ngRoute', 'ngAnimate', 'ui.bootstra
 			})
 			//this is the main controller with nested scopes in it 
 			.controller('MainController', function ($scope, $location , userSrv ) {
-
+				
 			})
 			
 			.controller('CollapseDemoCtrl', function ($rootScope , $scope ) {
@@ -147,12 +147,6 @@ mainApp.service('multipartForm',['$http', function($http){
 /**
  * 
  */
-mainApp.controller('homeController' , function($rootScope,$scope){
-	$rootScope.showCarousel = false;
-})
-/**
- * 
- */
 
 mainApp.controller('emailController' , function($rootScope, $scope, $http, $httpParamSerializerJQLike, userSrv, $location){
 	
@@ -196,6 +190,12 @@ mainApp.controller('emailController' , function($rootScope, $scope, $http, $http
 		}
 	};
 
+})
+/**
+ * 
+ */
+mainApp.controller('homeController' , function($rootScope,$scope){
+	$rootScope.showCarousel = false;
 })
 /**
  * 
@@ -934,7 +934,13 @@ mainApp.controller ('registerController',function($rootScope,$scope, userSrv  , 
 	 }
 });
 
+
+/**
+ * 
+ */
 mainApp.controller('editController' , function($rootScope , $scope){
-	$scope.name = "Vasko";
+	$rootScope.showCarousel = false;
+	$rootScope.hide = true;
+	$scope.name = "test";
 	
 })
