@@ -93,7 +93,8 @@ div{
 	display:block;
 	font-size:1.8em ;
 	width:50%;
-	color:blue;
+	color: #5483B7;
+	font-weight: bold;
 	margin:10px auto;
 }
 

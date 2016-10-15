@@ -1,8 +1,8 @@
 <div class="container-fluid">
-	<div class="header col-sm-12">
+	<div class ="header col-sm-12">
 		<div class="logo col-sm-1 col-xs-6"><span>some logo</span></div>
 		<div class="col-sm-2 col-sm-offset-9 col-xs-6 dropdown">
-			<button class="btn btn-info dropdown-toggle col-lg-9" type="button" data-toggle="dropdown">User <span class="caret"></span></button>
+			<button class="btn btn-info dropdown-toggle col-lg-9" type="button" data-toggle="dropdown">User<span class="caret"></span></button>
 			<ul class="dropdown-menu col-xs-2"  style="text-align: center">
 				<li><a href="#">My shared files</a></li>
 				<li><a href="#main/edit">Change password</a></li>
@@ -10,21 +10,19 @@
 			</ul>
 		</div>
 	</div>
-
-	<div class="bar col-sm-12" >
+	<div class="bar col-sm-12">
 		<button class="btn btn-success dropdown-toggle col-xs-3" type="button" data-toggle="dropdown">Create<span class="caret"></span></button>
 		<ul class="dropdown-menu col-xs-3"  style="text-align: center">
-			<li data-ng-click = "showForm()"><a href="javascript:void(0)" ><span data-ng-class="{'glyphicon': true, 'glyphicon-folder-close':true} "></span>&nbsp;Add a folder</a></li>
-			<li data-ng-click = "showFileForm()"><a href="javascript:void(0)"><span data-ng-class="{'btn-file':true , 'glyphicon': true, 'glyphicon-file':true} ">Add a file</span></a></li>
+			<li data-ng-click = "showForm()"><a href="javascript:void(0)" ><span class="glyphicon glyphicon-folder-close"></span>&nbsp;Add a folder</a></li>
+			<li data-ng-click = "showFileForm()"><a href="javascript:void(0)"><span class="btn-file glyphicon glyphicon-file">Add a file</span></a></li>
 		</ul>
 	</div>
-
 	<div class="mainMain col-xs-12">
 		<div class="leftMain col-xs-12 col-sm-3" >
 			<p id="expand-collapse-all">
-				<a href="" data-ng-click="expandAll()">Expand</a>
+				<a href="javascript:void(0)" data-ng-click="expandAll()">Expand</a>
 				<span class="expCol"> | </span>
-				<a href="" data-ng-click="collapseAll()">Collapse </a>
+				<a href="javascript:void(0)" data-ng-click="collapseAll()">Collapse </a>
 			</p>
 			<ul data-frang-tree>
 				<li data-frang-tree-repeat="node in treeData">
@@ -42,12 +40,9 @@
 				</li>
 			</ul>
 		</div>
-
 		<div  data-nv-file-drop data-uploader="uploader" class="rightMain col-xs-12 col-sm-9">
-
 		</div>
  	</div>
-
 	<div data-ng-class="{'addForm': true}" data-ng-show = visible>
 		<form data-ng-class="{'elegant-aero':true , 'form-group':true , 'addName':true}" data-ng-submit="addName()" data-ng-show = visible novalidate autocomplete="off">
 		  	<span class="close" data-ng-click = "hideForm()">&#10006;</span>
@@ -74,7 +69,7 @@
 				 	</label>
 				 </div>
 			</div>
-			<button type = "submit" data-ng-class = "{ 'btn': true, 'btn-success': true}" data-ng-click= "Submit()">Ready?</button>
+			<button type = "submit" class = "btn btn-success" data-ng-click="Submit()">Ready?</button>
 	 	</form>
 	</div>
 </div>

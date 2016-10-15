@@ -2,10 +2,9 @@
  * 
  */
 mainApp.controller('loginController',function($scope, $rootScope, $location,userSrv){
-	$scope.user = {name:'',password:''};
 	
+	$scope.user = {name:'', password:''};
 	$rootScope.showCarousel = false;
-	
 	//show message
 	$scope.showModal = function(){
 		if(	$scope.show == true){
@@ -13,9 +12,7 @@ mainApp.controller('loginController',function($scope, $rootScope, $location,user
 		} else {
 			$scope.show = true ;
 		}
-
 	}
-	
 	//check whether the username is valid 
 	$scope.isValidName = function(){
 		var userReg = new RegExp(/^[a-zA-Z0-9.\-_$@*!]{5,20}$/);
@@ -33,29 +30,28 @@ mainApp.controller('loginController',function($scope, $rootScope, $location,user
 		} else {
 			return false;
 		}
-	}
-
-	 //Checks if the data is valid
+	 }
+	//Checks if the data is valid
 		$scope.isValid = function(){
 			if($scope.isValidName() && $scope.isValidPassword()){
 				return false;
-				} else {
+			} else {
 					return true;
-				}
+			}
 		}
-		
+	  //login function
 		 $scope.login = function(){
 			 if (!$scope.isValid()) {
 					userSrv.userLogin($scope.user).then(function(response){
-				        if(response.data == "Logged!"){
+						if(response.data == "Logged!"){
 				        	console.log("probe when logged")
 							$location.path('/main');
 					
-				        	} else if(response.data == "No such user!") {
+				        } else if(response.data == "No such user!") {
 				        		$scope.showModal();
 				        		console.log("probe when NOT logged");
-				        	}
-					})
-			 	}
+				        }
+				   })
+			 }
 		 }	
 	})
