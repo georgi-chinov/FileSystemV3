@@ -7,6 +7,7 @@ body{
 	-o-background-size: cover;
 	background-size: cover;
 	font-family:"Indie Flower" ;
+	overflow: hidden;
 }
 
 .navbar-default{
@@ -37,6 +38,7 @@ body{
 }
 
   .elegant-aero {
+  	text-align: center;
 	 margin-left:auto;
 	 margin-right:auto;
 	 margin-top:5px;
@@ -52,6 +54,7 @@ body{
 }
 
 .elegant-aero #username , .elegant-aero #password , .elegant-aero #passRepeated ,  .elegant-aero #userEmail{
+	text-align: center;
 	width:95%;
 	margin:15px auto;
 	color: white;
@@ -61,6 +64,7 @@ body{
 
 
 .elegant-aero input[type="text"], .elegant-aero input[type="password"] , .elegant-aero input[type="email"]{
+  text-align: center;
   display:block;
   color: #2B6046;
   width: 99%;
@@ -176,10 +180,7 @@ button {
  	-webkit-border-radius: 5px;
 	-moz-border-radius: 5px;
  }
- .uploadFile{
- 	width: 200px;
- 	height: 100px;
- }
+
 .wrapper { 
 	border: 1px solid black;
 }
@@ -342,17 +343,18 @@ ul .tree-drag > div > span.label {
 	 padding: 10px;
     
 }
+.uploadFile input{
+	text-align: center;
+}
+.addName input{
+	text-align: center;
+	font-size: 20px;
+}
 .close {
 	float: right;
 }
 .close:hover {
 	color: red;
-}
-
-
-
-.elegant-aero .form-group .fileUplaod{
-		
 }
 
 .leftMain::-webkit-scrollbar-track {
