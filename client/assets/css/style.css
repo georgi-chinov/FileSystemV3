@@ -56,6 +56,7 @@ body{
 	margin:15px auto;
 	color: white;
 	display:block;
+	text-align: center;
 }
 
 
@@ -78,11 +79,10 @@ body{
 .elegant-aero input:focus{
 	
 }
-.elegant-aero input:-webkit-autofill {
-    background-color: #FAFFBD !important;
 
-}
 div{
+	
+  text-align: center;
   display:inline-block;
   vertical-align:top;
   color: red;
@@ -322,16 +322,25 @@ ul .tree-drag > div > span.label {
    	box-shadow: none;
    	-moz-box-shadow: none;
 }
-.addForm{
+.addName{
 	 position: relative;
      z-index: 1;
      top: -400px;
+	 border: 3px solid #5383B7;
+	 border-radius: 5px;
+	 box-sizing: border-box;
+	 padding: 10px;
 }
 
-.addFile {
-	position: relative;
+.fileUpload {
+	 position: relative;
      z-index: 1;
      top: -400px;
+	 border: 3px solid #5383B7;
+	 border-radius: 5px;
+	 box-sizing: border-box;
+	 padding: 10px;
+    
 }
 .close {
 	float: right;

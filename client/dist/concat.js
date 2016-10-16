@@ -701,8 +701,6 @@ mainApp.controller('homeController' , function($rootScope,$scope){
 	$rootScope.showCarousel = false;
 })
 /**
-<<<<<<< HEAD
-=======
  * 
  */
 mainApp.controller('loginController',function($scope, $rootScope, $location,userSrv){
@@ -760,13 +758,12 @@ mainApp.controller('loginController',function($scope, $rootScope, $location,user
 		 }	
 	})
 /**
->>>>>>> c896581fffc43a5d7588898fa7bd0447689cb0f6
  *
  */
 
 mainApp.controller('mainpageController', function($window, $location, $parse, $scope, $http, FileUploader, userSrv, fileSrv, multipartForm, $rootScope) {
     //user info + loading user information
-    userSrv.userInformation().then(function(response) {
+   /* userSrv.userInformation().then(function(response) {
         if (response.status == 200) {
             //some logic here
         }
@@ -778,7 +775,7 @@ mainApp.controller('mainpageController', function($window, $location, $parse, $s
         $window.location.href = absUrlSplitted;
 
         console.log(absUrlSplitted);
-    })
+    })*/
     $scope.uploader = new FileUploader();
     $scope.visible = false;
     $scope.visibleFileForm = false;
@@ -1083,6 +1080,9 @@ mainApp.controller ('registerController',function($rootScope,$scope, userSrv  , 
 });
 
 
+/**
+ *
+ */
 mainApp.controller('editController', function($rootScope, $scope, userSrv) {
     $rootScope.showCarousel = false;
     $rootScope.hide = true;
