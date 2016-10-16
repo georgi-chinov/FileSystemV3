@@ -170,6 +170,12 @@ mainApp.service('multipartForm', ['$http', function($http) {
 /**
  * 
  */
+mainApp.controller('homeController' , function($rootScope,$scope){
+	$rootScope.showCarousel = false;
+})
+/**
+ * 
+ */
 
 mainApp.controller('emailController' , function($rootScope, $scope, $http, $httpParamSerializerJQLike, userSrv, $location){
 	
@@ -213,12 +219,6 @@ mainApp.controller('emailController' , function($rootScope, $scope, $http, $http
 		}
 	};
 
-})
-/**
- * 
- */
-mainApp.controller('homeController' , function($rootScope,$scope){
-	$rootScope.showCarousel = false;
 })
 /**
  * 
