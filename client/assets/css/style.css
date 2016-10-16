@@ -145,7 +145,7 @@ button {
 	color: #337ab7;
 }
 .leftMain{
-	height: 500px;
+	height: 700px;
 	border-radius: 5px;
 	-webkit-border-radius: 5px;
 	-moz-border-radius: 5px;
@@ -175,25 +175,28 @@ button {
  }
  .bar{
  	height: 50px;
- 	border: 1px solid black;
  	border-radius: 5px;
  	-webkit-border-radius: 5px;
 	-moz-border-radius: 5px;
- }
+}
 
 .wrapper { 
 	border: 1px solid black;
 }
 
 .header {
-	height: 50px; 
-	border: 1px solid purple;
-	margin-top: 15px;
+	margin-top: 10px;
 }
 
 .logo {
 	height: 48px; 
 	text-align: center;
+}
+
+.logo img {
+	margin-bottom: 20px;
+	width: 240px;
+	height: 60px;
 }
 
 .userInfo{
@@ -240,19 +243,6 @@ li {
     margin:0;
     padding:0;
 }
- .leftMain .expanded {
-    background-image: url('../images/expanded.png');
-    margin:0;
-    padding:0;
-    float:left;
-}
-.leftMain .collapsed {
-    background-image: url('../images/collapsed.png');
-     margin:0;
-     padding:0;
-
-}
-
 .label {
     color: green;
     margin:0;
@@ -324,13 +314,15 @@ ul .tree-drag > div > span.label {
    	-moz-box-shadow: none;
 }
 .addName{
-	 position: relative;
-     z-index: 1;
-     top: -400px;
-	 border: 3px solid #5383B7;
-	 border-radius: 5px;
-	 box-sizing: border-box;
-	 padding: 10px;
+	position: relative;
+    z-index: 1;
+    top: -400px;
+	border: 3px solid #5383B7;
+	border-radius: 5px;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	box-sizing: border-box;
+	padding: 10px;
 }
 
 .fileUpload {
