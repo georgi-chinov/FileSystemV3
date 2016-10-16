@@ -43,8 +43,8 @@
 		<div  data-nv-file-drop data-uploader="uploader" class="rightMain col-xs-12 col-sm-9">
 		</div>
  	</div>
-	<div data-ng-class="{'addForm': true}" data-ng-show = visible>
-		<form data-ng-class="{'elegant-aero':true , 'form-group':true , 'addName':true}" data-ng-submit="addName()" data-ng-show = visible novalidate autocomplete="off">
+
+		<form data-ng-class="{'form-group':true , 'addName':true , 'col-sm-4':true , 'col-sm-offset-4':true}" data-ng-submit="addName()" data-ng-if = visible novalidate autocomplete="off">
 		  	<span class="close" data-ng-click = "hideForm()">&#10006;</span>
 		  	<div data-ng-class ="{'caption':true}" style = "color: blue">Add folder</div>
 		  	<div id = "foldername">
@@ -54,10 +54,7 @@
 			</div>
 			<button type = "submit" data-ng-class = "{ 'btn': true, 'btn-success': true}">Ready?</button>
 	 	</form>
-
-	</div>
-	<div data-ng-class="{'addFile': true, 'col-sm-8': true, 'col-sm-offset-2': true}" data-ng-show = visibleFileForm>
-		<form data-ng-class="{'elegant-aero':true , 'form-group':true , 'fileUpload':true}"  novalidate autocomplete="off">
+		<form data-ng-class="{'form-group':true , 'fileUpload':true, 'col-sm-4':true , 'col-sm-offset-4':true}" data-ng-if = visibleFileForm  novalidate autocomplete="off">
 		  	<span  data-ng-click = "hideFileForm()" data-ng-class="{'close': true}">&#10006;</span>
 		  	<div data-ng-class ="{'caption':true}" style = "color: blue">Add File</div>
 		  	<div id = "file">
@@ -72,4 +69,4 @@
 			<button type = "submit" class = "btn btn-success" data-ng-click="Submit()">Ready?</button>
 	 	</form>
 	</div>
-</div>
+
