@@ -6,18 +6,9 @@ mainApp.controller('emailController' , function($rootScope, $scope, $http, $http
 	
 	$scope.lostmail =  {to: ''};
 	$rootScope.showCarousel = false;
-    
-	//show message
-	$scope.showModal = function(){
-		if(	$scope.show == true){
-			$scope.show = false ;
-			$scope.hide = true;
-		} else {
-			$scope.show = true ;
-			$scope.hide = false;
-		}
+    $scope.show = false;
+    $scope.showWrong = false;
 
-	}
 	 //check whether the email is valid
 	$scope.isValidEmail = function(){
 		var emailReg = new RegExp(/^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/);
@@ -33,12 +24,14 @@ mainApp.controller('emailController' , function($rootScope, $scope, $http, $http
 			userSrv.lostEmail($scope.lostmail).then(function(response){
 				console.log(response);
 		        if(response.data == "sent"){
-		        	console.log("probe when email sent")
-		        	$scope.showModal();
-	        
+		            $scope.showWrong = false;
+		        	$scope.show = true;
+		        	console.log("probe when email sent");
+		        
 		        	} else if(response.data == "Wrong email!") {
-		        		$scope.showModal();
-		        		console.log("probe when NOT sent an email");
+		        		 $scope.show = false;
+		        		 $scope.showWrong = true;
+		        		 console.log("probe when NOT sent an email");
 		        	}
 			})
 		}

@@ -167,6 +167,11 @@ mainApp.service('multipartForm', ['$http', function($http) {
     }
 }])
 
+mainApp.service("TreeService", ["$http", "URLConfig", function ($http, URLConfig) {
+    this.getTree = function () {
+        return $http.get(URLConfig.tree);
+    };
+}]);
 /**
  * 
  */
@@ -181,18 +186,9 @@ mainApp.controller('emailController' , function($rootScope, $scope, $http, $http
 	
 	$scope.lostmail =  {to: ''};
 	$rootScope.showCarousel = false;
-    
-	//show message
-	$scope.showModal = function(){
-		if(	$scope.show == true){
-			$scope.show = false ;
-			$scope.hide = true;
-		} else {
-			$scope.show = true ;
-			$scope.hide = false;
-		}
+    $scope.show = false;
+    $scope.showWrong = false;
 
-	}
 	 //check whether the email is valid
 	$scope.isValidEmail = function(){
 		var emailReg = new RegExp(/^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/);
@@ -208,12 +204,14 @@ mainApp.controller('emailController' , function($rootScope, $scope, $http, $http
 			userSrv.lostEmail($scope.lostmail).then(function(response){
 				console.log(response);
 		        if(response.data == "sent"){
-		        	console.log("probe when email sent")
-		        	$scope.showModal();
-	        
+		            $scope.showWrong = false;
+		        	$scope.show = true;
+		        	console.log("probe when email sent");
+		        
 		        	} else if(response.data == "Wrong email!") {
-		        		$scope.showModal();
-		        		console.log("probe when NOT sent an email");
+		        		 $scope.show = false;
+		        		 $scope.showWrong = true;
+		        		 console.log("probe when NOT sent an email");
 		        	}
 			})
 		}
@@ -283,7 +281,7 @@ mainApp.controller('loginController',function($scope, $rootScope, $location,user
 
 mainApp.controller('mainpageController', function($window, $location, $parse, $scope, $http, FileUploader, userSrv, fileSrv, multipartForm, $rootScope) {
     //user info + loading user information
-    /* userSrv.userInformation().then(function(response) {
+     userSrv.userInformation().then(function(response) {
          if (response.status == 200) {
              //some logic here
          }
@@ -295,7 +293,7 @@ mainApp.controller('mainpageController', function($window, $location, $parse, $s
          $window.location.href = absUrlSplitted;
 
          console.log(absUrlSplitted);
-     })*/
+     })
     $scope.tree_data = [{
         root: 'Top folder',
         children: [{
@@ -338,13 +336,14 @@ mainApp.controller('mainpageController', function($window, $location, $parse, $s
     $scope.addName = function() {
             console.log($scope.folder);
             fileSrv.sendFolderName($scope.folder).then(function(response) {
-                if (response.data == "Ready!") {
-                    console.log("probe when folder name is not taken")
-                } else if (response.data == "Exists!") {
-                    $scope.showModal();
-                    console.log("probe when folder name exists");
-                }
-            });
+                if (response.status == 200) {
+                    console.log("probe when folder name is not taken");
+                    $scope.visible = false;
+                    return;
+                }  
+                //logika za greshka!
+                })
+            
         }
         //add file - form
     $scope.showFileForm = function() {
@@ -368,45 +367,6 @@ mainApp.controller('mainpageController', function($window, $location, $parse, $s
     }
 })
 
-[
-    {"label": "root", "children": [
-        {"label": "folder A", "collapsed": false, "children": [
-            {"label": "folder B", "collapsed": false, "children": [
-                {"label": "file B1", "collapsed": false},
-                {"label": "file B2", "collapsed": false}
-            ]},
-            {"label": "file A1", "collapsed": false},
-            {"label": "file A2", "collapsed": false},
-            {"label": "file A3", "collapsed": false},
-            {"label": "file A4", "collapsed": false}
-        ]},
-        {"label": "folder C", "collapsed": false, "children": [
-            {"label": "folder D", "collapsed": true, "children": [
-                {"label": "folder E", "collapsed": false, "children": [
-                    {"label": "file E1", "collapsed": false},
-                    {"label": "file E2", "collapsed": false},
-                    {"label": "file E3", "collapsed": false}
-                ]}
-            ]},
-            {"label": "folder F", "collapsed": false, "children": [
-                {"label": "file F1", "collapsed": false},
-                {"label": "file F2", "collapsed": false}
-            ]},
-            {"label": "file C1", "collapsed": false}
-        ]},
-        {"label": "folder G", "collapsed": false, "children": [
-            {"label": "file G1", "collapsed": false},
-            {"label": "file G2", "collapsed": false},
-            {"label": "file G3", "collapsed": false},
-            {"label": "file G4", "collapsed": false}
-        ]},
-        {"label": "folder H", "collapsed": false, "children": [
-            {"label": "file H1", "collapsed": false},
-            {"label": "file H2", "collapsed": false},
-            {"label": "file H3", "collapsed": false}
-        ]}
-    ]}
-]
 /**
  * 
  */
@@ -490,9 +450,11 @@ mainApp.controller ('registerController',function($rootScope,$scope, userSrv  , 
 /**
  *
  */
-mainApp.controller('editController', function($rootScope, $scope, userSrv) {
+mainApp.controller('editController', function($rootScope, $scope, $location,$window,$interval , userSrv) {
     $rootScope.showCarousel = false;
     $rootScope.hide = true;
+	 $scope.iterator = 5;
+
     $scope.info = {
         oldPassword: '',
         password: '',
@@ -537,18 +499,32 @@ mainApp.controller('editController', function($rootScope, $scope, userSrv) {
     $scope.sendNewPass = function() {
         console.log($scope.info);
         if (!$scope.isValidInfo()) {
-            userSrv.userCheckpw($scope.info)
+            userSrv.userCheckpw($scope.info).then(function(response){
+            	if(response.data.legit == false){
+            		$scope.showErr = true;
+            	}
+            	
+            	if(response.data.legit ==  true){
+            		
+            		 var absUrl = $location.absUrl();
+                     var absUrlSplitted = absUrl.split('/');
+                     console.log(absUrlSplitted);
+                     absUrlSplitted = absUrlSplitted.splice(0, absUrlSplitted.length - 1).join('/').toString();
+                     $scope.show = true;
+                  //show time remain
+                     $interval(function () {
+                    	 $scope.iterator--;
+                    	 if($scope.iterator == 0){
+                        	 $window.location.href = absUrlSplitted;
+                    	 }
+                     }, 1000);
+            	}
+            	
+            })
         }
     }
 })
 
-/**
- * 
- */
-
-mainApp.controller('sharedController', function($scope,$rootScope) {
-	
-})
 /**
  * 
  */
