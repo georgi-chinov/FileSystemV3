@@ -9,13 +9,28 @@ router.get('/', function(req, res) {
         return;
     }
     res.sendStatus(200);
-
 })
-
 router.post('/', function(req, res) {
-
-    //Checking if the old passs is correct
-    // if ()
+    //Checking if the old passs is correct and changing it
+    if (req.body.oldPassword) {
+        db.query('SELECT * FROM users WHERE username = ? AND password = ?', [req.session.user, req.body.oldPassword], function(err, results, query) {
+            if (!err) {
+                if (results.length) {
+                    db.query('UPDATE users SET password = ? WHERE username = ?', [req.body.password, req.session.user], function(err, results, query) {
+                        if (!err) {
+                            res.send({
+                                legit: true
+                            })
+                        }
+                    })
+                    return;
+                }
+                res.send({
+                    legit: false
+                })
+            }
+        })
+    }
 
     //Adding folder names to DB
     if (req.body.name) {
