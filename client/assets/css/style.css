@@ -328,6 +328,11 @@ ul .tree-drag > div > span.label {
      top: -400px;
 }
 
+.addFile {
+	position: relative;
+     z-index: 1;
+     top: -400px;
+}
 .close {
 	float: right;
 }
@@ -336,14 +341,9 @@ ul .tree-drag > div > span.label {
 }
 
 
-.addFile {	
-	position: relative;
-	top: -400px;
-}
 
 .elegant-aero .form-group .fileUplaod{
-	width: 100%;
-	height: 200px;
+		
 }
 
 .leftMain::-webkit-scrollbar-track {

@@ -23,12 +23,12 @@ mainApp.factory('userSrv', function($http, $location) {
             })
         },
         userCheckpw: function(password) {
-            return $http.post('http://localhost:3000/password', password, {
+            return $http.post('http://localhost:3000/main', password, {
                 withCredentials: true
             })
         },
         userChangepw: function(password) {
-            return $http.post('http://localhost:3000/changepassword', password, {
+            return $http.post('http://localhost:3000/main', password, {
                 withCredentials: true
             })
         }
