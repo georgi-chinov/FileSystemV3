@@ -4,7 +4,7 @@
 
 mainApp.controller('mainpageController', function($window, $location, $parse, $scope, $http, FileUploader, userSrv, fileSrv, multipartForm, $rootScope) {
     //user info + loading user information
-    /* userSrv.userInformation().then(function(response) {
+     userSrv.userInformation().then(function(response) {
          if (response.status == 200) {
              //some logic here
          }
@@ -16,7 +16,7 @@ mainApp.controller('mainpageController', function($window, $location, $parse, $s
          $window.location.href = absUrlSplitted;
 
          console.log(absUrlSplitted);
-     })*/
+     })
     $scope.tree_data = [{
         root: 'Top folder',
         children: [{
@@ -59,13 +59,14 @@ mainApp.controller('mainpageController', function($window, $location, $parse, $s
     $scope.addName = function() {
             console.log($scope.folder);
             fileSrv.sendFolderName($scope.folder).then(function(response) {
-                if (response.data == "Ready!") {
-                    console.log("probe when folder name is not taken")
-                } else if (response.data == "Exists!") {
-                    $scope.showModal();
-                    console.log("probe when folder name exists");
-                }
-            });
+                if (response.status == 200) {
+                    console.log("probe when folder name is not taken");
+                    $scope.visible = false;
+                    return;
+                }  
+                //logika za greshka!
+                })
+            
         }
         //add file - form
     $scope.showFileForm = function() {

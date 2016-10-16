@@ -1,9 +1,11 @@
 /**
  *
  */
-mainApp.controller('editController', function($rootScope, $scope, userSrv) {
+mainApp.controller('editController', function($rootScope, $scope, $location,$window,$interval , userSrv) {
     $rootScope.showCarousel = false;
     $rootScope.hide = true;
+	 $scope.iterator = 5;
+
     $scope.info = {
         oldPassword: '',
         password: '',
@@ -48,7 +50,28 @@ mainApp.controller('editController', function($rootScope, $scope, userSrv) {
     $scope.sendNewPass = function() {
         console.log($scope.info);
         if (!$scope.isValidInfo()) {
-            userSrv.userCheckpw($scope.info)
+            userSrv.userCheckpw($scope.info).then(function(response){
+            	if(response.data.legit == false){
+            		$scope.showErr = true;
+            	}
+            	
+            	if(response.data.legit ==  true){
+            		
+            		 var absUrl = $location.absUrl();
+                     var absUrlSplitted = absUrl.split('/');
+                     console.log(absUrlSplitted);
+                     absUrlSplitted = absUrlSplitted.splice(0, absUrlSplitted.length - 1).join('/').toString();
+                     $scope.show = true;
+                  //show time remain
+                     $interval(function () {
+                    	 $scope.iterator--;
+                    	 if($scope.iterator == 0){
+                        	 $window.location.href = absUrlSplitted;
+                    	 }
+                     }, 1000);
+            	}
+            	
+            })
         }
     }
 })
