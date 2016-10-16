@@ -6,32 +6,33 @@
 <head>
     <meta charset="UTF-8">
   	<title>Title</title>
-    
-    <script src="node_modules/angular/angular.min.js"></script> 
+
+    <script src="node_modules/angular/angular.min.js"></script>
     <script src="node_modules/angular-route/angular-route.min.js"></script>
     <script src="node_modules/angular-messages/angular-messages.min.js"></script>
 	<script src="././node_modules/angular-file-upload/dist/angular-file-upload.min.js"></script>
 	<script src="node_modules/angular-animate/angular-animate.min.js"></script>
 	<script src="node_modules/jquery/dist/jquery.min.js"></script>
-	
+
 	<link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.css">
     <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap-theme.css">
 	<script src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
 	<link rel="stylesheet" href="node_modules/angular-ui-bootstrap/dist/ui-bootstrap-csp.css"/>
-    
+
     <script src="node_modules/angular-ui-bootstrap/dist/ui-bootstrap.js"></script>
     <script src="node_modules/angular-ui-bootstrap/dist/ui-bootstrap-tpls.js"></script>
-	
+    <script src="node_modules/angular-bootstrap-grid-tree/src/tree-grid-directive.js"></script>
+
 	<script src="dist/concat.js"></script>
-    
+  <link rel = "stylesheet" type="text/css" href = "node_modules/angular-bootstrap-grid-tree/src/treeGrid.css">
     <link rel = "stylesheet" type="text/css" href = "assets/css/style.css">
  	<meta name = "viewport " content = "width=device-width , initial-scale =1">
-  	
+
     </head>
 <body data-ng-app="mainModule" data-ng-controller="MainController" style="text-align: center" >
 
 	<div data-ng-controller="CollapseDemoCtrl" data-ng-hide = "hide">
-	
+
 	    <nav class=" navbar navbar-default" role="navigation">
 	        <div class="navbar-header">
 	            <button type="button" class="navbar-toggle" data-ng-click="isNavCollapsed = !isNavCollapsed" >
@@ -43,14 +44,14 @@
 	        <div class="collapse navbar-collapse" data-uib-collapse="isNavCollapsed" >
 	            <a class="navbar-brand" href="#login">Log in</a>
 	            <a class="navbar-brand" href="#register">Sign up</a>
-	            <a class="navbar-brand" href="#">Home</a>     
+	            <a class="navbar-brand" href="#">Home</a>
 	        </div>
 		</nav>
-		
-		<div class="collapse navbar-collapse"  > 
+
+		<div class="collapse navbar-collapse"  >
 	       <a class="navbar-brand" href="#">LOGO</a>
 	    </div>
-		
+
 		<div id="myCarousel" data-ng-class="{'carousel':true,'slide':true,'col-md-8':true,' col-md-offset-2':true,'col-xs-12':true}" data-ride="carousel"   data-ng-show="showCarousel">
 			<ol class="carousel-indicators">
 				<li data-target="#myCarousel" data-slide-to="0" class="active"></li>

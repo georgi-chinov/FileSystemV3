@@ -19,26 +19,7 @@
 	</div>
 	<div class="mainMain col-xs-12">
 		<div class="leftMain col-xs-12 col-sm-3" >
-			<p id="expand-collapse-all">
-				<a href="javascript:void(0)" data-ng-click="expandAll()">Expand</a>
-				<span class="expCol"> | </span>
-				<a href="javascript:void(0)" data-ng-click="collapseAll()">Collapse </a>
-			</p>
-			<ul data-frang-tree>
-				<li data-frang-tree-repeat="node in treeData">
-					<div data-ng-class="{'tree':true}">
-						<span class="icon"
-							data-ng-class="{collapsed: node.collapsed, expanded: !node.collapsed}"
-							data-ng-show="node.children && node.children.length > 0"
-							data-ng-click="node.collapsed = !node.collapsed"></span>
-						<span class="label"
-							data-ng-class="{folder: node.children && node.children.length > 0}"
-							data-ng-bind="node.label"
-							data-ng-click="action(node)"></span>
-					</div>
-						<ul data-ng-if="!node.collapsed && node.children && node.children.length > 0" data-frang-tree-insert-children="node.children"></ul>
-				</li>
-			</ul>
+			<tree-grid tree-data="tree_data"></tree-grid>
 		</div>
 		<div  data-nv-file-drop data-uploader="uploader" class="rightMain col-xs-12 col-sm-9">
 		</div>
@@ -69,4 +50,3 @@
 			<button type = "submit" class = "btn btn-success" data-ng-click="Submit()">Ready?</button>
 	 	</form>
 	</div>
-

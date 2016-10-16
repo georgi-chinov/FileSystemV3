@@ -47,8 +47,18 @@ router.post('/', function(req, res) {
             }
         });
     }
-    // Renaming the uploaded file
+    //File stuff
     if (req.file) {
+        console.log(req.file);
+        // Adding the files to the DB
+        filenfo = {
+            name: req.file.originalname,
+            user: req.session.user,
+            path: req.file.path,
+
+        }
+        db.query('INSERT INTO files SET ?', filenfo)
+            // Renaming the uploaded file
         var smth = req.file.originalname.split('.');
         var filePath = './uploads/' + req.file.filename
         fs.rename(filePath, filePath + '.' + smth.pop())
