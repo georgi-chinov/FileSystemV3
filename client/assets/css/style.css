@@ -350,6 +350,10 @@ ul .tree-drag > div > span.label {
 	text-align: center;
 	font-size: 20px;
 }
+#editPass{
+	top: 0px;
+}
+
 .close {
 	float: right;
 }
