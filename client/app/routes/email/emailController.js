@@ -3,7 +3,7 @@
  */
 
 mainApp.controller('emailController' , function($rootScope, $scope, $http, $httpParamSerializerJQLike, userSrv, $location){
-	
+	console.log("this is the emailController");
 	$scope.lostmail =  {to: ''};
 	$rootScope.showCarousel = false;
     $scope.show = false;

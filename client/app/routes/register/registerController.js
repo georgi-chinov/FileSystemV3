@@ -2,7 +2,8 @@
  * 
  */
 mainApp.controller ('registerController',function($rootScope,$scope, userSrv  , $location){
-	
+	console.log("this is the register Controller");
+
 	$scope.user = {name:'',password:'' , passRepeated:'' , email:''};
     $rootScope.showCarousel = false;
     

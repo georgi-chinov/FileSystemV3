@@ -33,10 +33,13 @@ var mainApp = angular.module('mainModule', ['ngRoute', 'ngAnimate', 'ui.bootstra
     })
     //this is the main controller with nested scopes in it
     .controller('MainController', function($scope, $location, userSrv) {
+    	console.log("this is the main Controller");
 
     })
 
 .controller('CollapseDemoCtrl', function($rootScope, $scope) {
+	console.log("this is the Controller");
+
     $scope.isNavCollapsed = true;
     $scope.isCollapsed = false;
     $scope.isCollapsedHorizontal = false;
@@ -175,15 +178,9 @@ mainApp.service("TreeService", ["$http", "URLConfig", function ($http, URLConfig
 /**
  * 
  */
-mainApp.controller('homeController' , function($rootScope,$scope){
-	$rootScope.showCarousel = false;
-})
-/**
- * 
- */
 
 mainApp.controller('emailController' , function($rootScope, $scope, $http, $httpParamSerializerJQLike, userSrv, $location){
-	
+	console.log("this is the emailController");
 	$scope.lostmail =  {to: ''};
 	$rootScope.showCarousel = false;
     $scope.show = false;
@@ -221,8 +218,17 @@ mainApp.controller('emailController' , function($rootScope, $scope, $http, $http
 /**
  * 
  */
+mainApp.controller('homeController' , function($rootScope,$scope){
+	console.log("this is the home Controller");
+
+	$rootScope.showCarousel = false;
+})
+/**
+ * 
+ */
 mainApp.controller('loginController',function($scope, $rootScope, $location,userSrv){
-	
+	console.log("this is the login Controller");
+
 	$scope.user = {name:'', password:''};
 	$rootScope.showCarousel = false;
 	//show message
@@ -280,7 +286,9 @@ mainApp.controller('loginController',function($scope, $rootScope, $location,user
  */
 
 mainApp.controller('mainpageController', function($window, $location, $parse, $scope, $http, FileUploader, userSrv, fileSrv, multipartForm, $rootScope) {
-    //user info + loading user information
+	console.log("this is the main Controller");
+
+	//user info + loading user information
      userSrv.userInformation().then(function(response) {
          if (response.status == 200) {
              //some logic here
@@ -371,7 +379,8 @@ mainApp.controller('mainpageController', function($window, $location, $parse, $s
  * 
  */
 mainApp.controller ('registerController',function($rootScope,$scope, userSrv  , $location){
-	
+	console.log("this is the register Controller");
+
 	$scope.user = {name:'',password:'' , passRepeated:'' , email:''};
     $rootScope.showCarousel = false;
     
@@ -451,7 +460,9 @@ mainApp.controller ('registerController',function($rootScope,$scope, userSrv  , 
  *
  */
 mainApp.controller('editController', function($rootScope, $scope, $location,$window,$interval , userSrv) {
-    $rootScope.showCarousel = false;
+	console.log("this is the edit Controller");
+
+	$rootScope.showCarousel = false;
     $rootScope.hide = true;
 	 $scope.iterator = 5;
 
@@ -530,5 +541,6 @@ mainApp.controller('editController', function($rootScope, $scope, $location,$win
  */
 
 mainApp.controller('sharedController', function($scope,$rootScope) {
-	
+	console.log("this is the shared Controller");
+
 })

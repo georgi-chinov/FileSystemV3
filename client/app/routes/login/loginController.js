@@ -2,7 +2,8 @@
  * 
  */
 mainApp.controller('loginController',function($scope, $rootScope, $location,userSrv){
-	
+	console.log("this is the login Controller");
+
 	$scope.user = {name:'', password:''};
 	$rootScope.showCarousel = false;
 	//show message
