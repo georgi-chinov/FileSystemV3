@@ -701,143 +701,6 @@ mainApp.controller('homeController' , function($rootScope,$scope){
 	$rootScope.showCarousel = false;
 })
 /**
- * 
- */
-mainApp.controller('loginController',function($scope, $rootScope, $location,userSrv){
-	
-	$scope.user = {name:'', password:''};
-	$rootScope.showCarousel = false;
-	//show message
-	$scope.showModal = function(){
-		if(	$scope.show == true){
-			$scope.show = false ;
-		} else {
-			$scope.show = true ;
-		}
-	}
-	//check whether the username is valid 
-	$scope.isValidName = function(){
-		var userReg = new RegExp(/^[a-zA-Z0-9.\-_$@*!]{5,20}$/);
-		if(userReg.test($scope.user.name)){
-			return true;
-		} else {
-			return false;
-		}
-	}
-	//check whether the password is valid 
-	$scope.isValidPassword = function(){
-		var passwordReg = new RegExp(/^[a-zA-Z0-9.\-_$@*!]{8,20}$/);
-		if(passwordReg.test($scope.user.password)){
-			return true;
-		} else {
-			return false;
-		}
-	 }
-	//Checks if the data is valid
-		$scope.isValid = function(){
-			if($scope.isValidName() && $scope.isValidPassword()){
-				return false;
-			} else {
-					return true;
-			}
-		}
-	  //login function
-		 $scope.login = function(){
-			 if (!$scope.isValid()) {
-					userSrv.userLogin($scope.user).then(function(response){
-						if(response.data == "Logged!"){
-				        	console.log("probe when logged")
-							$location.path('/main');
-					
-				        } else if(response.data == "No such user!") {
-				        		$scope.showModal();
-				        		console.log("probe when NOT logged");
-				        }
-				   })
-			 }
-		 }	
-	})
-/**
- * 
- */
-mainApp.controller ('registerController',function($rootScope,$scope, userSrv  , $location){
-	
-	$scope.user = {name:'',password:'' , passRepeated:'' , email:''};
-    $rootScope.showCarousel = false;
-    
-	//show message
-	$scope.showModal = function(){
-		if(	$scope.show == true){
-			$scope.show = false ;
-		} else {
-			$scope.show = true ;
-		}
-
-	}
-	
-	//validate username
-	$scope.isValidName = function(){
-		var userReg = new RegExp(/^[a-zA-Z0-9.\-_$@*!]{5,20}$/);
-		if(userReg.test($scope.user.name)){
-			return true;
-		} else {
-			return false;
-		}
-	}
-	//validate password
-	$scope.isValidPassword = function(){
-		var passwordReg = new RegExp(/^[a-zA-Z0-9.\-_$@*!]{8,20}$/);
-		if(passwordReg.test($scope.user.password)){
-			return true;
-		} else {
-			return false;
-		}
-	}
-	//check if passwords are the same
-	$scope.isValidPassword2 = function(){
-		if($scope.user.password == $scope.user.passRepeated && $scope.user.passRepeated != ''){
-			return true;
-		} else {
-			return false;
-		}
-	}
-	//check if email is valid
-	$scope.isValidEmail = function(){
-		var emailReg = new RegExp(/^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/);
-		if(emailReg.test($scope.user.email)){
-			return true;
-		} else {
-			return false;
-		}
-	}
-	//check whether all the information is valid in order to allow the user to submit info
-	$scope.isValid= function(){
-		if($scope.isValidName() && $scope.isValidPassword() && $scope.isValidPassword2() && $scope.isValidEmail()){
-			return false;
-		} else {
-			return true;
-		}
-	}
-	//register
-	$scope.submitRegisterForm = function(){
-		if (!$scope.isValid()) {
-			userSrv.userRegister($scope.user).then(function(response){
-		        if(response.data == "User registered!"){
-		        	console.log("probe when registered")
-					$location.path('/login');
-			
-		        	} else if(response.data == "User exists!") {
-		        		$scope.showModal();
-		        		console.log("probe when could NOT register");
-		        	}
-			})
-		}
-		
-	 }
-});
-
-
-/**
  *
  */
 
@@ -884,6 +747,7 @@ mainApp.controller('mainpageController', function($window, $location, $parse, $s
     $scope.showForm = function() {
         if ($scope.visible == false) {
             $scope.visible = true;
+            $scope.visibleFileForm = false;
         } else {
             $scope.visible = false;
         }
@@ -908,6 +772,7 @@ mainApp.controller('mainpageController', function($window, $location, $parse, $s
     $scope.showFileForm = function() {
         if ($scope.visibleFileForm == false) {
             $scope.visibleFileForm = true;
+            $scope.visible = false;
         } else {
             $scope.visibleFileForm = false;
         }
@@ -1474,6 +1339,143 @@ mainApp.directive('frangTree', function($parse, $animate) {
         ]}
     ]}
 ]
+/**
+ * 
+ */
+mainApp.controller ('registerController',function($rootScope,$scope, userSrv  , $location){
+	
+	$scope.user = {name:'',password:'' , passRepeated:'' , email:''};
+    $rootScope.showCarousel = false;
+    
+	//show message
+	$scope.showModal = function(){
+		if(	$scope.show == true){
+			$scope.show = false ;
+		} else {
+			$scope.show = true ;
+		}
+
+	}
+	
+	//validate username
+	$scope.isValidName = function(){
+		var userReg = new RegExp(/^[a-zA-Z0-9.\-_$@*!]{5,20}$/);
+		if(userReg.test($scope.user.name)){
+			return true;
+		} else {
+			return false;
+		}
+	}
+	//validate password
+	$scope.isValidPassword = function(){
+		var passwordReg = new RegExp(/^[a-zA-Z0-9.\-_$@*!]{8,20}$/);
+		if(passwordReg.test($scope.user.password)){
+			return true;
+		} else {
+			return false;
+		}
+	}
+	//check if passwords are the same
+	$scope.isValidPassword2 = function(){
+		if($scope.user.password == $scope.user.passRepeated && $scope.user.passRepeated != ''){
+			return true;
+		} else {
+			return false;
+		}
+	}
+	//check if email is valid
+	$scope.isValidEmail = function(){
+		var emailReg = new RegExp(/^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/);
+		if(emailReg.test($scope.user.email)){
+			return true;
+		} else {
+			return false;
+		}
+	}
+	//check whether all the information is valid in order to allow the user to submit info
+	$scope.isValid= function(){
+		if($scope.isValidName() && $scope.isValidPassword() && $scope.isValidPassword2() && $scope.isValidEmail()){
+			return false;
+		} else {
+			return true;
+		}
+	}
+	//register
+	$scope.submitRegisterForm = function(){
+		if (!$scope.isValid()) {
+			userSrv.userRegister($scope.user).then(function(response){
+		        if(response.data == "User registered!"){
+		        	console.log("probe when registered")
+					$location.path('/login');
+			
+		        	} else if(response.data == "User exists!") {
+		        		$scope.showModal();
+		        		console.log("probe when could NOT register");
+		        	}
+			})
+		}
+		
+	 }
+});
+
+
+/**
+ * 
+ */
+mainApp.controller('loginController',function($scope, $rootScope, $location,userSrv){
+	
+	$scope.user = {name:'', password:''};
+	$rootScope.showCarousel = false;
+	//show message
+	$scope.showModal = function(){
+		if(	$scope.show == true){
+			$scope.show = false ;
+		} else {
+			$scope.show = true ;
+		}
+	}
+	//check whether the username is valid 
+	$scope.isValidName = function(){
+		var userReg = new RegExp(/^[a-zA-Z0-9.\-_$@*!]{5,20}$/);
+		if(userReg.test($scope.user.name)){
+			return true;
+		} else {
+			return false;
+		}
+	}
+	//check whether the password is valid 
+	$scope.isValidPassword = function(){
+		var passwordReg = new RegExp(/^[a-zA-Z0-9.\-_$@*!]{8,20}$/);
+		if(passwordReg.test($scope.user.password)){
+			return true;
+		} else {
+			return false;
+		}
+	 }
+	//Checks if the data is valid
+		$scope.isValid = function(){
+			if($scope.isValidName() && $scope.isValidPassword()){
+				return false;
+			} else {
+					return true;
+			}
+		}
+	  //login function
+		 $scope.login = function(){
+			 if (!$scope.isValid()) {
+					userSrv.userLogin($scope.user).then(function(response){
+						if(response.data == "Logged!"){
+				        	console.log("probe when logged")
+							$location.path('/main');
+					
+				        } else if(response.data == "No such user!") {
+				        		$scope.showModal();
+				        		console.log("probe when NOT logged");
+				        }
+				   })
+			 }
+		 }	
+	})
 /**
  *
  */

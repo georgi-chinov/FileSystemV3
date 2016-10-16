@@ -45,6 +45,7 @@ mainApp.controller('mainpageController', function($window, $location, $parse, $s
     $scope.showForm = function() {
         if ($scope.visible == false) {
             $scope.visible = true;
+            $scope.visibleFileForm = false;
         } else {
             $scope.visible = false;
         }
@@ -69,6 +70,7 @@ mainApp.controller('mainpageController', function($window, $location, $parse, $s
     $scope.showFileForm = function() {
         if ($scope.visibleFileForm == false) {
             $scope.visibleFileForm = true;
+            $scope.visible = false;
         } else {
             $scope.visibleFileForm = false;
         }
