@@ -46,16 +46,9 @@ mainApp.controller('editController', function($rootScope, $scope, userSrv) {
         }
         //send new password and before that check whether  the old is the current user's password in the db
     $scope.sendNewPass = function() {
+        console.log($scope.info);
         if (!$scope.isValidInfo()) {
-            userSrv.userCheckpw({
-                oldpass: $scope.info.oldPassword
-            }).then(function(response) {
-                if (response.data && response.data.legit == true) {
-                    userSrv.userChangepw($scope.info.password).then(function(response) {
-
-                    })
-                }
-            });
+            userSrv.userCheckpw($scope.info)
         }
     }
 })
