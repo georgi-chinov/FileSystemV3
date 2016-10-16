@@ -1,7 +1,7 @@
 <div class="container-fluid">
 	<div class ="header col-sm-12">
-		<div class="logo col-sm-1 col-xs-6"><span>some logo</span></div>
-		<div class="col-sm-2 col-sm-offset-9 col-xs-6 dropdown">
+		<div class="logo col-sm-1 col-xs-6"><img class="logo" src="assets/images/logo.jpg" alt="logo"></div>
+		<div class="col-sm-2 col-sm-offset-9 col-xs-6 dropdown" style="margin-top: 35px;">
 			<button class="btn btn-info dropdown-toggle col-lg-9" type="button" data-toggle="dropdown">User<span class="caret"></span></button>
 			<ul class="dropdown-menu col-xs-2"  style="text-align: center">
 				<li><a href="#">My shared files</a></li>
@@ -11,14 +11,14 @@
 		</div>
 	</div>
 	<div class="bar col-sm-12">
-		<button class="btn btn-success dropdown-toggle col-xs-3" type="button" data-toggle="dropdown">Create<span class="caret"></span></button>
+		<button class="btn btn-info dropdown-toggle col-xs-3" type="button" data-toggle="dropdown">Create<span class="caret"></span></button>
 		<ul class="dropdown-menu col-xs-3"  style="text-align: center">
 			<li data-ng-click = "showForm()"><a href="javascript:void(0)" ><span class="glyphicon glyphicon-folder-close"></span>&nbsp;Add a folder</a></li>
 			<li data-ng-click = "showFileForm()"><a href="javascript:void(0)"><span class="btn-file glyphicon glyphicon-file">Add a file</span></a></li>
 		</ul>
 	</div>
 	<div class="mainMain col-xs-12">
-		<div class="leftMain col-xs-12 col-sm-3" >
+		<div class="leftMain col-xs-12 col-sm-3">
 			<tree-grid tree-data="tree_data"></tree-grid>
 		</div>
 		<div  data-nv-file-drop data-uploader="uploader" class="rightMain col-xs-12 col-sm-9">
