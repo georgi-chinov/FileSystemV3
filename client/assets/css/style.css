@@ -39,47 +39,43 @@ body{
 	background:transparent;
 }
 
-  .elegant-aero {
-  	text-align: center;
-	 margin-left:auto;
-	 margin-right:auto;
-	 margin-top:5px;
-	 width:40%;
-	 background: transparent;
-	 border:2px solid  #337AB7;
-	 border-radius:5px;
-	 -webkit-border-radius:5px;
-	 -moz-border-radius:5px;
-	 padding: 15px 20px 20px 20px;
-	 font-size: 12px;
+#myCarousel {
+	padding-top: 20px;
+}
 
+
+
+.elegant-aero {
+  	text-align: center;
+	background: rgba(0,0,0,0.06);
+	border:2px solid  #337AB7;
+	border-radius:5px;
+	-webkit-border-radius:5px;
+	-moz-border-radius:5px;
+	font-size: 12px;
 }
 
 .elegant-aero #username , .elegant-aero #password , .elegant-aero #passRepeated ,  .elegant-aero #userEmail{
 	text-align: center;
-	width:95%;
-	margin:15px auto;
+	
+	
 	color: white;
-	display:block;
+	
 	text-align: center;
 }
 
 
 .elegant-aero input[type="text"], .elegant-aero input[type="password"] , .elegant-aero input[type="email"]{
-  text-align: center;
-  display:block;
-  color: #2B6046;
-  width: 99%;
-  padding: 0px 0px 0px 5px;
-  border:none;
-  background: transparent;
-  outline: 0;
-  border-bottom:1px solid white;
-  font-size:1.4em;
-  font-weight:bold;
-  margin-bottom:5px;
-  margin-top:5px;  
-  text-align:center;  
+text-align: center;
+  
+	color: #1E1E1E;
+	border:none;
+	background: transparent;
+	outline: 0;
+	border-bottom:1px solid white;
+	font-size:1.4em;
+	font-weight:bold;
+	text-align:center;  
 }
 
 .elegant-aero-forgotten {
@@ -88,8 +84,7 @@ body{
 
 .elegant-aero-forgotten .caption {
 	width: 100%;
-	margin-left: auto;
-	margin-right: auto;
+	margin: 0px auto;
 }
 
 div{
@@ -118,6 +113,7 @@ div{
 	background-color: #337AB7;
 	opacity: 1;	
 }
+
 button {
 	margin-bottom: 5px;
 }
@@ -205,16 +201,7 @@ button {
 	margin-top: 10px;
 }
 
-.logo {
-	height: 48px; 
-	text-align: center;
-}
 
-.logo img {
-	margin-bottom: 20px;
-	width: 240px;
-	height: 60px;
-}
 
 .userInfo{
 	height: 48px; 

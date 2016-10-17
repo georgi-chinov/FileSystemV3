@@ -27,32 +27,25 @@
  	<meta name = "viewport " content = "width=device-width , initial-scale =1">
 
     </head>
-<body data-ng-app="mainModule" data-ng-controller="MainController" style="text-align: center" >
+<body data-ng-app="mainModule" data-ng-controller="MainController" style="text-align: center">
 
 	<div data-ng-controller="CollapseDemoCtrl" data-ng-hide = "hide">
-		
-		<div>
-			<div id="logoDiv" class="col-xs-12 col-sm-6">
-		       <a class="navbar-brand" href="#"><img class="logoPic" src="assets/images/logo.jpg" alt="logo"></a>
-		    </div>
-		    <nav class="navbar navbar-default" role="navigation">
-		        <div class="navbar-header">
-		            <button type="button" class="navbar-toggle" data-ng-click="isNavCollapsed = !isNavCollapsed" >
-		            	<span class="icon-bar"></span>
-		            	<span class="icon-bar"></span>
-		            </button>
-		        </div>
-		        <div class="collapse navbar-collapse rightMenu col-sm-6" data-uib-collapse="isNavCollapsed" >
-		            <a class="navbar-brand" href="#login">Log in</a>
-		            <a class="navbar-brand" href="#register">Sign up</a>
-		        </div>
-			</nav>
-	
-		
-		</div>
-		
-
-		<div id="myCarousel" data-ng-class="{'carousel slide':true, 'slide':true,'col-md-8':true,' col-md-offset-2':true,'col-xs-12':true}" data-ride="carousel"   data-ng-show="showCarousel">
+		<div id="logoDiv" class="col-xs-12 col-sm-6">
+	       <a class="navbar-brand" href="#"><img class="logoPic" src="assets/images/logo.jpg" alt="logo"></a>
+	    </div>
+	    <nav class="navbar navbar-default" role="navigation">
+	        <div class="navbar-header">
+	            <button type="button" class="navbar-toggle" data-ng-click="isNavCollapsed = !isNavCollapsed" >
+	            	<span class="icon-bar"></span>
+	            	<span class="icon-bar"></span>
+	            </button>
+	        </div>
+	        <div class="collapse navbar-collapse rightMenu col-sm-6" data-uib-collapse="isNavCollapsed" >
+	            <a class="navbar-brand" href="#login">Log in</a>
+	            <a class="navbar-brand" href="#register">Sign up</a>
+	        </div>
+		</nav>
+		<div id="myCarousel" data-ng-class="{'carousel slide':true, 'slide':true,'col-md-8':true,' col-md-offset-2':true,'col-xs-8':true,'col-xs-offset-2':true}" data-ride="carousel"   data-ng-show="showCarousel">
 			<ol class="carousel-indicators">
 				<li data-target="#myCarousel" data-slide-to="0" class="active"></li>
 				<li data-target="#myCarousel" data-slide-to="1"></li>
