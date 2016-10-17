@@ -79,11 +79,17 @@ body{
   font-weight:bold;
   margin-bottom:5px;
   margin-top:5px;  
-  text-align:center;
-  
+  text-align:center;  
 }
-.elegant-aero input:focus{
-	
+
+.elegant-aero-forgotten {
+	width: 40%;
+}
+
+.elegant-aero-forgotten .caption {
+	width: 100%;
+	margin-left: auto;
+	margin-right: auto;
 }
 
 div{
@@ -102,6 +108,10 @@ div{
 	color: #5483B7;
 	font-weight: bold;
 	margin: 10px auto;
+}
+
+.form-group > .caption {
+	color: #5483B7;
 }
 
 .navbar-collapse .active {
@@ -158,9 +168,14 @@ button {
 }
 
 @media all and (max-width: 767px) {
-    .leftMain {
+    .leftMain { 
         display: none;
     }
+}
+
+.logoPic {
+	width: 240px;
+	margin: 5px auto;
 }
 
 .rightMain{
@@ -254,13 +269,6 @@ li {
     color: darkmagenta;
     margin:0;
      padding:0;
-}
-
-ul .tree-drag > div > span.label {
-     background-color: lightsalmon;
-     margin: 0;
-     padding: 0;
-          float: left;
 }
 .tree-drag-over > div > span.label {
     background-color: darkseagreen;

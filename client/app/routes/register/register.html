@@ -1,6 +1,6 @@
 <div data-ng-controller = "registerController">
 	<form name="sign"   data-ng-class="{'elegant-aero':true ,'navbar-form':true}"  data-ng-submit="submitRegisterForm()" novalidate autocomplete="off">
-  		<div data-ng-class ="{'caption':true}">Sign up</div>
+  		<div data-ng-class ="{'caption':true}">Sign Up</div>
   		<div id = "username">
 		    <div  data-ng-class="{'input-group':true ,'form-group':true ,'has-error':!isValidName() , 'has-success':isValidName()}">
 			  	<input type="text" name="username" data-ng-class="{'form-control':true , 'form-control-danger':!isValidName(), 'form-control-success':isValidName()}" placeholder="Enter username" data-ng-model="user.name"  data-ng-blur="onBlur($event)" required />

@@ -1,6 +1,6 @@
 <div>
-	<form name="forgottenPassword"  data-ng-class="{'elegant-aero':true}" data-ng-submit="submitForm()" novalidate autocomplete="off">
-		<div data-ng-class ="{'caption':true}" >Forgotten password</div>
+	<form name="forgottenPassword"  data-ng-class="{'elegant-aero':true, 'elegant-aero-forgotten':true}" data-ng-submit="submitForm()" novalidate autocomplete="off">
+		<div data-ng-class ="{'caption':true}" >Forgotten Password</div>
 		<div id = "useremail">
 			<div data-ng-class="{'input-group':true, 'form-group':true ,'has-error':!isValidEmail(), 'has-success':isValidEmail()}">
 				<input type="email" name="userEmail" data-ng-model="lostmail.to"  data-ng-class="{'form-control':true , 'form-control-danger':!isValidEmail() , 'form-control-success':isValidEmail()}" placeholder= "Enter your email" required/>
