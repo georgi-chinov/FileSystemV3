@@ -290,7 +290,6 @@ mainApp.controller('mainpageController', function($window, $location, $parse, $s
     $scope.currentfolder = '';
     var _renderTree = function(tree) {
         var e, html, _i, _len;
-        zs
         html = "<ul>";
         for (_i = 0, _len = tree.length; _i < _len; _i++) {
             e = tree[_i];
@@ -388,8 +387,8 @@ mainApp.controller('mainpageController', function($window, $location, $parse, $s
                     }
                     $scope.treetotheleft = response.data
 
-                    $scope.visible = false;
                 }
+                $scope.visible = false;
                 //logika za greshka!
             })
 
