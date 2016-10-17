@@ -286,22 +286,53 @@ mainApp.controller('loginController',function($scope, $rootScope, $location,user
  */
 
 mainApp.controller('mainpageController', function($window, $location, $parse, $scope, $http, FileUploader, userSrv, fileSrv, multipartForm, $rootScope) {
-	console.log("this is the main Controller");
+    console.log("this is the main Controller");
+    var _renderTree = function(tree) {
+        var e, html, _i, _len;
+        html = "<ul>";
+        for (_i = 0, _len = tree.length; _i < _len; _i++) {
+            e = tree[_i];
+            html += "<li>" + e.name;
+            if (e.children != null) {
+                html += _renderTree(e.children);
+            }
+            html += "</li>";
+        }
+        html += "</ul>";
+        return html;
+    };
+    var _renderTreetoBody = function(tree) {
+        var e, html, _i, _len;
+        html = "<div>";
+        for (_i = 0, _len = tree.length; _i < _len; _i++) {
+            e = tree[_i];
+            html += "<p>" + e.name;
+            if (e.children != null) {
+                html += _renderTreetoBody(e.children);
+            }
+            html += "</p>";
+        }
+        html += "</div>";
+        return html;
+    };
+    //user info + loading user information
+    userSrv.userInformation().then(function(response) {
+        if (response.status == 200) {
+            //some logic here
+            var hi = _renderTree(response.data)
+            var bye = _renderTreetoBody(response.data)
+            $('#lefttree').append(hi)
+            $('#fitta').append(bye)
+        }
+    }, function(response) {
+        var absUrl = $location.absUrl();
+        var absUrlSplitted = absUrl.split('/');
+        console.log(absUrlSplitted);
+        absUrlSplitted = absUrlSplitted.splice(0, absUrlSplitted.length - 1).join('/').toString();
+        $window.location.href = absUrlSplitted;
 
-	//user info + loading user information
-     userSrv.userInformation().then(function(response) {
-         if (response.status == 200) {
-             //some logic here
-         }
-     }, function(response) {
-         var absUrl = $location.absUrl();
-         var absUrlSplitted = absUrl.split('/');
-         console.log(absUrlSplitted);
-         absUrlSplitted = absUrlSplitted.splice(0, absUrlSplitted.length - 1).join('/').toString();
-         $window.location.href = absUrlSplitted;
-
-         console.log(absUrlSplitted);
-     })
+        console.log(absUrlSplitted);
+    })
     $scope.tree_data = [{
         root: 'Top folder',
         children: [{
@@ -348,10 +379,10 @@ mainApp.controller('mainpageController', function($window, $location, $parse, $s
                     console.log("probe when folder name is not taken");
                     $scope.visible = false;
                     return;
-                }  
+                }
                 //logika za greshka!
-                })
-            
+            })
+
         }
         //add file - form
     $scope.showFileForm = function() {
