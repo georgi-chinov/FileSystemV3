@@ -4,7 +4,7 @@
 stuff = [];
 mainApp.controller('mainpageController', function($window, $location, $parse, $scope, $http, FileUploader, userSrv, fileSrv, multipartForm, $rootScope) {
     console.log("this is the main Controller");
-
+    $scope.currentfolder = '';
     var _renderTree = function(tree) {
         var e, html, _i, _len;
         zs
@@ -34,30 +34,21 @@ mainApp.controller('mainpageController', function($window, $location, $parse, $s
         html += "</div>";
         return html;
     };
-    // = [{
-    //     label: 'PogChamp',
-    //     children: [{
-    //         label: 'Kappa',
-    //         children: [{
-    //             label: 'pg13'
-    //         }]
-    //     }, {
-    //         label: 'Keepo'
-    //     }]
-    // }]
     //user info + loading user information
     $scope.getnfo = function() {
-        console.log(123);
         return stuff;
     }
     userSrv.userInformation()
         .then(function(response) {
             if (response.status == 200) {
                 //some logic here
-
                 stuff = response.data;
+                $scope.my_tree_handler = function(branch) {
+                    $scope.currentfolder = branch.data;
+                    console.log(branch.data);
+                }
                 $scope.treetotheleft = response.data
-                console.log($scope.treetotheleft);
+
             }
         }, function(response) {
             var absUrl = $location.absUrl();
@@ -65,22 +56,17 @@ mainApp.controller('mainpageController', function($window, $location, $parse, $s
             console.log(absUrlSplitted);
             absUrlSplitted = absUrlSplitted.splice(0, absUrlSplitted.length - 1).join('/').toString();
             $window.location.href = absUrlSplitted;
-
             console.log(absUrlSplitted);
         })
-
-    // console.log($scope.treetotheleft);
-    // for (var i = 0; i < stuff.length; i++) {
-    //     $scope.treetotheleft.push(stuff[i]);
-    // }
-
     console.log($scope.treetotheleft);
     $scope.uploader = new FileUploader();
     $scope.visible = false;
     $scope.visibleFileForm = false;
     $scope.folder = {
-        name: ''
+        name: '',
+        currentfolder: ''
     };
+
     $scope.customer = {};
     $rootScope.hide = true;
     $rootScope.showCarousel = false;
@@ -107,11 +93,19 @@ mainApp.controller('mainpageController', function($window, $location, $parse, $s
         //get folder name
     $scope.addName = function() {
             console.log($scope.folder);
+            $scope.folder.currentfolder = $scope.currentfolder;
+            console.log($scope.currentfolder);
             fileSrv.sendFolderName($scope.folder).then(function(response) {
                 if (response.status == 200) {
-                    console.log("probe when folder name is not taken");
+                    //some logic here
+                    stuff = response.data;
+                    $scope.my_tree_handler = function(branch) {
+                        $scope.currentfolder = branch.data;
+                        console.log(branch.data);
+                    }
+                    $scope.treetotheleft = response.data
+
                     $scope.visible = false;
-                    return;
                 }
                 //logika za greshka!
             })

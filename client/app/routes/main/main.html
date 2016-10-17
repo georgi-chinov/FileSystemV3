@@ -19,7 +19,8 @@
 	</div>
 	<div class="mainMain col-xs-12">
 		<div class="leftMain col-xs-12 col-sm-3">
-				<abn-tree tree-data="getnfo()"></abn-tree>
+				<abn-tree tree-data="getnfo()" on-select="my_tree_handler(branch)"></abn-tree>
+				{{testingval}}
 		</div>
 		<div  data-nv-file-drop data-uploader="uploader" class="rightMain col-xs-12 col-sm-9" id='fitta'>
 		</div>
