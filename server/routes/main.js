@@ -2,13 +2,44 @@ var express = require('express');
 var router = express.Router();
 var fs = require('fs');
 var db = require('./../db.js');
+var _makeTree = function(options) {
+    var children, e, id, o, pid, temp, _i, _len, _ref;
+    id = options.id || "id";
+    pid = options.parentid || "parentid";
+    children = options.children || "children";
+    temp = {};
+    o = [];
+    _ref = options.q;
+    for (_i = 0, _len = _ref.length; _i < _len; _i++) {
+        e = _ref[_i];
+        e[children] = [];
+        temp[e[id]] = e;
+        if (temp[e[pid]] != null) {
+            temp[e[pid]][children].push(e);
+        } else {
+            o.push(e);
+        }
+    }
+    return o;
+};
+
 
 router.get('/', function(req, res) {
     if (!req.session.isLogged) {
         res.sendStatus(401);
         return;
     }
-    res.sendStatus(200);
+    db.query('SELECT id, parentid, name FROM folders WHERE user = ?', req.session.user, function(err, results, query) {
+        if (err) {
+            console.log(err);
+            res.sendStatus(500);
+            return;
+        }
+        var tree = _makeTree({
+            q: results
+        });
+        res.send(tree)
+    })
 })
 router.post('/', function(req, res) {
     //Checking if the old passs is correct and changing it
