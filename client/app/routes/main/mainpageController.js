@@ -1,11 +1,13 @@
 /**
  *
  */
-
+stuff = [];
 mainApp.controller('mainpageController', function($window, $location, $parse, $scope, $http, FileUploader, userSrv, fileSrv, multipartForm, $rootScope) {
     console.log("this is the main Controller");
+
     var _renderTree = function(tree) {
         var e, html, _i, _len;
+        zs
         html = "<ul>";
         for (_i = 0, _len = tree.length; _i < _len; _i++) {
             e = tree[_i];
@@ -32,33 +34,47 @@ mainApp.controller('mainpageController', function($window, $location, $parse, $s
         html += "</div>";
         return html;
     };
+    // = [{
+    //     label: 'PogChamp',
+    //     children: [{
+    //         label: 'Kappa',
+    //         children: [{
+    //             label: 'pg13'
+    //         }]
+    //     }, {
+    //         label: 'Keepo'
+    //     }]
+    // }]
     //user info + loading user information
-    userSrv.userInformation().then(function(response) {
-        if (response.status == 200) {
-            //some logic here
-            var hi = _renderTree(response.data)
-            var bye = _renderTreetoBody(response.data)
-            $('#lefttree').append(hi)
-            $('#fitta').append(bye)
-        }
-    }, function(response) {
-        var absUrl = $location.absUrl();
-        var absUrlSplitted = absUrl.split('/');
-        console.log(absUrlSplitted);
-        absUrlSplitted = absUrlSplitted.splice(0, absUrlSplitted.length - 1).join('/').toString();
-        $window.location.href = absUrlSplitted;
+    $scope.getnfo = function() {
+        console.log(123);
+        return stuff;
+    }
+    userSrv.userInformation()
+        .then(function(response) {
+            if (response.status == 200) {
+                //some logic here
 
-        console.log(absUrlSplitted);
-    })
-    $scope.tree_data = [{
-        root: 'Top folder',
-        children: [{
-            root: 'first child',
-            children: [{
-                root: 'second child'
-            }]
-        }]
-    }];
+                stuff = response.data;
+                $scope.treetotheleft = response.data
+                console.log($scope.treetotheleft);
+            }
+        }, function(response) {
+            var absUrl = $location.absUrl();
+            var absUrlSplitted = absUrl.split('/');
+            console.log(absUrlSplitted);
+            absUrlSplitted = absUrlSplitted.splice(0, absUrlSplitted.length - 1).join('/').toString();
+            $window.location.href = absUrlSplitted;
+
+            console.log(absUrlSplitted);
+        })
+
+    // console.log($scope.treetotheleft);
+    // for (var i = 0; i < stuff.length; i++) {
+    //     $scope.treetotheleft.push(stuff[i]);
+    // }
+
+    console.log($scope.treetotheleft);
     $scope.uploader = new FileUploader();
     $scope.visible = false;
     $scope.visibleFileForm = false;
