@@ -2,6 +2,7 @@ var express = require('express');
 var router = express.Router();
 var fs = require('fs');
 var db = require('./../db.js');
+
 var _makeTree = function(options) {
     var children, e, id, o, pid, temp, _i, _len, _ref;
     id = options.id || "id";
@@ -14,6 +15,7 @@ var _makeTree = function(options) {
         e = _ref[_i];
         e[children] = [];
         temp[e[id]] = e;
+        e.data = e.id;
         if (temp[e[pid]] != null) {
             temp[e[pid]][children].push(e);
         } else {
@@ -35,9 +37,11 @@ router.get('/', function(req, res) {
             res.sendStatus(500);
             return;
         }
+
         var tree = _makeTree({
             q: results
         });
+
         res.send(tree)
     })
 })
@@ -65,16 +69,30 @@ router.post('/', function(req, res) {
 
     //Adding folder names to DB
     if (req.body.name) {
+        console.log(req.body);
         var folderInfo = {
             name: req.body.name,
             user: req.session.user,
+            parentid: req.body.currentfolder
         }
         db.query('INSERT INTO folders SET ?', folderInfo, function(err, results, query) {
             if (err) {
                 console.log(err);
             }
             if (!err) {
-                res.sendStatus(200)
+                db.query('SELECT id, parentid, name FROM folders WHERE user = ?', req.session.user, function(err, results, query) {
+                    if (err) {
+                        console.log(err);
+                        res.sendStatus(500);
+                        return;
+                    }
+
+                    var tree = _makeTree({
+                        q: results
+                    });
+
+                    res.send(tree)
+                })
             }
         });
     }

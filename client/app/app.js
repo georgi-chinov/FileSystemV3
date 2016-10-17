@@ -1,7 +1,7 @@
 /**
  *
  */
-var mainApp = angular.module('mainModule', ['ngRoute', 'ngAnimate', 'ui.bootstrap', 'ngMessages', 'angularFileUpload', 'treeGrid'])
+var mainApp = angular.module('mainModule', ['ngRoute', 'ngAnimate', 'ui.bootstrap', 'ngMessages', 'angularFileUpload', 'angularBootstrapNavTree'])
     //routing
     .config(function($routeProvider, $locationProvider) {
         $routeProvider
@@ -33,12 +33,12 @@ var mainApp = angular.module('mainModule', ['ngRoute', 'ngAnimate', 'ui.bootstra
     })
     //this is the main controller with nested scopes in it
     .controller('MainController', function($scope, $location, userSrv) {
-    	console.log("this is the main Controller");
+        console.log("this is the main Controller");
 
     })
 
 .controller('CollapseDemoCtrl', function($rootScope, $scope) {
-	console.log("this is the Controller");
+    console.log("this is the Controller");
 
     $scope.isNavCollapsed = true;
     $scope.isCollapsed = false;
