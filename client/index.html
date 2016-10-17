@@ -33,7 +33,7 @@
 
 	<div data-ng-controller="CollapseDemoCtrl" data-ng-hide = "hide">
 
-	    <nav class=" navbar navbar-default" role="navigation">
+	    <nav class="navbar navbar-default" role="navigation">
 	        <div class="navbar-header">
 	            <button type="button" class="navbar-toggle" data-ng-click="isNavCollapsed = !isNavCollapsed" >
 	            	<span class="icon-bar"></span>
@@ -41,7 +41,7 @@
 	            	<span class="icon-bar"></span>
 	            </button>
 	        </div>
-	        <div class="collapse navbar-collapse" data-uib-collapse="isNavCollapsed" >
+	        <div class="collapse navbar-collapse rightMenu" data-uib-collapse="isNavCollapsed" >
 	            <a class="navbar-brand" href="#login">Log in</a>
 	            <a class="navbar-brand" href="#register">Sign up</a>
 	            <a class="navbar-brand" href="#">Home</a>
@@ -52,7 +52,7 @@
 	       <a class="navbar-brand" href="#"><img class="logo" src="assets/images/logo.jpg" alt="logo"></a>
 	    </div>
 
-		<div id="myCarousel" data-ng-class="{'carousel':true,'slide':true,'col-md-8':true,' col-md-offset-2':true,'col-xs-12':true}" data-ride="carousel"   data-ng-show="showCarousel">
+		<div id="myCarousel" data-ng-class="{'carousel slide':true, 'slide':true,'col-md-8':true,' col-md-offset-2':true,'col-xs-12':true}" data-ride="carousel"   data-ng-show="showCarousel">
 			<ol class="carousel-indicators">
 				<li data-target="#myCarousel" data-slide-to="0" class="active"></li>
 				<li data-target="#myCarousel" data-slide-to="1"></li>
@@ -64,11 +64,11 @@
 				<div class="item">
 					<img src="assets/images/Carousel1.jpg" alt="pic2">
 				</div>
-				<a class="left carousel-control" href="javascript:void(0)" role="button" data-slide="prev">
+				<a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
 					<span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
 					<span class="sr-only">Previous</span>
 				</a>
-				<a class="right carousel-control" href="javascript:void(0)" role="button" data-slide="next">
+				<a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
 					<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
 					<span class="sr-only">Next</span>
 				</a>
