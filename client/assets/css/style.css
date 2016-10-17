@@ -6,7 +6,7 @@ body{
 	-moz-background-size: cover;
 	-o-background-size: cover;
 	background-size: cover;
-	font-family:"Indie Flower" ;
+	font-family:"Indie Flower";
 	overflow: hidden;
 }
 
@@ -24,6 +24,9 @@ body{
 .navbar-collapse.in {
     overflow-y: hidden;
 	background:transparent;
+	display: inline-block;
+	border-top: none;
+	border-color: transparent;
   }
  .navbar-collapse.collapse {
     overflow-y: hidden;
@@ -34,7 +37,6 @@ body{
 	font-weight:bold;
 	color:#337AB7 !important;
 	background:transparent;
-  	
 }
 
   .elegant-aero {
@@ -145,7 +147,7 @@ button {
 	color: #337ab7;
 }
 .leftMain{
-	height: 700px;
+	height: 500px;
 	border-radius: 5px;
 	-webkit-border-radius: 5px;
 	-moz-border-radius: 5px;
@@ -333,8 +335,13 @@ ul .tree-drag > div > span.label {
 	 border-radius: 5px;
 	 box-sizing: border-box;
 	 padding: 10px;
-    
 }
+
+.glyphicon-file {
+	width: 14px;
+	height: 16px;	
+}
+
 .uploadFile input{
 	text-align: center;
 }

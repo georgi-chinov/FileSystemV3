@@ -14,7 +14,7 @@
 		<button class="btn btn-info dropdown-toggle col-xs-3" type="button" data-toggle="dropdown">Create<span class="caret"></span></button>
 		<ul class="dropdown-menu col-xs-3"  style="text-align: center">
 			<li data-ng-click = "showForm()"><a href="javascript:void(0)" ><span class="glyphicon glyphicon-folder-close"></span>&nbsp;Add a folder</a></li>
-			<li data-ng-click = "showFileForm()"><a href="javascript:void(0)"><span class="btn-file glyphicon glyphicon-file">Add a file</span></a></li>
+			<li data-ng-click = "showFileForm()"><a href="javascript:void(0)"><span class="btn-file glyphicon glyphicon-file"></span>&nbsp;Add a file</a></li>
 		</ul>
 	</div>
 	<div class="mainMain col-xs-12">
@@ -37,7 +37,7 @@
 	 	</form>
 		<form data-ng-class="{'form-group':true , 'fileUpload':true, 'col-sm-4':true , 'col-sm-offset-4':true}" data-ng-if = visibleFileForm  novalidate autocomplete="off">
 		  	<span  data-ng-click = "hideFileForm()" data-ng-class="{'close': true}">&#10006;</span>
-		  	<div data-ng-class ="{'caption':true}" style = "color: blue">Add File</div>
+		  	<div data-ng-class ="{'caption':true,}" style = "color: blue">Add File</div>
 		  	<div id = "file">
 			  	 <div data-ng-class="{'input-group':true ,'form-group':true}">
 			  	 	<label><span data-ng-bind="item.file.name"></span>
