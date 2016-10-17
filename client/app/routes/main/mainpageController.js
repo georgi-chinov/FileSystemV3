@@ -3,7 +3,9 @@
  */
 
 mainApp.controller('mainpageController', function($window, $location, $parse, $scope, $http, FileUploader, userSrv, fileSrv, multipartForm, $rootScope) {
-    //user info + loading user information
+	console.log("this is the main Controller");
+
+	//user info + loading user information
      userSrv.userInformation().then(function(response) {
          if (response.status == 200) {
              //some logic here

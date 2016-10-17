@@ -2,7 +2,9 @@
  *
  */
 mainApp.controller('editController', function($rootScope, $scope, $location,$window,$interval , userSrv) {
-    $rootScope.showCarousel = false;
+	console.log("this is the edit Controller");
+
+	$rootScope.showCarousel = false;
     $rootScope.hide = true;
 	 $scope.iterator = 5;
 
