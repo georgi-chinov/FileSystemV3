@@ -1,6 +1,6 @@
 <div class="container-fluid">
 	<div class="header col-sm-12">
-		<div class="logo col-sm-1 col-xs-6"><span>some logo</span></div>
+		<div class="logo col-sm-2 col-xs-12"><img class="logoPic" src="assets/images/logo.jpg" alt="logo"></div>
 		<div class="col-sm-2 col-sm-offset-9 col-xs-6 dropdown">
 			<button class="btn btn-info dropdown-toggle col-lg-9" type="button" data-toggle="dropdown">User <span class="caret"></span></button>
 			<ul class="dropdown-menu col-xs-2"  style="text-align: center">
@@ -12,9 +12,9 @@
 	</div>
 	<div data-ng-class="{'editPassword': true}" >
 		<form  data-ng-class="{'elegant-aero':true , 'form-group':true , 'addName':true}" id= "editPass" data-ng-submit="sendNewPass()" novalidate autocomplete="off">
-		  				<div data-ng-class ="{'caption':true}" style = "color: blue">Change password</div>
+		  		<div data-ng-class ="{'caption':true}">Change password</div>
 		  		<div id = "oldPassword">
-			  	 <div data-ng-class="{'input-group':true, 'form-group':true ,'has-error':!isValidOlPassword(), 'has-success':isValidOlPassword()}">
+			  	<div data-ng-class="{'input-group':true, 'form-group':true ,'has-error':!isValidOlPassword(), 'has-success':isValidOlPassword()}">
 					<input name = "oldPassword" type="password" data-ng-class="{'form-control':true , 'form-control-danger':!isValidOlPassword(),'form-control-success':isValidOlPassword()}"  placeholder="Enter old password" data-ng-model="info.oldPassword" required>
 				</div>	
 			</div>
