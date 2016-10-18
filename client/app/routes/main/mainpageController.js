@@ -3,8 +3,10 @@
  */
 stuff = [];
 mainApp.controller('mainpageController', function($window, $location, $parse, $scope, $http, FileUploader, userSrv, fileSrv, multipartForm, $rootScope) {
-    console.log("this is the main Controller");
-    $scope.currentfolder = '';
+    
+	$scope.uploader = new FileUploader();
+	
+	$scope.currentfolder = '';
     var _renderTree = function(tree) {
         var e, html, _i, _len;
         html = "<ul>";
@@ -37,11 +39,30 @@ mainApp.controller('mainpageController', function($window, $location, $parse, $s
     $scope.getnfo = function() {
         return stuff;
     }
+    //function to display files
+    function displayFile(resp){
+    	var arrLength = resp.length;
+    	for(var i = 0 ; i < arrLength ; i ++){
+    		var name = resp[i].name;
+    		console.log(name + "e typ");
+    		var fileName = $('<span></span>').text(resp[i].name);
+			var fileNametwo = $('<p></p>').text(resp[i].name);		
+			var icon = $('<div></div>').addClass('glyphicon glyphicon-folder');
+			
+			$('.rightMain').append(icon);	
+    	
+    	}
+    }
+    
+    
+    //file stuff receiving and displaying
     userSrv.userInformation()
         .then(function(response) {
             if (response.status == 200) {
                 //some logic here
                 stuff = response.data;
+                displayFile(response.data);
+                
                 $scope.my_tree_handler = function(branch) {
                     $scope.currentfolder = branch.data;
                     console.log(branch.data);
@@ -72,6 +93,7 @@ mainApp.controller('mainpageController', function($window, $location, $parse, $s
     $scope.Submit = function() {
         var uploadUrl = 'http://localhost:3000/main';
         multipartForm.post(uploadUrl, $scope.customer);
+        console.log($scope.customer.file.name);
     }
     $scope.logout = function() {
             userSrv.userLogout().then(function(response) {
