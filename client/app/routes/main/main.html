@@ -30,7 +30,7 @@
 		</div>
  	</div>
 
-		<form data-ng-class="{'form-group':true , 'addName':true , 'col-sm-4':true , 'col-sm-offset-4':true}" data-ng-submit="addName()" data-ng-if = visible novalidate autocomplete="off">
+		<form data-ng-class="{'form-group':true, 'addName':true , 'col-sm-4':true , 'col-sm-offset-4':true}" data-ng-submit="addName()" data-ng-if = visible novalidate autocomplete="off">
 		  	<span class="close" data-ng-click = "hideForm()">&#10006;</span>
 		  	<div data-ng-class ="{'caption':true}">Add folder</div>
 		  	<div id = "foldername">
@@ -40,7 +40,7 @@
 			</div>
 			<button type = "submit" data-ng-class = "{ 'btn': true, 'btn-success': true}">Ready?</button>
 	 	</form>
-		<form data-ng-class="{'form-group':true , 'fileUpload':true, 'col-sm-4':true , 'col-sm-offset-4':true}" data-ng-if = visibleFileForm  novalidate autocomplete="off">
+		<form data-ng-class="{'form-group':true , 'fileUpload':true, 'col-sm-4':true , 'col-sm-offset-4':true , 'col-xs-3': true}" data-ng-if = visibleFileForm  novalidate autocomplete="off">
 		  	<span  data-ng-click = "hideFileForm()" data-ng-class="{'close': true}">&#10006;</span>
 		  	<div data-ng-class ="{'caption':true,}">Add File</div>
 		  	{{customer.file.name}}

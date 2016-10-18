@@ -1,27 +1,27 @@
-<div data-ng-controller = "registerController">
-	<form name="sign"   data-ng-class="{'elegant-aero':true ,'navbar-form':true}"  data-ng-submit="submitRegisterForm()" novalidate autocomplete="off">
-  		<div data-ng-class ="{'caption':true}">Sign Up</div>
-  		<div id = "username">
-		    <div  data-ng-class="{'input-group':true ,'form-group':true ,'has-error':!isValidName() , 'has-success':isValidName()}">
-			  	<input type="text" name="username" data-ng-class="{'form-control':true , 'form-control-danger':!isValidName(), 'form-control-success':isValidName()}" placeholder="Enter username" data-ng-model="user.name"  data-ng-blur="onBlur($event)" required />
+<div data-ng-controller = "registerController" class="container-fluid">
+	<form class="col-sm-8 col-sm-offset-2 col-lg-6 col-lg-offset-3" name="sign" data-ng-class="{'elegant-aero':true}"  data-ng-submit="submitRegisterForm()" novalidate autocomplete="off">
+  		<div data-ng-class ="{'caption':true}" style="width: 100%; margin: 10px auto;">Sign Up</div>
+  		<div class="col-xs-12" id = "username">
+		    <div class="col-xs-12" data-ng-class="{'input-group':true ,'form-group':true ,'has-error':!isValidName() , 'has-success':isValidName()}">
+			  	<input class="col-xs-12" type="text" name="username" data-ng-class="{'form-control':true , 'form-control-danger':!isValidName(), 'form-control-success':isValidName()}" placeholder="Enter username" data-ng-model="user.name"  data-ng-blur="onBlur($event)" required />
 			</div>	    		    
 		</div> 
-		<div id = "password">
-			<div data-ng-class="{'input-group':true, 'form-group':true ,'has-error':!isValidPassword(), 'has-success':isValidPassword()}">
-		  		<input type="password" name="userpass" data-ng-class="{'form-control':true , 'form-control-danger':!isValidPassword(),'form-control-success':isValidPassword()}" placeholder="Enter password" data-ng-model="user.password"  required >
+		<div class="col-xs-12" id = "password">
+			<div class="col-xs-12" data-ng-class="{'input-group':true, 'form-group':true ,'has-error':!isValidPassword(), 'has-success':isValidPassword()}">
+		  		<input class="col-xs-12" type="password" name="userpass" data-ng-class="{'form-control':true , 'form-control-danger':!isValidPassword(),'form-control-success':isValidPassword()}" placeholder="Enter password" data-ng-model="user.password"  required >
   			</div>
   		</div>
-		<div id = "passRepeated">
-			<div  data-ng-class="{'input-group':true, 'form-group':true ,'has-error':!isValidPassword2(), 'has-success':isValidPassword2()}">
-		  		<input type="password" name="passRepeated"  data-ng-class="{'form-control':true , 'form-control-danger':!isValidPassword2(),'form-control-success':isValidPassword2()}" placeholder="Enter password"   placeholder="Repeat password" data-ng-model="user.passRepeated"  required  />
+		<div class="col-xs-12" id = "passRepeated">
+			<div class="col-xs-12" data-ng-class="{'input-group':true, 'form-group':true ,'has-error':!isValidPassword2(), 'has-success':isValidPassword2()}">
+		  		<input class="col-xs-12" type="password" name="passRepeated"  data-ng-class="{'form-control':true , 'form-control-danger':!isValidPassword2(),'form-control-success':isValidPassword2()}" placeholder="Enter password"   placeholder="Repeat password" data-ng-model="user.passRepeated"  required  />
 			</div>
 		</div>
-		<div id = "userEmail">
-			<div data-ng-class="{'input-group':true, 'form-group':true ,'has-error':!isValidEmail(), 'has-success':isValidEmail()}">
-		  		<input type="email" name="userEmail" data-ng-model="user.email" data-ng-class="{'form-control':true , 'form-control-danger':!isValidEmail() , 'form-control-success':isValidEmail()}" placeholder="Enter email"  required />
+		<div class="col-xs-12" id = "userEmail">
+			<div class="col-xs-12" data-ng-class="{'input-group':true, 'form-group':true ,'has-error':!isValidEmail(), 'has-success':isValidEmail()}">
+		  		<input class="col-xs-12" type="email" name="userEmail" data-ng-model="user.email" data-ng-class="{'form-control':true , 'form-control-danger':!isValidEmail() , 'form-control-success':isValidEmail()}" placeholder="Enter email"  required />
 			</div>
     	</div>	 
-		<button data-ng-class = "{ 'btn': true, 'btn-primary': true , 'btn-lg':true , 'disabled':isValid()}">Submit</button>
+		<button data-ng-class = "{ 'btn': true, 'btn-primary': true , 'btn-lg':true , 'disabled':isValid()}" style="margin-bottom: 10px;">Submit</button>
 	</form>
    	<div data-ng-model = "show" data-ng-show = show>
  		<p style="font-weight:bold ; font-size:18px"><span>User exists!</span></p>

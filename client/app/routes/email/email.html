@@ -1,15 +1,15 @@
 <div>
-	<form name="forgottenPassword"  data-ng-class="{'elegant-aero':true, 'elegant-aero-forgotten':true}" data-ng-submit="submitForm()" novalidate autocomplete="off">
+	<form name="forgottenPassword" class="col-sm-8 col-sm-offset-2 col-lg-6 col-lg-offset-3"  data-ng-class="{'elegant-aero':true}" data-ng-submit="submitForm()" novalidate autocomplete="off">
 		<div data-ng-class ="{'caption':true}" >Forgotten Password</div>
-		<div id = "useremail">
-			<div data-ng-class="{'input-group':true, 'form-group':true ,'has-error':!isValidEmail(), 'has-success':isValidEmail()}">
-				<input type="email" name="userEmail" data-ng-model="lostmail.to"  data-ng-class="{'form-control':true , 'form-control-danger':!isValidEmail() , 'form-control-success':isValidEmail()}" placeholder= "Enter your email" required/>
+		<div class="col-xs-12" id = "useremail">
+			<div class="col-xs-12" data-ng-class="{'input-group':true, 'form-group':true ,'has-error':!isValidEmail(), 'has-success':isValidEmail()}">
+				<input class="col-xs-12" type="email" name="userEmail" data-ng-model="lostmail.to"  data-ng-class="{'form-control':true , 'form-control-danger':!isValidEmail() , 'form-control-success':isValidEmail()}" placeholder= "Enter your email" required/>
 			</div>    
 		</div>
-		<button type = "submit" data-ng-class = "{'btn': true, 'btn-primary': true , 'btn-lg':true , 'disabled':!isValidEmail()} ">Submit</button>
+		<button type = "submit" data-ng-class = "{'btn': true, 'btn-primary': true , 'btn-lg':true , 'disabled':!isValidEmail()}" style="margin-bottom: 10px;"">Submit</button>
 	</form>
-	<div data-ng-model = "show" data-ng-show = show >
-		<p  style="font-weight:bold ; font-size:18px ; color:green"><span>Email has been sent to you!</span></p>
+	<div class="col-xs-12" data-ng-model = "show" data-ng-show = show >
+		<p style="font-weight:bold ; font-size:18px ; color:green"><span>Email has been sent to you!</span></p>
 	</div> 
 	<div data-ng-model = "hide" data-ng-show = showWrong>
 		<p style="font-weight:bold ; font-size:18px  ; color:red"><span>No user with this email!</span></p>
