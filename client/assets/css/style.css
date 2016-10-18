@@ -118,13 +118,16 @@ body::-webkit-scrollbar-thumb {
 	margin: 0px auto;
 }
 
-div {
-	text-align: center;
-	display:inline-block;
-	vertical-align:top;
-	color: red;
-	margin:6px auto;
-	width:95%;
+
+div{
+	
+  text-align: center;
+  display:inline-block;
+  vertical-align:top;
+  color: #2AABD2;
+  margin:6px auto;
+  width:95%;
+>>>>>>> 1f1fb0b2db316b2c128ff6c3fc1550d1a2f91e75
 }
 .caption{
 	display: block;

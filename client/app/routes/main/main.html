@@ -27,6 +27,10 @@
 				{{testingval}}
 		</div>
 		<div  data-nv-file-drop data-uploader="uploader" class="rightMain col-xs-12 col-sm-9" id='fitta'>
+			<div data-ng-repeat="item in uploader.queue">
+                                <span>{{item.file.name}}</span>
+                               
+		  	</div>
 		</div>
  	</div>
 
@@ -43,6 +47,7 @@
 		<form data-ng-class="{'form-group':true , 'fileUpload':true, 'col-sm-4':true , 'col-sm-offset-4':true, 'col-xs-8':true , 'col-xs-offset-2':true}" data-ng-if = visibleFileForm  novalidate autocomplete="off">
 		  	<span  data-ng-click = "hideFileForm()" data-ng-class="{'close': true}">&#10006;</span>
 		  	<div data-ng-class ="{'caption':true,}">Add File</div>
+		  	{{customer.file.name}}
 		  	<div id = "file">
 			  	 <div data-ng-class="{'input-group':true ,'form-group':true}">
 			  	 	<label><span data-ng-bind="item.file.name"></span>
