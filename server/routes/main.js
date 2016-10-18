@@ -31,19 +31,20 @@ router.get('/', function(req, res) {
         res.sendStatus(401);
         return;
     }
-    db.query('SELECT id, parentid, name FROM folders WHERE user = ?', req.session.user, function(err, results, query) {
-        if (err) {
-            console.log(err);
-            res.sendStatus(500);
-            return;
-        }
-
-        var tree = _makeTree({
-            q: results
-        });
-
-        res.send(tree)
-    })
+    db.query('(SELECT id, parentid, name FROM folders WHERE user = ?) UNION(SELECT  CONCAT("file",id) as fileID,parentid, name FROM files WHERE user = ?)', [req.session.user, req.session.user],
+        function(err, results, query) {
+            if (err) {
+                console.log(err);
+                res.sendStatus(500);
+                return;
+            }
+            console.log(results);
+            var tree = _makeTree({
+                q: results
+            });
+            console.log(tree);
+            res.send(tree)
+        })
 })
 router.post('/', function(req, res) {
     //Checking if the old passs is correct and changing it
@@ -98,22 +99,22 @@ router.post('/', function(req, res) {
     }
     //File stuff
     if (req.file) {
-        console.log(req.file);
-        // Adding the files to the DB
+
+        // Renaming the uploaded file
+        var smth = req.file.originalname.split('.');
+        var ext = smth.pop()
+        var filePath = './uploads/' + req.file.filename;
+        fs.rename(filePath, filePath + '.' + ext)
+            // Adding the files to the DB
         filenfo = {
             name: req.file.originalname,
             user: req.session.user,
-            path: req.file.path,
+            path: req.file.path + '.' + ext,
+            parentid: req.body.parentidfile
 
         }
         db.query('INSERT INTO files SET ?', filenfo)
-            // Renaming the uploaded file
-        var smth = req.file.originalname.split('.');
-        var filePath = './uploads/' + req.file.filename
-        fs.rename(filePath, filePath + '.' + smth.pop())
-        console.log(req.session);
-        console.log();
-        res.send();
+        res.sendStatus(200);
     }
 });
 

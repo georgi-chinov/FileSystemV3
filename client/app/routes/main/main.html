@@ -1,20 +1,24 @@
 <div class="container-fluid">
 	<div class ="header col-sm-12">
-		<div class="logo col-sm-1 col-xs-6"><img class="logo" src="assets/images/logo.jpg" alt="logo"></div>
+		<div class="logo col-sm-2 col-xs-12">
+			<div>
+				<img id="kkk" class="logo" src="assets/images/logo.jpg" alt="logo">
+			</div>
+		</div>
 		<div class="col-sm-2 col-sm-offset-9 col-xs-6 col-xs-offset-3 dropdown" style="margin-top: 35px;">
 			<button class="btn btn-info dropdown-toggle col-lg-9" type="button" data-toggle="dropdown">User <span class="caret"></span></button>
-			<ul class="dropdown-menu col-xs-2 col-md-6 col-md-ofset-6"  style="text-align: center">
-				<li><a href="#">My shared files</a></li>
-				<li><a href="#main/edit">Change password</a></li>
-				<li><a href="javascript:void(0)" data-ng-click="logout()">Log Out</a></li>
+			<ul class="dropdown-menu col-xs-12 col-md-6 col-md-offset-6"  style="text-align: center">
+				<li><a style="color: #2AABD2;" href="#">My shared files</a></li>
+				<li><a style="color: #2AABD2;" href="#main/edit">Change password</a></li>
+				<li><a style="color: #2AABD2;" href="javascript:void(0)" data-ng-click="logout()">Log Out</a></li>
 			</ul>
 		</div>
 	</div>
 	<div class="bar col-sm-12">
-		<button class="btn btn-info dropdown-toggle col-sm-3 col-sm-offset-0 col-xs-4 col-xs-offset-4" type="button" data-toggle="dropdown">Create <span class="caret"></span></button>
-		<ul class="dropdown-menu col-sm-3 col-sm-offset-3 col-xs-8 col-sm-offset-3" style="text-align: center">
-			<li data-ng-click = "showForm()"><a href="javascript:void(0)" ><span class="glyphicon glyphicon-folder-close"></span>&nbsp;Add a folder</a></li>
-			<li data-ng-click = "showFileForm()"><a href="javascript:void(0)"><span class="btn-file glyphicon glyphicon-file"></span>&nbsp;Add a file</a></li>
+		<button class="btn btn-info dropdown-toggle col-sm-2 col-sm-offset-0 col-xs-4 col-xs-offset-4" type="button" data-toggle="dropdown">Create <span class="caret"></span></button>
+		<ul class="dropdown-menu row col-sm-4 col-sm-offset-4 col-xs-12" style="text-align: center">
+			<li data-ng-click = "showForm()"><a href="javascript:void(0)"  style="color: #2AABD2;"><span class="glyphicon glyphicon-folder-close"></span>&nbsp;Add a folder</a></li>
+			<li data-ng-click = "showFileForm()"><a href="javascript:void(0)" style="color: #2AABD2;"><span class="btn-file glyphicon glyphicon-file"></span>&nbsp;Add a file</a></li>
 		</ul>
 	</div>
 	<div class="mainMain col-xs-12">
@@ -30,7 +34,7 @@
 		</div>
  	</div>
 
-		<form data-ng-class="{'form-group':true, 'addName':true , 'col-sm-4':true , 'col-sm-offset-4':true}" data-ng-submit="addName()" data-ng-if = visible novalidate autocomplete="off">
+		<form data-ng-class="{'form-group':true, 'addName':true , 'col-sm-4':true , 'col-sm-offset-4':true, 'col-xs-8':true , 'col-xs-offset-2':true}" data-ng-submit="addName()" data-ng-if = visible novalidate autocomplete="off">
 		  	<span class="close" data-ng-click = "hideForm()">&#10006;</span>
 		  	<div data-ng-class ="{'caption':true}">Add folder</div>
 		  	<div id = "foldername">
@@ -40,7 +44,7 @@
 			</div>
 			<button type = "submit" data-ng-class = "{ 'btn': true, 'btn-success': true}">Ready?</button>
 	 	</form>
-		<form data-ng-class="{'form-group':true , 'fileUpload':true, 'col-sm-4':true , 'col-sm-offset-4':true , 'col-xs-3': true}" data-ng-if = visibleFileForm  novalidate autocomplete="off">
+		<form data-ng-class="{'form-group':true , 'fileUpload':true, 'col-sm-4':true , 'col-sm-offset-4':true, 'col-xs-8':true , 'col-xs-offset-2':true}" data-ng-if = visibleFileForm  novalidate autocomplete="off">
 		  	<span  data-ng-click = "hideFileForm()" data-ng-class="{'close': true}">&#10006;</span>
 		  	<div data-ng-class ="{'caption':true,}">Add File</div>
 		  	{{customer.file.name}}
