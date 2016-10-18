@@ -4,10 +4,12 @@ var fs = require('fs');
 var db = require('./../db.js');
 
 var _makeTree = function(options) {
-    var children, e, id, o, pid, temp, _i, _len, _ref;
+    var children, e, id, o, pid, temp, _i, _len, _ref, temp, type, path;
     id = options.id || "id";
     pid = options.parentid || "parentid";
     children = options.children || "children";
+    type = options.format || "format";
+    path = options.path || "path";
     temp = {};
     o = [];
     _ref = options.q;
@@ -15,7 +17,12 @@ var _makeTree = function(options) {
         e = _ref[_i];
         e[children] = [];
         temp[e[id]] = e;
-        e.data = e.id;
+        e.data = {
+            id: e.id,
+            type: e.type,
+            path: e.path
+        };
+
         if (temp[e[pid]] != null) {
             temp[e[pid]][children].push(e);
         } else {
@@ -31,7 +38,7 @@ router.get('/', function(req, res) {
         res.sendStatus(401);
         return;
     }
-    db.query('(SELECT id, parentid, name FROM folders WHERE user = ?) UNION(SELECT  CONCAT("file",id) as fileID,parentid, name FROM files WHERE user = ?)', [req.session.user, req.session.user],
+    db.query('(SELECT id, parentid, name, path, format FROM folders WHERE user = ?) UNION(SELECT  CONCAT("file",id) as fileID,parentid, name, path, format FROM files WHERE user = ?)', [req.session.user, req.session.user],
         function(err, results, query) {
             if (err) {
                 console.log(err);
@@ -97,7 +104,6 @@ router.post('/', function(req, res) {
     }
     //File stuff
     if (req.file) {
-
         // Renaming the uploaded file
         var smth = req.file.originalname.split('.');
         var ext = smth.pop()

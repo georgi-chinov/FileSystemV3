@@ -179,6 +179,14 @@ mainApp.service("TreeService", ["$http", "URLConfig", function ($http, URLConfig
 /**
  * 
  */
+mainApp.controller('homeController' , function($rootScope,$scope){
+	console.log("this is the home Controller");
+
+	$rootScope.showCarousel = false;
+})
+/**
+ * 
+ */
 
 mainApp.controller('emailController' , function($rootScope, $scope, $http, $httpParamSerializerJQLike, userSrv, $location){
 	console.log("this is the emailController");
@@ -215,14 +223,6 @@ mainApp.controller('emailController' , function($rootScope, $scope, $http, $http
 		}
 	};
 
-})
-/**
- * 
- */
-mainApp.controller('homeController' , function($rootScope,$scope){
-	console.log("this is the home Controller");
-
-	$rootScope.showCarousel = false;
 })
 /**
  * 
@@ -287,38 +287,8 @@ mainApp.controller('loginController',function($scope, $rootScope, $location,user
  */
 stuff = [];
 mainApp.controller('mainpageController', function($window, $location, $parse, $scope, $http, FileUploader, userSrv, fileSrv, multipartForm, $rootScope) {
-
-    $scope.uploader = new FileUploader();
-
     $scope.currentfolder = '';
-    var _renderTree = function(tree) {
-        var e, html, _i, _len;
-        html = "<ul>";
-        for (_i = 0, _len = tree.length; _i < _len; _i++) {
-            e = tree[_i];
-            html += "<li>" + e.name;
-            if (e.children != null) {
-                html += _renderTree(e.children);
-            }
-            html += "</li>";
-        }
-        html += "</ul>";
-        return html;
-    };
-    var _renderTreetoBody = function(tree) {
-        var e, html, _i, _len;
-        html = "<div>";
-        for (_i = 0, _len = tree.length; _i < _len; _i++) {
-            e = tree[_i];
-            html += "<p>" + e.name;
-            if (e.children != null) {
-                html += _renderTreetoBody(e.children);
-            }
-            html += "</p>";
-        }
-        html += "</div>";
-        return html;
-    };
+    $scope.uploader = new FileUploader();
     //user info + loading user information
     $scope.getnfo = function() {
             return stuff;
@@ -347,8 +317,7 @@ mainApp.controller('mainpageController', function($window, $location, $parse, $s
                 displayFile(response.data);
 
                 $scope.my_tree_handler = function(branch) {
-                    $scope.currentfolder = branch.data;
-                    console.log(branch.data);
+                    $scope.currentfolder = branch.data.id;
                 }
                 $scope.treetotheleft = response.data
 
@@ -356,7 +325,6 @@ mainApp.controller('mainpageController', function($window, $location, $parse, $s
         }, function(response) {
             var absUrl = $location.absUrl();
             var absUrlSplitted = absUrl.split('/');
-            console.log(absUrlSplitted);
             absUrlSplitted = absUrlSplitted.splice(0, absUrlSplitted.length - 1).join('/').toString();
             $window.location.href = absUrlSplitted;
 
@@ -382,8 +350,7 @@ mainApp.controller('mainpageController', function($window, $location, $parse, $s
                 //some logic here
                 stuff = response.data;
                 $scope.my_tree_handler = function(branch) {
-                    $scope.currentfolder = branch.data;
-                    console.log(branch.data);
+                    $scope.currentfolder = branch.data.id;
                 }
                 $scope.treetotheleft = response.data
 
@@ -411,16 +378,13 @@ mainApp.controller('mainpageController', function($window, $location, $parse, $s
         }
         //get folder name
     $scope.addName = function() {
-            console.log($scope.folder);
             $scope.folder.currentfolder = $scope.currentfolder;
-            console.log($scope.currentfolder);
             fileSrv.sendFolderName($scope.folder).then(function(response) {
                 if (response.status == 200) {
                     //some logic here
                     stuff = response.data;
                     $scope.my_tree_handler = function(branch) {
-                        $scope.currentfolder = branch.data;
-                        console.log(branch.data);
+                        $scope.currentfolder = branch.data.id;
                     }
                     $scope.treetotheleft = response.data
 
