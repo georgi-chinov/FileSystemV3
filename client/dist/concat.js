@@ -328,7 +328,6 @@ mainApp.controller('mainpageController', function($window, $location, $parse, $s
         var arrLength = resp.length;
         for (var i = 0; i < arrLength; i++) {
             var name = resp[i].name;
-            console.log(name + "e typ");
             var fileName = $('<span></span>').text(resp[i].name);
             var fileNametwo = $('<p></p>').text(resp[i].name);
             var icon = $('<div></div>').addClass('glyphicon glyphicon-folder');
@@ -380,15 +379,18 @@ mainApp.controller('mainpageController', function($window, $location, $parse, $s
         var uploadUrl = 'http://localhost:3000/main';
         multipartForm.post(uploadUrl, $scope.customer, $scope.currentfolder).then(function(response) {
             if (response.status == 200) {
-
+                //some logic here
+                stuff = response.data;
                 $scope.my_tree_handler = function(branch) {
                     $scope.currentfolder = branch.data;
                     console.log(branch.data);
                 }
-                $scope.visibleFileForm = false;
-            }
+                $scope.treetotheleft = response.data
 
-        });
+            }
+            $scope.visibleFileForm = false;
+            //logika za greshka!
+        })
 
     }
     $scope.logout = function() {
@@ -423,7 +425,7 @@ mainApp.controller('mainpageController', function($window, $location, $parse, $s
                     $scope.treetotheleft = response.data
 
                 }
-                $scope.visibleFileForm = false;
+                $scope.visible = false;
                 //logika za greshka!
             })
 

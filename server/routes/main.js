@@ -38,11 +38,9 @@ router.get('/', function(req, res) {
                 res.sendStatus(500);
                 return;
             }
-            console.log(results);
             var tree = _makeTree({
                 q: results
             });
-            console.log(tree);
             res.send(tree)
         })
 })
@@ -70,7 +68,6 @@ router.post('/', function(req, res) {
 
     //Adding folder names to DB
     if (req.body.name) {
-        console.log(req.body);
         var folderInfo = {
             name: req.body.name,
             user: req.session.user,
@@ -81,19 +78,20 @@ router.post('/', function(req, res) {
                 console.log(err);
             }
             if (!err) {
-                db.query('SELECT id, parentid, name FROM folders WHERE user = ?', req.session.user, function(err, results, query) {
-                    if (err) {
-                        console.log(err);
-                        res.sendStatus(500);
-                        return;
-                    }
+                db.query('(SELECT id, parentid, name FROM folders WHERE user = ?) UNION(SELECT  CONCAT("file",id) as fileID,parentid, name FROM files WHERE user = ?)', [req.session.user, req.session.user],
+                    function(err, results, query) {
+                        if (err) {
+                            console.log(err);
+                            res.sendStatus(500);
+                            return;
+                        }
 
-                    var tree = _makeTree({
-                        q: results
-                    });
+                        var tree = _makeTree({
+                            q: results
+                        });
 
-                    res.send(tree)
-                })
+                        res.send(tree)
+                    })
             }
         });
     }
@@ -114,7 +112,21 @@ router.post('/', function(req, res) {
 
         }
         db.query('INSERT INTO files SET ?', filenfo)
-        res.sendStatus(200);
+        db.query('(SELECT id, parentid, name FROM folders WHERE user = ?) UNION(SELECT  CONCAT("file",id) as fileID,parentid, name FROM files WHERE user = ?)', [req.session.user, req.session.user],
+            function(err, results, query) {
+                if (err) {
+                    console.log(err);
+                    res.sendStatus(500);
+                    return;
+                }
+
+                var tree = _makeTree({
+                    q: results
+                });
+
+                res.send(tree)
+            })
+
     }
 });
 
