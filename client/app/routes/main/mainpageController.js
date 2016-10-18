@@ -1,133 +1,169 @@
-var express = require('express');
-var router = express.Router();
-var fs = require('fs');
-var db = require('./../db.js');
+/**
+ *
+ */
+stuff = [];
+mainApp.controller('mainpageController', function($window, $location, $parse, $scope, $http, FileUploader, userSrv, fileSrv, multipartForm, $rootScope) {
 
-var _makeTree = function(options) {
-    var children, e, id, o, pid, temp, _i, _len, _ref;
-    id = options.id || "id";
-    pid = options.parentid || "parentid";
-    children = options.children || "children";
-    temp = {};
-    o = [];
-    _ref = options.q;
-    for (_i = 0, _len = _ref.length; _i < _len; _i++) {
-        e = _ref[_i];
-        e[children] = [];
-        temp[e[id]] = e;
-        e.data = e.id;
-        if (temp[e[pid]] != null) {
-            temp[e[pid]][children].push(e);
-        } else {
-            o.push(e);
+    $scope.uploader = new FileUploader();
+
+    $scope.currentfolder = '';
+    var _renderTree = function(tree) {
+        var e, html, _i, _len;
+        html = "<ul>";
+        for (_i = 0, _len = tree.length; _i < _len; _i++) {
+            e = tree[_i];
+            html += "<li>" + e.name;
+            if (e.children != null) {
+                html += _renderTree(e.children);
+            }
+            html += "</li>";
+        }
+        html += "</ul>";
+        return html;
+    };
+    var _renderTreetoBody = function(tree) {
+        var e, html, _i, _len;
+        html = "<div>";
+        for (_i = 0, _len = tree.length; _i < _len; _i++) {
+            e = tree[_i];
+            html += "<p>" + e.name;
+            if (e.children != null) {
+                html += _renderTreetoBody(e.children);
+            }
+            html += "</p>";
+        }
+        html += "</div>";
+        return html;
+    };
+    //user info + loading user information
+    $scope.getnfo = function() {
+            return stuff;
+        }
+        //function to display files
+    function displayFile(resp) {
+        var arrLength = resp.length;
+        for (var i = 0; i < arrLength; i++) {
+            var name = resp[i].name;
+            var fileName = $('<span></span>').text(resp[i].name);
+            var fileNametwo = $('<p></p>').text(resp[i].name);
+            var icon = $('<div></div>').addClass('glyphicon glyphicon-folder');
+
+            $('.rightMain').append(icon);
+
         }
     }
-    return o;
-};
 
 
-router.get('/', function(req, res) {
-    if (!req.session.isLogged) {
-        res.sendStatus(401);
-        return;
-    }
-    db.query('(SELECT id, parentid, name FROM folders WHERE user = ?) UNION(SELECT  CONCAT("file",id) as fileID,parentid, name FROM files WHERE user = ?)', [req.session.user, req.session.user],
-        function(err, results, query) {
-            if (err) {
-                console.log(err);
-                res.sendStatus(500);
-                return;
-            }
-            var tree = _makeTree({
-                q: results
-            });
-            res.send(tree)
-        })
-})
-router.post('/', function(req, res) {
-    //Checking if the old passs is correct and changing it
-    if (req.body.oldPassword) {
-        db.query('SELECT * FROM users WHERE username = ? AND password = ?', [req.session.user, req.body.oldPassword], function(err, results, query) {
-            if (!err) {
-                if (results.length) {
-                    db.query('UPDATE users SET password = ? WHERE username = ?', [req.body.password, req.session.user], function(err, results, query) {
-                        if (!err) {
-                            res.send({
-                                legit: true
-                            })
-                        }
-                    })
-                    return;
+    //file stuff receiving and displaying
+    userSrv.userInformation()
+        .then(function(response) {
+            if (response.status == 200) {
+                //some logic here
+                stuff = response.data;
+                displayFile(response.data);
+
+                $scope.my_tree_handler = function(branch) {
+                    $scope.currentfolder = branch.data;
+                    console.log(branch.data);
                 }
-                res.send({
-                    legit: false
-                })
+                $scope.treetotheleft = response.data
+
             }
+        }, function(response) {
+            var absUrl = $location.absUrl();
+            var absUrlSplitted = absUrl.split('/');
+            console.log(absUrlSplitted);
+            absUrlSplitted = absUrlSplitted.splice(0, absUrlSplitted.length - 1).join('/').toString();
+            $window.location.href = absUrlSplitted;
+
         })
-    }
 
-    //Adding folder names to DB
-    if (req.body.name) {
-        var folderInfo = {
-            name: req.body.name,
-            user: req.session.user,
-            parentid: req.body.currentfolder
-        }
-        db.query('INSERT INTO folders SET ?', folderInfo, function(err, results, query) {
-            if (err) {
-                console.log(err);
-            }
-            if (!err) {
-                db.query('(SELECT id, parentid, name FROM folders WHERE user = ?) UNION(SELECT  CONCAT("file",id) as fileID,parentid, name FROM files WHERE user = ?)', [req.session.user, req.session.user],
-                    function(err, results, query) {
-                        if (err) {
-                            console.log(err);
-                            res.sendStatus(500);
-                            return;
-                        }
+    $scope.uploader = new FileUploader();
+    $scope.visible = false;
+    $scope.visibleFileForm = false;
+    $scope.folder = {
+        name: '',
+        currentfolder: ''
+    };
 
-                        var tree = _makeTree({
-                            q: results
-                        });
+    $scope.customer = {};
+    $rootScope.hide = true;
+    $rootScope.showCarousel = false;
 
-                        res.send(tree)
-                    })
-            }
-        });
-    }
-    //File stuff
-    if (req.file) {
-
-        // Renaming the uploaded file
-        var smth = req.file.originalname.split('.');
-        var ext = smth.pop()
-        var filePath = './uploads/' + req.file.filename;
-        fs.rename(filePath, filePath + '.' + ext)
-            // Adding the files to the DB
-        filenfo = {
-            name: req.file.originalname,
-            user: req.session.user,
-            path: req.file.path + '.' + ext,
-            parentid: req.body.parentidfile
-
-        }
-        db.query('INSERT INTO files SET ?', filenfo)
-        db.query('(SELECT id, parentid, name FROM folders WHERE user = ?) UNION(SELECT  CONCAT("file",id) as fileID,parentid, name FROM files WHERE user = ?)', [req.session.user, req.session.user],
-            function(err, results, query) {
-                if (err) {
-                    console.log(err);
-                    res.sendStatus(500);
-                    return;
+    //Uploading the file
+    $scope.Submit = function() {
+        var uploadUrl = 'http://localhost:3000/main';
+        multipartForm.post(uploadUrl, $scope.customer, $scope.currentfolder).then(function(response) {
+            if (response.status == 200) {
+                //some logic here
+                stuff = response.data;
+                $scope.my_tree_handler = function(branch) {
+                    $scope.currentfolder = branch.data;
+                    console.log(branch.data);
                 }
+                $scope.treetotheleft = response.data
 
-                var tree = _makeTree({
-                    q: results
-                });
+            }
+            $scope.visibleFileForm = false;
+            //logika za greshka!
+        })
 
-                res.send(tree)
+    }
+    $scope.logout = function() {
+            userSrv.userLogout().then(function(response) {
+                if (response.data && response.data.logout == true) {
+                    $location.path('index.html').replace();
+                }
+            })
+        }
+        //show the form
+    $scope.showForm = function() {
+            if ($scope.visible == false) {
+                $scope.visible = true;
+                $scope.visibleFileForm = false;
+            } else {
+                $scope.visible = false;
+            }
+        }
+        //get folder name
+    $scope.addName = function() {
+            console.log($scope.folder);
+            $scope.folder.currentfolder = $scope.currentfolder;
+            console.log($scope.currentfolder);
+            fileSrv.sendFolderName($scope.folder).then(function(response) {
+                if (response.status == 200) {
+                    //some logic here
+                    stuff = response.data;
+                    $scope.my_tree_handler = function(branch) {
+                        $scope.currentfolder = branch.data;
+                        console.log(branch.data);
+                    }
+                    $scope.treetotheleft = response.data
+
+                }
+                $scope.visible = false;
+                //logika za greshka!
             })
 
+        }
+        //add file - form
+    $scope.showFileForm = function() {
+            if ($scope.visibleFileForm == false) {
+                $scope.visibleFileForm = true;
+                $scope.visible = false;
+            } else {
+                $scope.visibleFileForm = false;
+            }
+        }
+        //close forms
+    $scope.hideFileForm = function() {
+        if ($scope.visibleFileForm == true) {
+            $scope.visibleFileForm = false;
+        }
     }
-});
-
-module.exports = router;
+    $scope.hideForm = function() {
+        if ($scope.visible == true) {
+            $scope.visible = false;
+        }
+    }
+})
