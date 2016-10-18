@@ -11,18 +11,29 @@ mainApp.controller('mainpageController', function($window, $location, $parse, $s
         }
         //function to display files
     function displayFile(resp) {
+        $('.rightMain').empty();
         var arrLength = resp.length;
         for (var i = 0; i < arrLength; i++) {
+            // console.log(resp[i]);
             var name = resp[i].name;
-            var fileName = $('<span></span>').text(resp[i].name);
-            var fileNametwo = $('<p></p>').text(resp[i].name);
-            var icon = $('<div></div>').addClass('glyphicon glyphicon-folder');
+            var p = $('<p></p>').text(name);
+            p.addClass('icon')
+            var frame = $('<div></div>').addClass('middleIconFrame');
+            var icon = $('<div></div>').addClass('middleIcon glyphicon glyphicon-folder-close');
+            frame.append(icon);
+            frame.append(p)
+            frame.attr('id', i)
+            frame.attr('format', resp[i].format)
+            $('.rightMain').append(frame);
+            $(frame).click(function() {
+                console.log(this);
+                // console.log(resp[this.id].children);
+                displayFile(resp[this.id].children);
 
-            $('.rightMain').append(icon);
+            })
 
         }
     }
-
 
     //file stuff receiving and displaying
     userSrv.userInformation()
@@ -30,12 +41,11 @@ mainApp.controller('mainpageController', function($window, $location, $parse, $s
             if (response.status == 200) {
                 //some logic here
                 stuff = response.data;
-                displayFile(response.data);
-
                 $scope.my_tree_handler = function(branch) {
                     $scope.currentfolder = branch.data.id;
                 }
                 $scope.treetotheleft = response.data
+                displayFile(response.data)
 
             }
         }, function(response) {
@@ -69,6 +79,7 @@ mainApp.controller('mainpageController', function($window, $location, $parse, $s
                     $scope.currentfolder = branch.data.id;
                 }
                 $scope.treetotheleft = response.data
+                displayFile(response.data)
 
             }
             $scope.visibleFileForm = false;
@@ -103,6 +114,7 @@ mainApp.controller('mainpageController', function($window, $location, $parse, $s
                         $scope.currentfolder = branch.data.id;
                     }
                     $scope.treetotheleft = response.data
+                    displayFile(response.data)
 
                 }
                 $scope.visible = false;
