@@ -2,7 +2,7 @@
  *
  */
 stuff = [];
-mainApp.controller('mainpageController', function($window, $location, $parse, $scope, $http, FileUploader, userSrv, fileSrv, multipartForm, $rootScope) {
+mainApp.controller('mainpageController', function($window, $location, $parse, $rootScope, $scope, $http, FileUploader, userSrv, fileSrv, multipartForm, $rootScope) {
     
 	$scope.uploader = new FileUploader();
 	
@@ -99,6 +99,8 @@ mainApp.controller('mainpageController', function($window, $location, $parse, $s
             userSrv.userLogout().then(function(response) {
                 if (response.data && response.data.logout == true) {
                     $location.path('index.html').replace();
+                    $rootScope.hide = false;
+                    $rootScope.showCarousel = true;
                 }
             })
         }
