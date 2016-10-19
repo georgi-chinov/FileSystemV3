@@ -94,9 +94,12 @@ router.post('/', function(req, res) {
                             res.sendStatus(500);
                             return;
                         }
-                        var tree = _makeTree({
-                            q: results
-                        });
+                        if (results) {
+
+                            var tree = _makeTree({
+                                q: results
+                            });
+                        }
                         res.send(tree)
                     })
             }
@@ -104,6 +107,7 @@ router.post('/', function(req, res) {
     }
     //File stuff
     if (req.file) {
+        console.log(req.file);
         // Renaming the uploaded file
         var smth = req.file.originalname.split('.');
         var ext = smth.pop()
@@ -113,7 +117,7 @@ router.post('/', function(req, res) {
         filenfo = {
             name: req.file.originalname,
             user: req.session.user,
-            path: req.file.path + '.' + ext,
+            path: filePath + '.' + ext,
             parentid: req.body.parentidfile,
             extention: ext
 
