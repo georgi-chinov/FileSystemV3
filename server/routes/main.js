@@ -47,9 +47,12 @@ router.get('/', function(req, res) {
                 res.sendStatus(500);
                 return;
             }
-            var tree = _makeTree({
-                q: results
-            });
+            if (results) {
+
+                var tree = _makeTree({
+                    q: results
+                });
+            }
             res.send(tree)
         })
 })
