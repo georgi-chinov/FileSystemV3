@@ -186,6 +186,14 @@ mainApp.service("TreeService", ["$http", "URLConfig", function ($http, URLConfig
 /**
  * 
  */
+mainApp.controller('homeController' , function($rootScope,$scope){
+	console.log("this is the home Controller");
+
+	$rootScope.showCarousel = false;
+})
+/**
+ * 
+ */
 
 mainApp.controller('emailController' , function($rootScope, $scope, $http, $httpParamSerializerJQLike, userSrv, $location){
 	console.log("this is the emailController");
@@ -222,14 +230,6 @@ mainApp.controller('emailController' , function($rootScope, $scope, $http, $http
 		}
 	};
 
-})
-/**
- * 
- */
-mainApp.controller('homeController' , function($rootScope,$scope){
-	console.log("this is the home Controller");
-
-	$rootScope.showCarousel = false;
 })
 /**
  *
@@ -302,7 +302,7 @@ stuff = [];
 mainApp.controller('mainpageController', function($window, $location, $parse, $scope, $http, FileUploader, userSrv, fileSrv, multipartForm, $rootScope) {
     $scope.currentfolder = '';
     $scope.profile = userSrv.getUser();
-    console.log($scope.profile);
+    $scope.showImage = true;
     $scope.uploader = new FileUploader();
     //user info + loading user information
     $scope.getnfo = function() {
@@ -313,20 +313,29 @@ mainApp.controller('mainpageController', function($window, $location, $parse, $s
         $('.rightMain').empty();
         var arrLength = resp.length;
         for (var i = 0; i < arrLength; i++) {
+            console.log(resp);
+            //Bricks
             var name = resp[i].name;
             var p = $('<p></p>').text(name);
             p.addClass('icon');
             var frame = $('<div></div>').addClass('middleIconFrame');
             var icon = $('<div></div>').addClass('middleIcon fa fa-folder fa-3x');
+
+            //Extras
             frame.append(icon);
             frame.append(p);
             frame.attr('id', i);
             frame.attr('format', resp[i].format);
             frame.attr('extention', resp[i].extention);
-
+            frame.attr('actualID', resp[i].id)
+            if (resp[i].format == 'file' && resp[i].extention == 'jpg') {
+                frame.attr('link', resp[i].path)
+            }
+            //Icons
             if (frame.attr('format') == 'folder') {
                 icon.attr('class', 'middleIcon fa fa-folder fa-3x');
             }
+
             switch (frame.attr('extention')) {
                 case 'jpg':
                     icon.attr("class", 'middleIcon fa fa-file-image-o fa-3x')
@@ -337,17 +346,20 @@ mainApp.controller('mainpageController', function($window, $location, $parse, $s
                 case 'exe':
                     icon.attr("class", 'middleIcon fa fa-file-o fa-3x')
                     break;
-
             }
+
             $('.rightMain').append(frame);
             $(frame).click(function() {
+                if ($(this).attr('format') == 'file' && $(this).attr('extention') == 'jpg') {
+                    console.log($(this).attr('link'));
+                    $scope.img = $(this).attr('link');
+                    console.log($scope.img);
+                }
+                console.log($(this).attr('actualID'));
                 displayFile(resp[this.id].children);
-
             })
-
         }
     }
-
     //file stuff receiving and displaying
     userSrv.userInformation()
         .then(function(response) {
@@ -357,8 +369,8 @@ mainApp.controller('mainpageController', function($window, $location, $parse, $s
                 stuff = response.data;
                 $scope.my_tree_handler = function(branch) {
                     $scope.currentfolder = branch.data.id;
-                    console.log(branch.data);
-                    console.log(123123);
+                    console.log(branch);
+
 
                     // displayFile(resp[this.id].children);
                 }
@@ -460,6 +472,12 @@ mainApp.controller('mainpageController', function($window, $location, $parse, $s
         if ($scope.visible == true) {
             $scope.visible = false;
         }
+    }
+    $scope.displayTheImage = function() {
+        if ($scope.showImage == false) {
+            $scope.showImage = true;
+        }
+
     }
 })
 
