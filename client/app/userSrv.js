@@ -1,6 +1,13 @@
 mainApp.factory('userSrv', function($http, $location) {
     var baseUrl = 'http://localhost:3000/';
+    var temp = '';
     return {
+        setUser: function(user) {
+            temp = user;
+        },
+        getUser: function() {
+            return temp;
+        },
         lostEmail: function(lostmail) {
             return $http.post(baseUrl + 'lostpassword', lostmail);
         },

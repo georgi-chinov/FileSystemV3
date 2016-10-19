@@ -10,6 +10,7 @@ var _makeTree = function(options) {
     children = options.children || "children";
     type = options.format || "format";
     path = options.path || "path";
+    extention = options.extention || "extention";
     temp = {};
     o = [];
     _ref = options.q;
@@ -20,7 +21,8 @@ var _makeTree = function(options) {
         e.data = {
             id: e.id,
             type: e.type,
-            path: e.path
+            path: e.path,
+            ext: e.extention
         };
 
         if (temp[e[pid]] != null) {
@@ -38,7 +40,7 @@ router.get('/', function(req, res) {
         res.sendStatus(401);
         return;
     }
-    db.query('(SELECT id, parentid, name, path, format FROM folders WHERE user = ?) UNION(SELECT  CONCAT("file",id) as fileID,parentid, name, path, format FROM files WHERE user = ?)', [req.session.user, req.session.user],
+    db.query('(SELECT id, parentid, name, path, format,extention FROM folders WHERE user = ?) UNION(SELECT  CONCAT("file",id) as fileID,parentid, name, path, format,extention FROM files WHERE user = ?)', [req.session.user, req.session.user],
         function(err, results, query) {
             if (err) {
                 console.log(err);
@@ -85,18 +87,16 @@ router.post('/', function(req, res) {
                 console.log(err);
             }
             if (!err) {
-                db.query('(SELECT id, parentid, name FROM folders WHERE user = ?) UNION(SELECT  CONCAT("file",id) as fileID,parentid, name FROM files WHERE user = ?)', [req.session.user, req.session.user],
+                db.query('(SELECT id, parentid, name, path, format,extention FROM folders WHERE user = ?) UNION(SELECT  CONCAT("file",id) as fileID,parentid, name, path, format,extention FROM files WHERE user = ?)', [req.session.user, req.session.user],
                     function(err, results, query) {
                         if (err) {
                             console.log(err);
                             res.sendStatus(500);
                             return;
                         }
-
                         var tree = _makeTree({
                             q: results
                         });
-
                         res.send(tree)
                     })
             }
@@ -114,22 +114,21 @@ router.post('/', function(req, res) {
             name: req.file.originalname,
             user: req.session.user,
             path: req.file.path + '.' + ext,
-            parentid: req.body.parentidfile
+            parentid: req.body.parentidfile,
+            extention: ext
 
         }
         db.query('INSERT INTO files SET ?', filenfo)
-        db.query('(SELECT id, parentid, name FROM folders WHERE user = ?) UNION(SELECT  CONCAT("file",id) as fileID,parentid, name FROM files WHERE user = ?)', [req.session.user, req.session.user],
+        db.query('(SELECT id, parentid, name, path, format,extention FROM folders WHERE user = ?) UNION(SELECT  CONCAT("file",id) as fileID,parentid, name, path, format,extention FROM files WHERE user = ?)', [req.session.user, req.session.user],
             function(err, results, query) {
                 if (err) {
                     console.log(err);
                     res.sendStatus(500);
                     return;
                 }
-
                 var tree = _makeTree({
                     q: results
                 });
-
                 res.send(tree)
             })
 
