@@ -5,7 +5,7 @@ stuff = [];
 mainApp.controller('mainpageController', function($window, $location, $parse, $scope, $http, FileUploader, userSrv, fileSrv, multipartForm, $rootScope) {
     $scope.currentfolder = '';
     $scope.profile = userSrv.getUser();
-    $scope.showImage = true;
+    $scope.displayImage = false;
     $scope.uploader = new FileUploader();
     //user info + loading user information
     $scope.getnfo = function() {

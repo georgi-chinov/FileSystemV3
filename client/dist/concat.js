@@ -302,7 +302,7 @@ stuff = [];
 mainApp.controller('mainpageController', function($window, $location, $parse, $scope, $http, FileUploader, userSrv, fileSrv, multipartForm, $rootScope) {
     $scope.currentfolder = '';
     $scope.profile = userSrv.getUser();
-    $scope.showImage = true;
+    $scope.displayImage = false;
     $scope.uploader = new FileUploader();
     //user info + loading user information
     $scope.getnfo = function() {
@@ -560,12 +560,12 @@ mainApp.controller ('registerController',function($rootScope,$scope, userSrv  , 
 /**
  *
  */
-mainApp.controller('editController', function($rootScope, $scope, $location,$window,$interval , userSrv) {
-	console.log("this is the edit Controller");
-
-	$rootScope.showCarousel = false;
+mainApp.controller('editController', function($rootScope, $scope, $location, $window, $interval, userSrv) {
+    console.log("this is the edit Controller");
+    $scope.profile = userSrv.getUser();
+    $rootScope.showCarousel = false;
     $rootScope.hide = true;
-	 $scope.iterator = 5;
+    $scope.iterator = 5;
 
     $scope.info = {
         oldPassword: '',
@@ -611,27 +611,27 @@ mainApp.controller('editController', function($rootScope, $scope, $location,$win
     $scope.sendNewPass = function() {
         console.log($scope.info);
         if (!$scope.isValidInfo()) {
-            userSrv.userCheckpw($scope.info).then(function(response){
-            	if(response.data.legit == false){
-            		$scope.showErr = true;
-            	}
-            	
-            	if(response.data.legit ==  true){
-            		
-            		 var absUrl = $location.absUrl();
-                     var absUrlSplitted = absUrl.split('/');
-                     console.log(absUrlSplitted);
-                     absUrlSplitted = absUrlSplitted.splice(0, absUrlSplitted.length - 1).join('/').toString();
-                     $scope.show = true;
-                  //show time remain
-                     $interval(function () {
-                    	 $scope.iterator--;
-                    	 if($scope.iterator == 0){
-                        	 $window.location.href = absUrlSplitted;
-                    	 }
-                     }, 1000);
-            	}
-            	
+            userSrv.userCheckpw($scope.info).then(function(response) {
+                if (response.data.legit == false) {
+                    $scope.showErr = true;
+                }
+
+                if (response.data.legit == true) {
+
+                    var absUrl = $location.absUrl();
+                    var absUrlSplitted = absUrl.split('/');
+                    console.log(absUrlSplitted);
+                    absUrlSplitted = absUrlSplitted.splice(0, absUrlSplitted.length - 1).join('/').toString();
+                    $scope.show = true;
+                    //show time remain
+                    $interval(function() {
+                        $scope.iterator--;
+                        if ($scope.iterator == 0) {
+                            $window.location.href = absUrlSplitted;
+                        }
+                    }, 1000);
+                }
+
             })
         }
     }
