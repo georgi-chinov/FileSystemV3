@@ -120,7 +120,7 @@ router.post('/', function(req, res) {
         filenfo = {
             name: req.file.originalname,
             user: req.session.user,
-            path: filePath + '.' + ext,
+            path: 'server/uploads/' + req.file.filename + '.' + ext,
             parentid: req.body.parentidfile,
             extention: ext
 

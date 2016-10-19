@@ -31,7 +31,8 @@ mainApp.controller('mainpageController', function($window, $location, $parse, $s
             frame.attr('extention', resp[i].extention);
             frame.attr('actualID', resp[i].id)
             if (resp[i].format == 'file' && resp[i].extention == 'jpg') {
-                frame.attr('link', resp[i].path)
+                frame.attr('link', resp[i].path);
+
             }
             //Icons
             if (frame.attr('format') == 'folder') {
@@ -52,8 +53,11 @@ mainApp.controller('mainpageController', function($window, $location, $parse, $s
 
             $('.rightMain').append(frame);
             $(frame).click(function() {
-                if ($(this).attr('format') == 'file' && $(this).attr('extention') == 'jpg') {}
-
+                if ($(this).attr('format') == 'file' && $(this).attr('extention') == 'jpg') {
+                    var url = $(this).attr('link');
+                    $('#divDisp').css('background-image', 'url(" ../' + url + '")');
+                    $('#divDisp').show();
+                }
                 displayFile(resp[this.id].children);
             })
         }
@@ -133,23 +137,26 @@ mainApp.controller('mainpageController', function($window, $location, $parse, $s
         }
         //get folder name
     $scope.addName = function() {
-            $scope.folder.currentfolder = $scope.currentfolder;
-            fileSrv.sendFolderName($scope.folder).then(function(response) {
-                if (response.status == 200) {
-                    //some logic here
-                    stuff = response.data;
-                    $scope.my_tree_handler = function(branch) {
-                        $scope.currentfolder = branch.data.id;
-                    }
-                    $scope.treetotheleft = response.data
-                    displayFile(response.data)
-
+        $scope.folder.currentfolder = $scope.currentfolder;
+        fileSrv.sendFolderName($scope.folder).then(function(response) {
+            if (response.status == 200) {
+                //some logic here
+                stuff = response.data;
+                $scope.my_tree_handler = function(branch) {
+                    $scope.currentfolder = branch.data.id;
                 }
-                $scope.visible = false;
-                //logika za greshka!
-            })
+                $scope.treetotheleft = response.data
+                displayFile(response.data)
 
-        }
+            }
+            $scope.visible = false;
+            //logika za greshka!
+        })
+
+    }
+    $('#closebutton').click(function() {
+            $('#divDisp').hide();
+        })
         //add file - form
     $scope.showFileForm = function() {
             if ($scope.visibleFileForm == false) {
@@ -176,5 +183,12 @@ mainApp.controller('mainpageController', function($window, $location, $parse, $s
             $scope.showImage = true;
         }
 
+    }
+    $scope.hideImage = function() {
+        if ($scope.showImage == true) {
+            $scope.showImage = false;
+        } else {
+            $scope.showImage = true;
+        }
     }
 })
