@@ -8,7 +8,7 @@
 		<div class="col-sm-2 col-sm-offset-8 col-xs-6 col-xs-offset-3 dropdown" style="margin-top: 35px;">
 			<button class="btn btn-info dropdown-toggle col-lg-9" type="button" data-toggle="dropdown">{{profile}} <span class="caret"></span></button>
 			<ul class="dropdown-menu col-xs-12 col-md-6 col-md-offset-6"  style="text-align: center">
-				<li><a style="color: #2AABD2;" href="#">My shared files</a></li>
+				<li><span style="color: #2AABD2;" href="#">My shared files</span></li>
 				<li><a style="color: #2AABD2;" href="#main/edit">Change password</a></li>
 				<li><a style="color: #2AABD2;" href="javascript:void(0)" data-ng-click="logout()">Log Out</a></li>
 			</ul>
@@ -42,7 +42,7 @@
 				  	<input type="text" name="folder" data-ng-class="{'form-control':true}" placeholder="Enter folder name" data-ng-model="folder.name"  required >
 				 </div>
 			</div>
-			<button type = "submit" data-ng-class = "{ 'btn': true, 'btn-success': true}">Ready?</button>
+			<button type = "submit" data-ng-class = "{ 'btn': true, 'btn-info': true}">Ready?</button>
 	 	</form>
 		<form data-ng-class="{'form-group':true , 'fileUpload':true, 'col-sm-4':true , 'col-sm-offset-4':true, 'col-xs-8':true , 'col-xs-offset-2':true}" data-ng-if = visibleFileForm  novalidate autocomplete="off">
 		  	<span  data-ng-click = "hideFileForm()" data-ng-class="{'close': true}">&#10006;</span>
@@ -57,7 +57,7 @@
 				 	</label>
 				 </div>
 			</div>
-			<button type = "submit" class = "btn btn-success" data-ng-click="Submit()">Ready?</button>
+			<button type = "submit" class = "btn btn-info" data-ng-click="Submit()">Ready?</button>
 	 	</form>
 	</div>
 
