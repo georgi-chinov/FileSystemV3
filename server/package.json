@@ -15,7 +15,8 @@
     "express-session": "^1.14.1",
     "mysql": "^2.11.1",
     "nodemailer": "^0.7.1",
-    "randomstring": "^1.1.5"
+    "randomstring": "^1.1.5",
+    "multer: "1.2.0"
   },
   "devDependencies": {
     "gulp": "^3.9.1",
